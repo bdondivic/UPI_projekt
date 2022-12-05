@@ -1,0 +1,13 @@
+C:\Users\Korisnik\Desktop\Test\obj\Debug\Test.csprojAssemblyReference.cache
+C:\Users\Korisnik\Desktop\Test\obj\Debug\Backlog.Login.resources
+C:\Users\Korisnik\Desktop\Test\obj\Debug\Backlog.MainAdmin.resources
+C:\Users\Korisnik\Desktop\Test\obj\Debug\Backlog.MainUser.resources
+C:\Users\Korisnik\Desktop\Test\obj\Debug\Test.Properties.Resources.resources
+C:\Users\Korisnik\Desktop\Test\obj\Debug\Backlog.Register.resources
+C:\Users\Korisnik\Desktop\Test\obj\Debug\Test.csproj.GenerateResource.cache
+C:\Users\Korisnik\Desktop\Test\obj\Debug\Test.csproj.CoreCompileInputs.cache
+C:\Users\Korisnik\Desktop\Test\bin\Debug\Test.exe.config
+C:\Users\Korisnik\Desktop\Test\bin\Debug\Test.exe
+C:\Users\Korisnik\Desktop\Test\bin\Debug\Test.pdb
+C:\Users\Korisnik\Desktop\Test\obj\Debug\Test.exe
+C:\Users\Korisnik\Desktop\Test\obj\Debug\Test.pdb
