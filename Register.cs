@@ -34,14 +34,15 @@ namespace Backlog
 
         private void btnRegister_Click(object sender, EventArgs e)
         {
-            Registracija reg = new Registracija();
             string ime = txtName.Text.Trim();
             string prezime = txtSurname.Text.Trim();
             string uName = txtUsername.Text.Trim();
             string pass = txtPassword.Text.Trim();
             string passConf = txtConfirmPass.Text.Trim();
+            Registracija reg = new Registracija(ime, prezime, uName, pass, passConf);
+            
 
-            bool isprPod = reg.Provjera(ime, prezime, uName, pass, passConf);
+            bool isprPod = reg.Provjera();
             //if (ime.Length < 3 || ime.Length > 12)
             //{
             //    MessageBox.Show("Ime mora sadržavati između 3 i 12 znakova!");
@@ -70,7 +71,7 @@ namespace Backlog
             if (isprPod == true)
             {
 
-                if (reg.uNameZauzet(uName) == true)
+                if (reg.uNameZauzet() == true)
                 {
                     return;
                 }
@@ -94,7 +95,7 @@ namespace Backlog
                 //    MessageBox.Show(exp.ToString());
                 //}
 
-                reg.noviKorisnik(this, ime, prezime, uName, pass);
+                reg.noviKorisnik(this);
                 //try
                 //{
                 //    con.Open();

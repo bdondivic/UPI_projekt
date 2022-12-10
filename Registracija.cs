@@ -7,6 +7,7 @@ using System.Windows.Forms;
 using System.Data.OleDb;
 using System.Drawing;
 using Backlog;
+using System.Xml.Linq;
 
 namespace Test
 {
@@ -15,13 +16,25 @@ namespace Test
         OleDbConnection con;
         OleDbCommand cmd;
         OleDbDataAdapter da;
-        public Registracija()
+
+        string ime;
+        string prezime;
+        string uName;
+        string pass;
+        string passConf;
+        public Registracija(string ime, string prezime, string uName, string pass, string passConf)
         {
             this.con = new OleDbConnection("Provider=Microsoft.Jet.OlEDB.4.0;Data Source=db_Backlog.mdb");
             this.cmd = new OleDbCommand();
             this.da = new OleDbDataAdapter();
+
+            this.ime = ime;
+            this.prezime = prezime;
+            this.uName = uName;
+            this.pass = pass;
+            this.passConf = passConf;
         }
-        public bool Provjera(string ime, string prezime, string uName, string pass, string passConf)
+        public bool Provjera()
         {
             if (ime.Length < 3 || ime.Length > 12)
             {
@@ -51,7 +64,7 @@ namespace Test
             return true;
         }
 
-        public bool uNameZauzet(string uName)
+        public bool uNameZauzet()
         {
             try
             {
@@ -76,7 +89,7 @@ namespace Test
             return false;
         }
 
-        public void noviKorisnik(Register reg,string ime, string prezime, string uName, string pass)
+        public void noviKorisnik(Register reg)
         {
             try
             {
