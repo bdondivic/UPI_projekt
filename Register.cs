@@ -10,6 +10,7 @@ using System.Configuration;
 using System.Data.SqlClient;
 using System.Data.Common;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using Test;
 
 namespace Backlog
 {
@@ -33,48 +34,86 @@ namespace Backlog
 
         private void btnRegister_Click(object sender, EventArgs e)
         {
+            Registracija reg = new Registracija();
             string ime = txtName.Text.Trim();
             string prezime = txtSurname.Text.Trim();
             string uName = txtUsername.Text.Trim();
             string pass = txtPassword.Text.Trim();
             string passConf = txtConfirmPass.Text.Trim();
-            if (ime.Length < 3 || ime.Length > 12)
+
+            bool isprPod = reg.Provjera(ime, prezime, uName, pass, passConf);
+            //if (ime.Length < 3 || ime.Length > 12)
+            //{
+            //    MessageBox.Show("Ime mora sadržavati između 3 i 12 znakova!");
+            //    return;
+            //}
+            //if (prezime.Length < 3 || prezime.Length > 12)
+            //{
+            //    MessageBox.Show("Prezime mora sadržavati između 3 i 12 znakova!");
+            //    return;
+            //}
+            //if (uName.Length < 5 || uName.Length > 12)
+            //{
+            //    MessageBox.Show("Korisničko ime mora sadržavati između 5 i 12 znakova!");
+            //    return;
+            //}
+            //if (pass.Length < 6 || pass.Length > 20)
+            //{
+            //    MessageBox.Show("Lozinka mora sadržavati između 5 i 20 znakova!");
+            //    return;
+            //}
+            //if (pass != passConf)
+            //{
+            //    MessageBox.Show("Lozinka se moraju podudarati!");
+            //    return;
+            //}
+            if (isprPod == true)
             {
-                MessageBox.Show("Ime mora sadržavati između 3 i 12 znakova!");
-                return;
-            }
-            if (prezime.Length < 3 || prezime.Length > 12)
-            {
-                MessageBox.Show("Prezime mora sadržavati između 3 i 12 znakova!");
-                return;
-            }
-            if (uName.Length < 5 || uName.Length > 12)
-            {
-                MessageBox.Show("Korisničko ime mora sadržavati između 5 i 12 znakova!");
-                return;
-            }
-            if (pass.Length < 6 || pass.Length > 20)
-            {
-                MessageBox.Show("Lozinka mora sadržavati između 5 i 20 znakova!");
-                return;
-            }
-            if (pass != passConf)
-            {
-                MessageBox.Show("Lozinka se moraju podudarati!");
-                return;
-            }
-            try
-            {
-                con.Open();
-                string naredba = $"INSERT INTO tb_Korisnik (Ime, Prezime, KorisnIme, Lozinka, JeAdmin) VALUES ('{ime}', '{prezime}', '{uName}', '{pass}', {0})";
-                cmd = new OleDbCommand(naredba, con);
-                cmd.ExecuteNonQuery();
-                con.Close();
-                MessageBox.Show("Registracija je bila uspješna!");
-            }
-            catch(Exception exp)
-            {
-                MessageBox.Show(exp.ToString());
+
+                if (reg.uNameZauzet(uName) == true)
+                {
+                    return;
+                }
+                //try
+                //{
+                //    con.Open();
+                //    string naredba = $"SELECT * FROM tb_Korisnik WHERE KorisnIme='{uName}'";
+                //    cmd = new OleDbCommand(naredba, con);
+                //    OleDbDataReader odg = cmd.ExecuteReader();
+                //    if (odg.Read() == true)
+                //    {
+                //        MessageBox.Show("Korisničko ime nije dostupno jer ga koristi drugi korinik!");
+                //        con.Close();
+                //        return;
+                //    }
+                //    con.Close();
+
+                //}
+                //catch (Exception exp)
+                //{
+                //    MessageBox.Show(exp.ToString());
+                //}
+
+                reg.noviKorisnik(this, ime, prezime, uName, pass);
+                //try
+                //{
+                //    con.Open();
+                //    string naredba = $"INSERT INTO tb_Korisnik (Ime, Prezime, KorisnIme, Lozinka, JeAdmin) VALUES ('{ime}', '{prezime}', '{uName}', '{pass}', {0})";
+                //    cmd = new OleDbCommand(naredba, con);
+                //    cmd.ExecuteNonQuery();
+                //    con.Close();
+                //    MessageBox.Show("Registracija je bila uspješna!");
+                //    this.Hide();
+                //    var Login = new Login();
+                //    Login.Closed += (s, args) => this.Close();
+                //    Login.Show();
+
+                //}
+                //catch (Exception exp)
+                //{
+                //    MessageBox.Show(exp.ToString());
+                //}
+
             }
         }
 
