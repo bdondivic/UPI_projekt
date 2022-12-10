@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.OleDb;
+using Test;
 
 namespace Backlog
 {
@@ -31,6 +32,21 @@ namespace Backlog
             Register.Closed += (s, args) => this.Close();
             Register.Show();
 
+        }
+
+        private void btnLogin_Click(object sender, EventArgs e)
+        {
+            string uName = txtUsername.Text;
+            string pass = txtPassword.Text;
+
+            Prijava pr = new Prijava(uName, pass);
+
+            bool isprPod = pr.Provjera();
+
+            if (isprPod)
+            {
+                pr.otvoriAplikaciju(this);
+            }
         }
     }
 }

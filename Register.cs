@@ -22,9 +22,9 @@ namespace Backlog
             InitializeComponent();
         }
 
-        OleDbConnection con = new OleDbConnection("Provider=Microsoft.Jet.OlEDB.4.0;Data Source=db_Backlog.mdb");
-        OleDbCommand cmd = new OleDbCommand();
-        OleDbDataAdapter da = new OleDbDataAdapter();
+        //OleDbConnection con = new OleDbConnection("Provider=Microsoft.Jet.OlEDB.4.0;Data Source=db_Backlog.mdb");
+        //OleDbCommand cmd = new OleDbCommand();
+        //OleDbDataAdapter da = new OleDbDataAdapter();
         
         private void Register_Load(object sender, EventArgs e)
         {
