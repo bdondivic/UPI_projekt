@@ -30,14 +30,15 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tpPretraga = new System.Windows.Forms.TabPage();
+            this.button1 = new System.Windows.Forms.Button();
+            this.cbZanr = new System.Windows.Forms.ComboBox();
+            this.rtbOpis = new System.Windows.Forms.RichTextBox();
+            this.lbIgre = new System.Windows.Forms.ListBox();
+            this.txtPretraga = new System.Windows.Forms.TextBox();
             this.tpBacklog = new System.Windows.Forms.TabPage();
             this.tpIgram = new System.Windows.Forms.TabPage();
             this.tpIgrao = new System.Windows.Forms.TabPage();
             this.tpProfil = new System.Windows.Forms.TabPage();
-            this.txtPretraga = new System.Windows.Forms.TextBox();
-            this.lbIgre = new System.Windows.Forms.ListBox();
-            this.rtbOpis = new System.Windows.Forms.RichTextBox();
-            this.cbZanr = new System.Windows.Forms.ComboBox();
             this.tabControl1.SuspendLayout();
             this.tpPretraga.SuspendLayout();
             this.SuspendLayout();
@@ -58,6 +59,7 @@
             // 
             // tpPretraga
             // 
+            this.tpPretraga.Controls.Add(this.button1);
             this.tpPretraga.Controls.Add(this.cbZanr);
             this.tpPretraga.Controls.Add(this.rtbOpis);
             this.tpPretraga.Controls.Add(this.lbIgre);
@@ -70,6 +72,48 @@
             this.tpPretraga.TabIndex = 0;
             this.tpPretraga.Text = "PRETRAGA";
             this.tpPretraga.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(0, 0);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 0;
+            // 
+            // cbZanr
+            // 
+            this.cbZanr.FormattingEnabled = true;
+            this.cbZanr.Location = new System.Drawing.Point(503, 32);
+            this.cbZanr.Name = "cbZanr";
+            this.cbZanr.Size = new System.Drawing.Size(196, 24);
+            this.cbZanr.TabIndex = 3;
+            // 
+            // rtbOpis
+            // 
+            this.rtbOpis.Location = new System.Drawing.Point(488, 94);
+            this.rtbOpis.Name = "rtbOpis";
+            this.rtbOpis.Size = new System.Drawing.Size(492, 195);
+            this.rtbOpis.TabIndex = 2;
+            this.rtbOpis.Text = "";
+            this.rtbOpis.TextChanged += new System.EventHandler(this.rtbOpis_TextChanged);
+            // 
+            // lbIgre
+            // 
+            this.lbIgre.FormattingEnabled = true;
+            this.lbIgre.ItemHeight = 16;
+            this.lbIgre.Location = new System.Drawing.Point(33, 94);
+            this.lbIgre.Name = "lbIgre";
+            this.lbIgre.Size = new System.Drawing.Size(434, 468);
+            this.lbIgre.TabIndex = 1;
+            this.lbIgre.SelectedIndexChanged += new System.EventHandler(this.lbIgre_SelectedIndexChanged);
+            // 
+            // txtPretraga
+            // 
+            this.txtPretraga.Location = new System.Drawing.Point(33, 34);
+            this.txtPretraga.Name = "txtPretraga";
+            this.txtPretraga.Size = new System.Drawing.Size(434, 22);
+            this.txtPretraga.TabIndex = 0;
+            this.txtPretraga.TextChanged += new System.EventHandler(this.txtPretraga_TextChanged);
             // 
             // tpBacklog
             // 
@@ -109,39 +153,6 @@
             this.tpProfil.Text = "PROFIL";
             this.tpProfil.UseVisualStyleBackColor = true;
             // 
-            // txtPretraga
-            // 
-            this.txtPretraga.Location = new System.Drawing.Point(33, 34);
-            this.txtPretraga.Name = "txtPretraga";
-            this.txtPretraga.Size = new System.Drawing.Size(434, 22);
-            this.txtPretraga.TabIndex = 0;
-            this.txtPretraga.TextChanged += new System.EventHandler(this.txtPretraga_TextChanged);
-            // 
-            // lbIgre
-            // 
-            this.lbIgre.FormattingEnabled = true;
-            this.lbIgre.ItemHeight = 16;
-            this.lbIgre.Location = new System.Drawing.Point(33, 94);
-            this.lbIgre.Name = "lbIgre";
-            this.lbIgre.Size = new System.Drawing.Size(434, 468);
-            this.lbIgre.TabIndex = 1;
-            // 
-            // rtbOpis
-            // 
-            this.rtbOpis.Location = new System.Drawing.Point(488, 94);
-            this.rtbOpis.Name = "rtbOpis";
-            this.rtbOpis.Size = new System.Drawing.Size(492, 195);
-            this.rtbOpis.TabIndex = 2;
-            this.rtbOpis.Text = "";
-            // 
-            // cbZanr
-            // 
-            this.cbZanr.FormattingEnabled = true;
-            this.cbZanr.Location = new System.Drawing.Point(503, 32);
-            this.cbZanr.Name = "cbZanr";
-            this.cbZanr.Size = new System.Drawing.Size(196, 24);
-            this.cbZanr.TabIndex = 3;
-            // 
             // MainUser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -173,5 +184,6 @@
         private System.Windows.Forms.RichTextBox rtbOpis;
         private System.Windows.Forms.ListBox lbIgre;
         private System.Windows.Forms.TextBox txtPretraga;
+        private System.Windows.Forms.Button button1;
     }
 }
