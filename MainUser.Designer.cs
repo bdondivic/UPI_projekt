@@ -30,7 +30,6 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tpPretraga = new System.Windows.Forms.TabPage();
-            this.button1 = new System.Windows.Forms.Button();
             this.cbZanr = new System.Windows.Forms.ComboBox();
             this.rtbOpis = new System.Windows.Forms.RichTextBox();
             this.lbIgre = new System.Windows.Forms.ListBox();
@@ -39,7 +38,6 @@
             this.tpIgram = new System.Windows.Forms.TabPage();
             this.tpIgrao = new System.Windows.Forms.TabPage();
             this.tpProfil = new System.Windows.Forms.TabPage();
-            this.button2 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tpPretraga.SuspendLayout();
             this.SuspendLayout();
@@ -60,8 +58,6 @@
             // 
             // tpPretraga
             // 
-            this.tpPretraga.Controls.Add(this.button2);
-            this.tpPretraga.Controls.Add(this.button1);
             this.tpPretraga.Controls.Add(this.cbZanr);
             this.tpPretraga.Controls.Add(this.rtbOpis);
             this.tpPretraga.Controls.Add(this.lbIgre);
@@ -75,13 +71,6 @@
             this.tpPretraga.Text = "PRETRAGA";
             this.tpPretraga.UseVisualStyleBackColor = true;
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(0, 0);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 0;
-            // 
             // cbZanr
             // 
             this.cbZanr.FormattingEnabled = true;
@@ -89,6 +78,7 @@
             this.cbZanr.Name = "cbZanr";
             this.cbZanr.Size = new System.Drawing.Size(196, 24);
             this.cbZanr.TabIndex = 3;
+            this.cbZanr.SelectedIndexChanged += new System.EventHandler(this.cbZanr_SelectedIndexChanged);
             // 
             // rtbOpis
             // 
@@ -155,16 +145,6 @@
             this.tpProfil.Text = "PROFIL";
             this.tpProfil.UseVisualStyleBackColor = true;
             // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(601, 331);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(145, 47);
-            this.button2.TabIndex = 4;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
             // MainUser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -196,7 +176,5 @@
         private System.Windows.Forms.RichTextBox rtbOpis;
         private System.Windows.Forms.ListBox lbIgre;
         private System.Windows.Forms.TextBox txtPretraga;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
     }
 }

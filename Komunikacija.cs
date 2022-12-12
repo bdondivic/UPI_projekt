@@ -11,17 +11,17 @@ namespace Backlog
 {
     public class Igra
     {
-        int id;
-        string naziv;
-        string platforma;
-        int godina;
-        int id_zanr;
-        string izdavac;
-        int NA_sales;
-        int EU_sales;
-        int JP_sales;
-        int other_sales;
-        int global_sales;
+        public int id;
+        public string naziv;
+        public string platforma;
+        public int godina;
+        public int id_zanr;
+        public string izdavac;
+        public int NA_sales;
+        public int EU_sales;
+        public int JP_sales;
+        public int other_sales;
+        public int global_sales;
         public Igra(int id, string naziv, string plat, int god, int id_zanr, string izdavac, int NA, int EU, int JP, int oth_sales, int sales)
         {
             this.id = id;
@@ -37,17 +37,39 @@ namespace Backlog
             this.global_sales = sales;
         }
     }
-    public class Komunikacija
+    public class Pretraga
     {   
         OleDbConnection con;
         OleDbCommand cmd;
         OleDbDataAdapter da;
 
-        public Komunikacija()
+        public Pretraga()
         {
             this.con = new OleDbConnection("Provider=Microsoft.Jet.OlEDB.4.0;Data Source=db_Backlog.mdb");
             this.cmd = new OleDbCommand();
             this.da = new OleDbDataAdapter();
+        }
+
+        public void Trazi(ListBox lbIgre, List<Igra> listIgre, ComboBox cbZanr, TextBox txtPretraga)
+        {
+            lbIgre.Items.Clear();
+            foreach (Igra igra in listIgre)
+            {
+                if (cbZanr.SelectedIndex == -1)
+                {
+                    if (igra.naziv.StartsWith(txtPretraga.Text ))
+                    {
+                        lbIgre.Items.Add(igra.naziv);
+                    }
+                }
+                else
+                {
+                    if (igra.naziv.StartsWith(txtPretraga.Text ) && (igra.id_zanr - 1 == cbZanr.SelectedIndex))
+                    {
+                        lbIgre.Items.Add(igra.naziv);
+                    }
+                }
+            }
         }
 
         public List<Igra> LoadIgre(ListBox lb)
@@ -57,6 +79,7 @@ namespace Backlog
             OleDbCommand comm = new OleDbCommand($"SELECT * FROM tb_Igra", con);
             reader = comm.ExecuteReader();
             List<Igra> lista = new List<Igra>();
+
             while (reader.Read())
             {
    
@@ -82,14 +105,6 @@ namespace Backlog
             con.Close();
             return lista;
 
-            //string naredba2 = $"SELECT * FROM tb_Zanr";
-            //cmd = new OleDbCommand(naredba2, con);
-            //OleDbDataReader odg = cmd.ExecuteReader();
-            //while (odg.Read())
-            //{
-            //    cbZanr.Items.Add(odg.GetString(1));
-            //}
-            //con.Close();
         }
     }
     
