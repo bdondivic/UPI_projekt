@@ -52,6 +52,14 @@ namespace Backlog
                 lbIgre.Items.Add(reader.GetString(1));
                 listIgre.Add(reader.GetString(1));
             }
+
+            string naredba2 = $"SELECT * FROM tb_Zanr";
+            cmd = new OleDbCommand(naredba2, con);
+            OleDbDataReader odg = cmd.ExecuteReader();
+            while(odg.Read())
+            {
+                cbZanr.Items.Add(odg.GetString(1));
+            }
             con.Close();
         }
 
