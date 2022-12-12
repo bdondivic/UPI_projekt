@@ -65,7 +65,7 @@ namespace Backlog
             rtbOpis.AppendText($"Naziv: {odg.GetString(1)}\n");
             rtbOpis.AppendText($"Platforma: {odg.GetString(2)}\n");
             rtbOpis.AppendText($"Godina: {odg.GetInt32(3)}\n");
-            rtbOpis.AppendText($"Žanr: {cbZanr.Items[odg.GetInt32(4)]}\n");
+            rtbOpis.AppendText($"Žanr: {cbZanr.Items[odg.GetInt32(4)-1]}\n");
             rtbOpis.AppendText($"Izdavač: {odg.GetString(5)}\n");
             rtbOpis.AppendText($"NA sales: {odg.GetInt32(6) * 1000}\n");
             rtbOpis.AppendText($"EU sales: {odg.GetInt32(7) * 1000}\n");
