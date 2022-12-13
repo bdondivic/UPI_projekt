@@ -30,7 +30,11 @@ namespace Backlog
         private void MainUser_Load(object sender, EventArgs e)
         {
             listIgre = pretraga.LoadIgre(lbIgre);
-            pretraga.UcitajZanrove(cbZanr);
+            List<string> zanrovi = pretraga.UcitajZanrove();
+            foreach (string zanr in zanrovi)
+            {
+                cbZanr.Items.Add(zanr);
+            }
             cbZanr.SelectedIndex = 0;
             CueProvider.SetCue(txtPretraga, "Pretraži listu igara");    
         }

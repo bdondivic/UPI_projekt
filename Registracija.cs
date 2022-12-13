@@ -88,7 +88,7 @@ namespace Test
             return false;
         }
 
-        public void noviKorisnik(Register reg)
+        public bool noviKorisnik()
         {
             try
             {
@@ -98,14 +98,12 @@ namespace Test
                 cmd.ExecuteNonQuery();
                 con.Close();
                 MessageBox.Show("Registracija je bila uspješna!");
-                reg.Hide();
-                var Login = new Login();
-                Login.Closed += (s, args) => reg.Close();
-                Login.Show();
+                return true;
             }
             catch (Exception exp)
             {
                 MessageBox.Show(exp.ToString());
+                return false;
             }
         }
     }

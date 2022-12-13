@@ -72,17 +72,19 @@ namespace Backlog
             }
         }
 
-        public void UcitajZanrove(ComboBox cbZanr)
+        public List<string> UcitajZanrove()
         {
             con.Open();
             string naredba2 = $"SELECT * FROM tb_Zanr";
             cmd = new OleDbCommand(naredba2, con);
             OleDbDataReader odg = cmd.ExecuteReader();
+            List<string> zanrovi = new List<string>();
             while (odg.Read())
             {
-                cbZanr.Items.Add(odg.GetString(1));
+                zanrovi.Add(odg.GetString(1));
             }
             con.Close();
+            return zanrovi;
         }
 
         public void UcitajOpis(RichTextBox rtbOpis, ComboBox cbZanr, string gameName)

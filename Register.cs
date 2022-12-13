@@ -47,7 +47,13 @@ namespace Backlog
                 {
                     return;
                 }
-                reg.noviKorisnik(this);
+                if (reg.noviKorisnik())
+                {
+                    this.Hide();
+                    var Login = new Login();
+                    Login.Closed += (s, args) => this.Close();
+                    Login.Show();
+                }
             }
         }
 
