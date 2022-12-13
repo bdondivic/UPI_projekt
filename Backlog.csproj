@@ -47,6 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CuiProvider.cs" />
     <Compile Include="Komunikacija.cs" />
     <Compile Include="Login.cs">
       <SubType>Form</SubType>

@@ -38,7 +38,7 @@ namespace Test
                 OleDbDataReader odg1 = cmd.ExecuteReader();
                 if (odg1.Read() == false)
                 {
-                    MessageBox.Show("Ne postoji korisnik s tim korsiničik imenom!");
+                    MessageBox.Show("Ne postoji korisnik s tim korisničkim imenom!");
                     con.Close();
                     return false;
                 }
@@ -47,7 +47,7 @@ namespace Test
                 OleDbDataReader odg2 = cmd.ExecuteReader();
                 if (odg2.Read() == false)
                 {
-                    MessageBox.Show("Neipsravna lozinka!");
+                    MessageBox.Show("Neispravna lozinka!");
                     con.Close();
                     return false;
                 }
