@@ -15,8 +15,8 @@ namespace Test
         OleDbCommand cmd;
         OleDbDataAdapter da;
 
-        string uName;
-        string pass;
+        public string uName { get; private set; }
+        public string pass { get; private set; }
 
         public Prijava(string uName, string pass)
         {

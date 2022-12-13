@@ -11,17 +11,17 @@ namespace Backlog
 {
     public class Igra
     {
-        public int id;
-        public string naziv;
-        public string platforma;
-        public int godina;
-        public int id_zanr;
-        public string izdavac;
-        public int NA_sales;
-        public int EU_sales;
-        public int JP_sales;
-        public int other_sales;
-        public int global_sales;
+        public int id { get; private set; }
+        public string naziv { get; private set; }
+        public string platforma { get; private set; }
+        public int godina { get; private set; }
+        public int id_zanr { get; private set; }
+        public string izdavac { get; private set; }
+        public int NA_sales { get; private set; }
+        public int EU_sales { get; private set; }
+        public int JP_sales { get; private set; }
+        public int other_sales { get; private set; }
+        public int global_sales { get; private set; }
         public Igra(int id, string naziv, string plat, int god, int id_zanr, string izdavac, int NA, int EU, int JP, int oth_sales, int sales)
         {
             this.id = id;
@@ -57,19 +57,55 @@ namespace Backlog
             {
                 if (cbZanr.SelectedIndex == -1)
                 {
-                    if (igra.naziv.StartsWith(txtPretraga.Text ))
+                    if (igra.naziv.ToUpper().StartsWith(txtPretraga.Text.ToUpper()))
                     {
                         lbIgre.Items.Add(igra.naziv);
                     }
                 }
                 else
                 {
-                    if (igra.naziv.StartsWith(txtPretraga.Text ) && (igra.id_zanr - 1 == cbZanr.SelectedIndex))
+                    if (igra.naziv.ToUpper().StartsWith(txtPretraga.Text.ToUpper()) && (igra.id_zanr - 1 == cbZanr.SelectedIndex))
                     {
                         lbIgre.Items.Add(igra.naziv);
                     }
                 }
             }
+        }
+
+        public void UcitajZanrove(ComboBox cbZanr)
+        {
+            con.Open();
+            string naredba2 = $"SELECT * FROM tb_Zanr";
+            cmd = new OleDbCommand(naredba2, con);
+            OleDbDataReader odg = cmd.ExecuteReader();
+            while (odg.Read())
+            {
+                cbZanr.Items.Add(odg.GetString(1));
+            }
+            con.Close();
+        }
+
+        public void UcitajOpis(RichTextBox rtbOpis, ComboBox cbZanr, string gameName)
+        {
+            rtbOpis.Clear();
+            con.Open();
+            string naredba = $"SELECT * from tb_Igra WHERE Naziv='{gameName.Replace("'","''")}'";
+            cmd = new OleDbCommand(naredba, con);
+            OleDbDataReader odg = cmd.ExecuteReader();
+            odg.Read();
+
+            rtbOpis.AppendText($"Naziv: {odg.GetString(1)}\n");
+            rtbOpis.AppendText($"Platforma: {odg.GetString(2)}\n");
+            rtbOpis.AppendText($"Godina: {odg.GetInt32(3)}\n");
+            rtbOpis.AppendText($"Žanr: {cbZanr.Items[odg.GetInt32(4) - 1]}\n");
+            rtbOpis.AppendText($"Izdavač: {odg.GetString(5)}\n");
+            rtbOpis.AppendText($"NA sales: {odg.GetInt32(6) * 1000}\n");
+            rtbOpis.AppendText($"EU sales: {odg.GetInt32(7) * 1000}\n");
+            rtbOpis.AppendText($"JP sales: {odg.GetInt32(8) * 1000}\n");
+            rtbOpis.AppendText($"Other sales: {odg.GetInt32(9) * 1000}\n");
+            rtbOpis.AppendText($"Global sales: {odg.GetInt32(10) * 1000}\n");
+
+            con.Close();
         }
 
         public List<Igra> LoadIgre(ListBox lb)

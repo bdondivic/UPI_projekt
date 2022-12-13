@@ -69,14 +69,17 @@
             this.chkShowPass.TabIndex = 13;
             this.chkShowPass.Text = "Prikaži lozinku";
             this.chkShowPass.UseVisualStyleBackColor = true;
+            this.chkShowPass.CheckedChanged += new System.EventHandler(this.chkShowPass_CheckedChanged);
             // 
             // txtPassword
             // 
             this.txtPassword.Location = new System.Drawing.Point(87, 279);
             this.txtPassword.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtPassword.Name = "txtPassword";
+            this.txtPassword.PasswordChar = '*';
             this.txtPassword.Size = new System.Drawing.Size(209, 22);
             this.txtPassword.TabIndex = 12;
+            this.txtPassword.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPassword_KeyDown);
             // 
             // txtUsername
             // 

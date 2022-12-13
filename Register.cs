@@ -21,10 +21,6 @@ namespace Backlog
      
             InitializeComponent();
         }
-
-        //OleDbConnection con = new OleDbConnection("Provider=Microsoft.Jet.OlEDB.4.0;Data Source=db_Backlog.mdb");
-        //OleDbCommand cmd = new OleDbCommand();
-        //OleDbDataAdapter da = new OleDbDataAdapter();
         
         private void Register_Load(object sender, EventArgs e)
         {
@@ -43,31 +39,7 @@ namespace Backlog
             
 
             bool isprPod = reg.Provjera();
-            //if (ime.Length < 3 || ime.Length > 12)
-            //{
-            //    MessageBox.Show("Ime mora sadržavati između 3 i 12 znakova!");
-            //    return;
-            //}
-            //if (prezime.Length < 3 || prezime.Length > 12)
-            //{
-            //    MessageBox.Show("Prezime mora sadržavati između 3 i 12 znakova!");
-            //    return;
-            //}
-            //if (uName.Length < 5 || uName.Length > 12)
-            //{
-            //    MessageBox.Show("Korisničko ime mora sadržavati između 5 i 12 znakova!");
-            //    return;
-            //}
-            //if (pass.Length < 6 || pass.Length > 20)
-            //{
-            //    MessageBox.Show("Lozinka mora sadržavati između 5 i 20 znakova!");
-            //    return;
-            //}
-            //if (pass != passConf)
-            //{
-            //    MessageBox.Show("Lozinka se moraju podudarati!");
-            //    return;
-            //}
+            
             if (isprPod == true)
             {
 
@@ -75,46 +47,7 @@ namespace Backlog
                 {
                     return;
                 }
-                //try
-                //{
-                //    con.Open();
-                //    string naredba = $"SELECT * FROM tb_Korisnik WHERE KorisnIme='{uName}'";
-                //    cmd = new OleDbCommand(naredba, con);
-                //    OleDbDataReader odg = cmd.ExecuteReader();
-                //    if (odg.Read() == true)
-                //    {
-                //        MessageBox.Show("Korisničko ime nije dostupno jer ga koristi drugi korinik!");
-                //        con.Close();
-                //        return;
-                //    }
-                //    con.Close();
-
-                //}
-                //catch (Exception exp)
-                //{
-                //    MessageBox.Show(exp.ToString());
-                //}
-
                 reg.noviKorisnik(this);
-                //try
-                //{
-                //    con.Open();
-                //    string naredba = $"INSERT INTO tb_Korisnik (Ime, Prezime, KorisnIme, Lozinka, JeAdmin) VALUES ('{ime}', '{prezime}', '{uName}', '{pass}', {0})";
-                //    cmd = new OleDbCommand(naredba, con);
-                //    cmd.ExecuteNonQuery();
-                //    con.Close();
-                //    MessageBox.Show("Registracija je bila uspješna!");
-                //    this.Hide();
-                //    var Login = new Login();
-                //    Login.Closed += (s, args) => this.Close();
-                //    Login.Show();
-
-                //}
-                //catch (Exception exp)
-                //{
-                //    MessageBox.Show(exp.ToString());
-                //}
-
             }
         }
 

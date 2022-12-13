@@ -17,11 +17,11 @@ namespace Test
         OleDbCommand cmd;
         OleDbDataAdapter da;
 
-        string ime;
-        string prezime;
-        string uName;
-        string pass;
-        string passConf;
+        public string ime { get; private set; }
+        public string prezime { get; private set; }
+        public string uName { get; private set; }
+        public string pass { get; private set; }
+        public string passConf { get; private set; }
         public Registracija(string ime, string prezime, string uName, string pass, string passConf)
         {
             this.con = new OleDbConnection("Provider=Microsoft.Jet.OlEDB.4.0;Data Source=db_Backlog.mdb");

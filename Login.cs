@@ -19,6 +19,20 @@ namespace Backlog
             InitializeComponent();
         }
 
+        private void Prijava()
+        {
+            string uName = txtUsername.Text;
+            string pass = txtPassword.Text;
+
+            Prijava pr = new Prijava(uName, pass);
+
+            bool isprPod = pr.Provjera();
+
+            if (isprPod)
+            {
+                pr.otvoriAplikaciju(this);
+            }
+        }
 
         private void Login_Load(object sender, EventArgs e)
         {
@@ -36,16 +50,26 @@ namespace Backlog
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            string uName = txtUsername.Text;
-            string pass = txtPassword.Text;
+            Prijava();
+        }
 
-            Prijava pr = new Prijava(uName, pass);
-
-            bool isprPod = pr.Provjera();
-
-            if (isprPod)
+        private void chkShowPass_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkShowPass.Checked)
             {
-                pr.otvoriAplikaciju(this);
+                txtPassword.PasswordChar = '\0';
+            }
+            else
+            {
+                txtPassword.PasswordChar = '*';
+            }
+        }
+
+        private void txtPassword_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                Prijava();
             }
         }
     }
