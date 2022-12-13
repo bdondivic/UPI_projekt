@@ -53,7 +53,7 @@ namespace Test
             }
             if (pass.Length < 6 || pass.Length > 20)
             {
-                MessageBox.Show("Lozinka mora sadržavati između 5 i 20 znakova!");
+                MessageBox.Show("Lozinke mora sadržavati između 5 i 20 znakova!");
                 return false;
             }
             if (pass != passConf)

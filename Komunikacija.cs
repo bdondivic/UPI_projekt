@@ -140,7 +140,6 @@ namespace Backlog
 
             con.Close();
             return lista;
-
         }
     }
     
