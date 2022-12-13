@@ -73,11 +73,11 @@
             // 
             // cbZanr
             // 
-            this.cbZanr.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbZanr.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbZanr.FormattingEnabled = true;
             this.cbZanr.Location = new System.Drawing.Point(503, 32);
             this.cbZanr.Name = "cbZanr";
-            this.cbZanr.Size = new System.Drawing.Size(196, 37);
+            this.cbZanr.Size = new System.Drawing.Size(196, 26);
             this.cbZanr.TabIndex = 3;
             this.cbZanr.SelectedIndexChanged += new System.EventHandler(this.cbZanr_SelectedIndexChanged);
             // 
@@ -102,10 +102,10 @@
             // 
             // txtPretraga
             // 
-            this.txtPretraga.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPretraga.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPretraga.Location = new System.Drawing.Point(33, 34);
             this.txtPretraga.Name = "txtPretraga";
-            this.txtPretraga.Size = new System.Drawing.Size(434, 36);
+            this.txtPretraga.Size = new System.Drawing.Size(434, 28);
             this.txtPretraga.TabIndex = 0;
             this.txtPretraga.TextChanged += new System.EventHandler(this.txtPretraga_TextChanged);
             // 
