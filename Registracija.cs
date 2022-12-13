@@ -80,11 +80,10 @@ namespace Test
                 }
                 con.Close();
 
-            }
+            }   
             catch (Exception exp)
             {
                 MessageBox.Show(exp.ToString());
-                return true;
             }
             return false;
         }
