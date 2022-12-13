@@ -31,6 +31,7 @@ namespace Backlog
         {
             listIgre = pretraga.LoadIgre(lbIgre);
             pretraga.UcitajZanrove(cbZanr);
+            cbZanr.SelectedIndex = 0;
             CueProvider.SetCue(txtPretraga, "Pretraži listu igara");    
         }
 

@@ -75,6 +75,8 @@
             // 
             this.cbZanr.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbZanr.FormattingEnabled = true;
+            this.cbZanr.Items.AddRange(new object[] {
+            "Svi žanrovi"});
             this.cbZanr.Location = new System.Drawing.Point(503, 32);
             this.cbZanr.Name = "cbZanr";
             this.cbZanr.Size = new System.Drawing.Size(196, 26);

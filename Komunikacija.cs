@@ -55,7 +55,7 @@ namespace Backlog
             lbIgre.Items.Clear();
             foreach (Igra igra in listIgre)
             {
-                if (cbZanr.SelectedIndex == -1)
+                if (cbZanr.SelectedIndex == -1 || cbZanr.SelectedIndex == 0)
                 {
                     if (igra.naziv.ToUpper().StartsWith(txtPretraga.Text.ToUpper()))
                     {
@@ -64,7 +64,7 @@ namespace Backlog
                 }
                 else
                 {
-                    if (igra.naziv.ToUpper().StartsWith(txtPretraga.Text.ToUpper()) && (igra.id_zanr - 1 == cbZanr.SelectedIndex))
+                    if (igra.naziv.ToUpper().StartsWith(txtPretraga.Text.ToUpper()) && (igra.id_zanr == cbZanr.SelectedIndex))
                     {
                         lbIgre.Items.Add(igra.naziv);
                     }
@@ -97,7 +97,7 @@ namespace Backlog
             rtbOpis.AppendText($"Naziv: {odg.GetString(1)}\n");
             rtbOpis.AppendText($"Platforma: {odg.GetString(2)}\n");
             rtbOpis.AppendText($"Godina: {odg.GetInt32(3)}\n");
-            rtbOpis.AppendText($"Žanr: {cbZanr.Items[odg.GetInt32(4) - 1]}\n");
+            rtbOpis.AppendText($"Žanr: {cbZanr.Items[odg.GetInt32(4)]}\n");
             rtbOpis.AppendText($"Izdavač: {odg.GetString(5)}\n");
             rtbOpis.AppendText($"NA sales: {odg.GetInt32(6) * 1000}\n");
             rtbOpis.AppendText($"EU sales: {odg.GetInt32(7) * 1000}\n");
