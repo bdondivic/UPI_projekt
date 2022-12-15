@@ -28,7 +28,7 @@ namespace Test
             this.da = new OleDbDataAdapter();
         }
 
-        public bool Provjera()
+        public string Provjera()
         {
             try
             {
@@ -38,27 +38,24 @@ namespace Test
                 OleDbDataReader odg1 = cmd.ExecuteReader();
                 if (odg1.Read() == false)
                 {
-                    MessageBox.Show("Ne postoji korisnik s tim korisničkim imenom!");
                     con.Close();
-                    return false;
+                    return "Ne postoji korisnik s tim korisničkim imenom!";
                 }
                 string naredba2 = $"SELECT * FROM tb_Korisnik WHERE KorisnIme='{uName}' AND Lozinka='{pass}' ";
                 cmd = new OleDbCommand(naredba2, con);
                 OleDbDataReader odg2 = cmd.ExecuteReader();
                 if (odg2.Read() == false)
                 {
-                    MessageBox.Show("Neispravna lozinka!");
                     con.Close();
-                    return false;
+                    return "Neispravna lozinka!";
                 }
                 con.Close();
             }
             catch (Exception exp)
             {
-                MessageBox.Show(exp.ToString());
-                return false;
+                return exp.ToString();
             }
-            return true;
+            return "Prijava OK!";
         }
 
         public void otvoriAplikaciju(Login log)

@@ -22,9 +22,10 @@ namespace Test.Tests
 
             Registracija reg = new Registracija(ime, prezime, user, pass, pass2);
 
-            bool OK = reg.Provjera();
+            string expected = "Registracija je bila uspješna!";
+            string actual = reg.Provjera();
 
-            Assert.IsTrue(OK);
+            Assert.AreEqual(expected, actual);
         }
 
         [TestMethod()]
@@ -38,9 +39,27 @@ namespace Test.Tests
 
             Registracija reg = new Registracija(ime, prezime, user, pass, pass2);
 
-            bool OK = reg.Provjera();
+            string expected = "Ime mora sadržavati između 3 i 12 znakova!";
+            string actual = reg.Provjera();
 
-            Assert.IsFalse(OK);
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod()]
+        public void PraznoPrezimeGreska()
+        {
+            string ime = "ime";
+            string prezime = "";
+            string user = "username";
+            string pass = "password";
+            string pass2 = "password";
+
+            Registracija reg = new Registracija(ime, prezime, user, pass, pass2);
+
+            string expected = "Prezime mora sadržavati između 3 i 12 znakova!";
+            string actual = reg.Provjera();
+
+            Assert.AreEqual(expected, actual);
         }
 
         [TestMethod()]
@@ -54,13 +73,14 @@ namespace Test.Tests
 
             Registracija reg = new Registracija(ime, prezime, user, pass, pass2);
 
-            bool OK = reg.Provjera();
+            string expected = "Korisničko ime mora sadržavati između 5 i 12 znakova!";
+            string actual = reg.Provjera();
 
-            Assert.IsFalse(OK);
+            Assert.AreEqual(expected, actual);
         }
 
         [TestMethod()]
-        public void KrivaLozinka()
+        public void RazliciteLozinkeTest()
         {
             string ime = "ime";
             string prezime = "prezime";
@@ -70,39 +90,44 @@ namespace Test.Tests
 
             Registracija reg = new Registracija(ime, prezime, user, pass, pass2);
 
-            bool OK = reg.Provjera();
+            string expected = "Lozinke se moraju podudarati!";
+            string actual = reg.Provjera();
 
-            Assert.IsFalse(OK);
+            Assert.AreEqual(expected, actual);
         }
 
         [TestMethod()]
         public void uNameZauzetTest()
         {
-            string ime1 = "ime";
-            string prezime1 = "prezime";
-            string user1 = "test123";
-            string pass1 = "password";
-            string passConf1 = "password";
+            string ime = "ime";
+            string prezime = "prezime";
+            string user = "test123";
+            string pass = "password";
+            string pass2 = "password";
 
-            Registracija reg1 = new Registracija(ime1, prezime1, user1, pass1, passConf1);
+            Registracija reg = new Registracija(ime, prezime, user, pass, pass2);
 
-            bool OK = reg1.uNameZauzet();
-            Assert.IsTrue(OK);
+            string expected = "Korisničko ime nije dostupno jer ga koristi drugi korinik!";
+            string actual = reg.uNameZauzet();
+
+            Assert.AreEqual(expected, actual);
         }
 
         [TestMethod()]
         public void uNameNijeZauzetTest()
         {
-            string ime2 = "ime";
-            string prezime2 = "prezime";
-            string user2 = "username2";
+            string ime = "ime";
+            string prezime = "prezime";
+            string user = "username2";
+            string pass = "password";
             string pass2 = "password";
-            string passConf2 = "password";
 
-            Registracija reg2 = new Registracija(ime2, prezime2, user2, pass2, passConf2);
+            Registracija reg = new Registracija(ime, prezime, user, pass, pass2);
 
-            bool OK = reg2.uNameZauzet();
-            Assert.IsFalse(OK);
+            string expected = "Username OK!";
+            string actual = reg.uNameZauzet();
+
+            Assert.AreEqual(expected, actual);
         }
 
         [TestMethod()]

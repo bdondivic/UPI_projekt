@@ -34,37 +34,22 @@ namespace Test
             this.pass = pass;
             this.passConf = passConf;
         }
-        public bool Provjera()
+        public string Provjera()
         {
             if (ime.Length < 3 || ime.Length > 12)
-            {
-                MessageBox.Show("Ime mora sadržavati između 3 i 12 znakova!");
-                return false;
-            }
+                return "Ime mora sadržavati između 3 i 12 znakova!";
             if (prezime.Length < 3 || prezime.Length > 12)
-            {
-                MessageBox.Show("Prezime mora sadržavati između 3 i 12 znakova!");
-                return false;
-            }
+                return "Prezime mora sadržavati između 3 i 12 znakova!";
             if (uName.Length < 5 || uName.Length > 12)
-            {
-                MessageBox.Show("Korisničko ime mora sadržavati između 5 i 12 znakova!");
-                return false;
-            }
+                return "Korisničko ime mora sadržavati između 5 i 12 znakova!";
             if (pass.Length < 6 || pass.Length > 20)
-            {
-                MessageBox.Show("Lozinke mora sadržavati između 5 i 20 znakova!");
-                return false;
-            }
+                return "Lozinka mora sadržavati između 6 i 20 znakova!";
             if (pass != passConf)
-            {
-                MessageBox.Show("Lozinka se moraju podudarati!");
-                return false;
-            }
-            return true;
+                return "Lozinke se moraju podudarati!";
+            return "Registracija je bila uspješna!";
         }
 
-        public bool uNameZauzet()
+        public string uNameZauzet()
         {
             try
             {
@@ -74,18 +59,17 @@ namespace Test
                 OleDbDataReader odg = cmd.ExecuteReader();
                 if (odg.Read() == true)
                 {
-                    MessageBox.Show("Korisničko ime nije dostupno jer ga koristi drugi korinik!");
                     con.Close();
-                    return true;
+                    return "Korisničko ime nije dostupno jer ga koristi drugi korinik!";
                 }
                 con.Close();
 
             }   
             catch (Exception exp)
             {
-                MessageBox.Show(exp.ToString());
+                return exp.ToString();
             }
-            return false;
+            return "Username OK!";
         }
 
         public bool noviKorisnik()
@@ -97,7 +81,6 @@ namespace Test
                 cmd = new OleDbCommand(naredba, con);
                 cmd.ExecuteNonQuery();
                 con.Close();
-                MessageBox.Show("Registracija je bila uspješna!");
                 return true;
             }
             catch (Exception exp)

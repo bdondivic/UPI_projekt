@@ -19,8 +19,10 @@ namespace Test.Tests
 
             Prijava p = new Prijava(user, pass);
 
-            bool OK = p.Provjera();
-            Assert.IsFalse(OK);
+            string expected = "Neispravna lozinka!";
+            string actual = p.Provjera();
+
+            Assert.AreEqual(expected, actual);
         }
 
         [TestMethod()]
@@ -31,20 +33,24 @@ namespace Test.Tests
 
             Prijava p = new Prijava(user, pass);
 
-            bool OK = p.Provjera();
-            Assert.IsFalse(OK);
+            string expected = "Ne postoji korisnik s tim korisničkim imenom!";
+            string actual = p.Provjera();
+
+            Assert.AreEqual(expected, actual);
         }
 
         [TestMethod()]
         public void PraznaPrijavaTest()
         {
             string user = "";
-            string pass = "test123";
+            string pass = "";
 
             Prijava p = new Prijava(user, pass);
 
-            bool OK = p.Provjera();
-            Assert.IsFalse(OK);
+            string expected = "Ne postoji korisnik s tim korisničkim imenom!";
+            string actual = p.Provjera();
+
+            Assert.AreEqual(expected, actual);
         }
 
         [TestMethod()]
@@ -55,8 +61,10 @@ namespace Test.Tests
             
             Prijava p = new Prijava(user, pass);
 
-            bool OK = p.Provjera();
-            Assert.IsTrue(OK);
+            string expected = "Prijava OK!";
+            string actual = p.Provjera();
+
+            Assert.AreEqual(expected, actual);
         }
     }
 }

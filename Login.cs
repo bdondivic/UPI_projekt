@@ -26,12 +26,12 @@ namespace Backlog
 
             Prijava pr = new Prijava(uName, pass);
 
-            bool isprPod = pr.Provjera();
+            string isprPod = pr.Provjera();
 
-            if (isprPod)
-            {
+            if (isprPod == "Prijava OK!")
                 pr.otvoriAplikaciju(this);
-            }
+            else
+                MessageBox.Show(isprPod);
         }
 
         private void Login_Load(object sender, EventArgs e)

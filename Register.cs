@@ -38,23 +38,26 @@ namespace Backlog
             Registracija reg = new Registracija(ime, prezime, uName, pass, passConf);
             
 
-            bool isprPod = reg.Provjera();
-            
-            if (isprPod == true)
-            {
+            string isprPod = reg.Provjera();
 
-                if (reg.uNameZauzet() == true)
+            if (isprPod == "Registracija je bila uspješna!") 
+            {
+                if (reg.uNameZauzet() != "Username OK!")
                 {
+                    MessageBox.Show(reg.uNameZauzet());
                     return;
                 }
                 if (reg.noviKorisnik())
                 {
+                    MessageBox.Show(isprPod);
                     this.Hide();
                     var Login = new Login();
                     Login.Closed += (s, args) => this.Close();
                     Login.Show();
                 }
             }
+            else
+                MessageBox.Show(isprPod);
         }
 
         private void cb_showPass_CheckedChanged(object sender, EventArgs e)
