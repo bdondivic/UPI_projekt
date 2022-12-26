@@ -18,6 +18,8 @@ namespace Test
         public string uName { get; private set; }
         public string pass { get; private set; }
 
+        public int ID { get; private set; }
+
         public Prijava(string uName, string pass)
         {
             this.uName = uName;
@@ -67,6 +69,7 @@ namespace Test
                 cmd = new OleDbCommand(naredba, con);
                 OleDbDataReader odg = cmd.ExecuteReader();
                 odg.Read();
+                ID = odg.GetInt32(0);
                 bool jeAdmin = bool.Parse(odg[5].ToString());
                 if (jeAdmin)
                 {
@@ -78,7 +81,7 @@ namespace Test
                 else
                 {
                     log.Hide();
-                    var MainUser = new MainUser();
+                    var MainUser = new MainUser(uName, pass, ID);  /////////////NOVO
                     MainUser.Closed += (s, args) => log.Close();
                     MainUser.Show();
                 }

@@ -38,8 +38,18 @@
             this.tpIgram = new System.Windows.Forms.TabPage();
             this.tpIgrao = new System.Windows.Forms.TabPage();
             this.tpProfil = new System.Windows.Forms.TabPage();
+            this.rtbBacklogOpis = new System.Windows.Forms.RichTextBox();
+            this.lbBacklog = new System.Windows.Forms.ListBox();
+            this.rtbIgramOpis = new System.Windows.Forms.RichTextBox();
+            this.lbIgram = new System.Windows.Forms.ListBox();
+            this.rtbIgraoOpis = new System.Windows.Forms.RichTextBox();
+            this.lbIgrao = new System.Windows.Forms.ListBox();
+            this.btnDodaj = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tpPretraga.SuspendLayout();
+            this.tpBacklog.SuspendLayout();
+            this.tpIgram.SuspendLayout();
+            this.tpIgrao.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -58,6 +68,7 @@
             // 
             // tpPretraga
             // 
+            this.tpPretraga.Controls.Add(this.btnDodaj);
             this.tpPretraga.Controls.Add(this.cbZanr);
             this.tpPretraga.Controls.Add(this.rtbOpis);
             this.tpPretraga.Controls.Add(this.lbIgre);
@@ -113,6 +124,8 @@
             // 
             // tpBacklog
             // 
+            this.tpBacklog.Controls.Add(this.rtbBacklogOpis);
+            this.tpBacklog.Controls.Add(this.lbBacklog);
             this.tpBacklog.Location = new System.Drawing.Point(4, 25);
             this.tpBacklog.Name = "tpBacklog";
             this.tpBacklog.Padding = new System.Windows.Forms.Padding(3);
@@ -123,6 +136,8 @@
             // 
             // tpIgram
             // 
+            this.tpIgram.Controls.Add(this.rtbIgramOpis);
+            this.tpIgram.Controls.Add(this.lbIgram);
             this.tpIgram.Location = new System.Drawing.Point(4, 25);
             this.tpIgram.Name = "tpIgram";
             this.tpIgram.Padding = new System.Windows.Forms.Padding(3);
@@ -133,6 +148,8 @@
             // 
             // tpIgrao
             // 
+            this.tpIgrao.Controls.Add(this.rtbIgraoOpis);
+            this.tpIgrao.Controls.Add(this.lbIgrao);
             this.tpIgrao.Location = new System.Drawing.Point(4, 25);
             this.tpIgrao.Name = "tpIgrao";
             this.tpIgrao.Size = new System.Drawing.Size(998, 692);
@@ -149,6 +166,67 @@
             this.tpProfil.Text = "PROFIL";
             this.tpProfil.UseVisualStyleBackColor = true;
             // 
+            // rtbBacklogOpis
+            // 
+            this.rtbBacklogOpis.Location = new System.Drawing.Point(481, 112);
+            this.rtbBacklogOpis.Name = "rtbBacklogOpis";
+            this.rtbBacklogOpis.Size = new System.Drawing.Size(492, 195);
+            this.rtbBacklogOpis.TabIndex = 4;
+            this.rtbBacklogOpis.Text = "";
+            // 
+            // lbBacklog
+            // 
+            this.lbBacklog.FormattingEnabled = true;
+            this.lbBacklog.ItemHeight = 16;
+            this.lbBacklog.Location = new System.Drawing.Point(26, 112);
+            this.lbBacklog.Name = "lbBacklog";
+            this.lbBacklog.Size = new System.Drawing.Size(434, 468);
+            this.lbBacklog.TabIndex = 3;
+            // 
+            // rtbIgramOpis
+            // 
+            this.rtbIgramOpis.Location = new System.Drawing.Point(481, 112);
+            this.rtbIgramOpis.Name = "rtbIgramOpis";
+            this.rtbIgramOpis.Size = new System.Drawing.Size(492, 195);
+            this.rtbIgramOpis.TabIndex = 6;
+            this.rtbIgramOpis.Text = "";
+            // 
+            // lbIgram
+            // 
+            this.lbIgram.FormattingEnabled = true;
+            this.lbIgram.ItemHeight = 16;
+            this.lbIgram.Location = new System.Drawing.Point(26, 112);
+            this.lbIgram.Name = "lbIgram";
+            this.lbIgram.Size = new System.Drawing.Size(434, 468);
+            this.lbIgram.TabIndex = 5;
+            // 
+            // rtbIgraoOpis
+            // 
+            this.rtbIgraoOpis.Location = new System.Drawing.Point(481, 112);
+            this.rtbIgraoOpis.Name = "rtbIgraoOpis";
+            this.rtbIgraoOpis.Size = new System.Drawing.Size(492, 195);
+            this.rtbIgraoOpis.TabIndex = 6;
+            this.rtbIgraoOpis.Text = "";
+            // 
+            // lbIgrao
+            // 
+            this.lbIgrao.FormattingEnabled = true;
+            this.lbIgrao.ItemHeight = 16;
+            this.lbIgrao.Location = new System.Drawing.Point(26, 112);
+            this.lbIgrao.Name = "lbIgrao";
+            this.lbIgrao.Size = new System.Drawing.Size(434, 468);
+            this.lbIgrao.TabIndex = 5;
+            // 
+            // btnDodaj
+            // 
+            this.btnDodaj.Location = new System.Drawing.Point(488, 295);
+            this.btnDodaj.Name = "btnDodaj";
+            this.btnDodaj.Size = new System.Drawing.Size(157, 57);
+            this.btnDodaj.TabIndex = 4;
+            this.btnDodaj.Text = "DODAJ";
+            this.btnDodaj.UseVisualStyleBackColor = true;
+            this.btnDodaj.Click += new System.EventHandler(this.btnDodaj_Click);
+            // 
             // MainUser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -164,6 +242,9 @@
             this.tabControl1.ResumeLayout(false);
             this.tpPretraga.ResumeLayout(false);
             this.tpPretraga.PerformLayout();
+            this.tpBacklog.ResumeLayout(false);
+            this.tpIgram.ResumeLayout(false);
+            this.tpIgrao.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -180,5 +261,12 @@
         private System.Windows.Forms.RichTextBox rtbOpis;
         private System.Windows.Forms.ListBox lbIgre;
         private System.Windows.Forms.TextBox txtPretraga;
+        private System.Windows.Forms.RichTextBox rtbBacklogOpis;
+        private System.Windows.Forms.ListBox lbBacklog;
+        private System.Windows.Forms.RichTextBox rtbIgramOpis;
+        private System.Windows.Forms.ListBox lbIgram;
+        private System.Windows.Forms.RichTextBox rtbIgraoOpis;
+        private System.Windows.Forms.ListBox lbIgrao;
+        private System.Windows.Forms.Button btnDodaj;
     }
 }
