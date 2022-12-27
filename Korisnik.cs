@@ -24,14 +24,24 @@ namespace Test
         public ListBox igram;
         public ListBox igrao;
 
-        public Korisnik(string uname, string pass, int ID, List<ListBox> liste)
+        public RichTextBox opisBacklog;
+        public RichTextBox opisIgram;
+        public RichTextBox opisIgrao;
+
+
+        public Korisnik(string uname, string pass, int ID, List<ListBox> liste, List<RichTextBox> opisi)
         {
             this.ID = ID;
             this.uName = uname;
             this.pass = pass;
+
             this.backlog = liste[0];
             this.igram = liste[1];
             this.igrao = liste[2];
+
+            this.opisBacklog = opisi[0];
+            this.opisIgram = opisi[1];
+            this.opisIgrao = opisi[2];
 
             this.con = new OleDbConnection("Provider=Microsoft.Jet.OlEDB.4.0;Data Source=db_Backlog.mdb");
             this.cmd = new OleDbCommand();
@@ -158,6 +168,57 @@ namespace Test
             }
         }
 
+        public void dohvatiOpis(string nazivIgre,string lista)
+        {
+            int igraID = dohvatiIdIgre(nazivIgre);
+            try
+            {
+                con.Open();
+                OleDbDataReader reader = null;
+                OleDbCommand comm = new OleDbCommand($"SELECT * from tb_Korisnik_Igra WHERE Korisnik_ID={ID} and Igra_ID={igraID};", con);
+                reader = comm.ExecuteReader();
+                reader.Read();               
+
+                if (lista == "BACKLOG")
+                {
+                    int idPrioritet = reader.GetInt32(5);
+                    OleDbCommand comm1 = new OleDbCommand($"SELECT Naziv from tb_Prioritet WHERE ID_Prioritet={idPrioritet};", con);
+                    reader = comm1.ExecuteReader();
+                    reader.Read();
+                    string prioritet = reader.GetString(0);
+                    con.Close();
+
+                    opisBacklog.Clear();
+                    opisBacklog.Text = $"Prioritet: {prioritet}";
+                }
+                else if (lista == "IGRAM")
+                {
+                    string pocetak = reader.GetDateTime(3).ToString();
+                    opisIgram.Clear();
+                    opisIgram.Text = $"Datum početka igranja: {pocetak}";
+                    con.Close();
+                }
+                else if (lista == "IGRAO")
+                {
+                    string pocetak = reader.GetDateTime(3).ToString();
+                    string kraj = reader.GetDateTime(4).ToString();
+                    int ukupno = reader.GetInt32(2);
+                    con.Close();
+
+                    opisIgrao.Clear();
+                    opisIgrao.Text = $"Ukupno vrijeme igranja: {ukupno}\n" +
+                        $"Datum početka igranja: {pocetak}\n" +
+                        $"Datum prelaska: {kraj}";
+                }
+            }
+            
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                return;
+            }
+        }
+
         public void DodajBacklog(int lista, int prioritet, string nazivIgre)
         {
             try
@@ -249,6 +310,7 @@ namespace Test
 
             //UKLANJANJE IZ LISTBOXA
             backlog.Items.Remove(backlog.SelectedItem);
+            opisBacklog.Clear();
 
             MessageBox.Show("Igra je uspješno uklonjena iz liste!");
 
@@ -265,6 +327,7 @@ namespace Test
 
             //UKLANJANJE IZ LISTBOXA
             igram.Items.Remove(igram.SelectedItem);
+            opisIgram.Clear();
 
             MessageBox.Show("Igra je uspješno uklonjena iz liste!");
         }
@@ -279,6 +342,7 @@ namespace Test
 
             //UKLANJANJE IZ LISTBOXA
             igrao.Items.Remove(igrao.SelectedItem);
+            opisIgrao.Clear();
 
             MessageBox.Show("Igra je uspješno uklonjena iz liste!");
         }

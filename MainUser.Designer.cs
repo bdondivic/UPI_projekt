@@ -36,21 +36,21 @@
             this.lbIgre = new System.Windows.Forms.ListBox();
             this.txtPretraga = new System.Windows.Forms.TextBox();
             this.tpBacklog = new System.Windows.Forms.TabPage();
+            this.button2 = new System.Windows.Forms.Button();
+            this.btnUkloniBacklog = new System.Windows.Forms.Button();
             this.rtbBacklogOpis = new System.Windows.Forms.RichTextBox();
             this.lbBacklog = new System.Windows.Forms.ListBox();
             this.tpIgram = new System.Windows.Forms.TabPage();
+            this.button1 = new System.Windows.Forms.Button();
+            this.btnUkloniIgram = new System.Windows.Forms.Button();
             this.rtbIgramOpis = new System.Windows.Forms.RichTextBox();
             this.lbIgram = new System.Windows.Forms.ListBox();
             this.tpIgrao = new System.Windows.Forms.TabPage();
+            this.button4 = new System.Windows.Forms.Button();
+            this.btnUkloniIgrao = new System.Windows.Forms.Button();
             this.rtbIgraoOpis = new System.Windows.Forms.RichTextBox();
             this.lbIgrao = new System.Windows.Forms.ListBox();
             this.tpProfil = new System.Windows.Forms.TabPage();
-            this.btnUkloniBacklog = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.btnUkloniIgram = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.btnUkloniIgrao = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tpPretraga.SuspendLayout();
             this.tpBacklog.SuspendLayout();
@@ -152,6 +152,25 @@
             this.tpBacklog.Text = "BACKLOG";
             this.tpBacklog.UseVisualStyleBackColor = true;
             // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(644, 313);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(157, 57);
+            this.button2.TabIndex = 6;
+            this.button2.Text = "PRENESI U IGRAM";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // btnUkloniBacklog
+            // 
+            this.btnUkloniBacklog.Location = new System.Drawing.Point(481, 313);
+            this.btnUkloniBacklog.Name = "btnUkloniBacklog";
+            this.btnUkloniBacklog.Size = new System.Drawing.Size(157, 57);
+            this.btnUkloniBacklog.TabIndex = 5;
+            this.btnUkloniBacklog.Text = "UKLONI IZ LISTE";
+            this.btnUkloniBacklog.UseVisualStyleBackColor = true;
+            this.btnUkloniBacklog.Click += new System.EventHandler(this.btnUkloniBacklog_Click);
+            // 
             // rtbBacklogOpis
             // 
             this.rtbBacklogOpis.Location = new System.Drawing.Point(481, 112);
@@ -168,6 +187,7 @@
             this.lbBacklog.Name = "lbBacklog";
             this.lbBacklog.Size = new System.Drawing.Size(434, 468);
             this.lbBacklog.TabIndex = 3;
+            this.lbBacklog.SelectedIndexChanged += new System.EventHandler(this.lbBacklog_SelectedIndexChanged);
             // 
             // tpIgram
             // 
@@ -182,81 +202,6 @@
             this.tpIgram.TabIndex = 2;
             this.tpIgram.Text = "IGRAM";
             this.tpIgram.UseVisualStyleBackColor = true;
-            // 
-            // rtbIgramOpis
-            // 
-            this.rtbIgramOpis.Location = new System.Drawing.Point(481, 112);
-            this.rtbIgramOpis.Name = "rtbIgramOpis";
-            this.rtbIgramOpis.Size = new System.Drawing.Size(492, 195);
-            this.rtbIgramOpis.TabIndex = 6;
-            this.rtbIgramOpis.Text = "";
-            // 
-            // lbIgram
-            // 
-            this.lbIgram.FormattingEnabled = true;
-            this.lbIgram.ItemHeight = 16;
-            this.lbIgram.Location = new System.Drawing.Point(26, 112);
-            this.lbIgram.Name = "lbIgram";
-            this.lbIgram.Size = new System.Drawing.Size(434, 468);
-            this.lbIgram.TabIndex = 5;
-            // 
-            // tpIgrao
-            // 
-            this.tpIgrao.Controls.Add(this.button4);
-            this.tpIgrao.Controls.Add(this.btnUkloniIgrao);
-            this.tpIgrao.Controls.Add(this.rtbIgraoOpis);
-            this.tpIgrao.Controls.Add(this.lbIgrao);
-            this.tpIgrao.Location = new System.Drawing.Point(4, 25);
-            this.tpIgrao.Name = "tpIgrao";
-            this.tpIgrao.Size = new System.Drawing.Size(998, 692);
-            this.tpIgrao.TabIndex = 3;
-            this.tpIgrao.Text = "IGRAO";
-            this.tpIgrao.UseVisualStyleBackColor = true;
-            // 
-            // rtbIgraoOpis
-            // 
-            this.rtbIgraoOpis.Location = new System.Drawing.Point(481, 112);
-            this.rtbIgraoOpis.Name = "rtbIgraoOpis";
-            this.rtbIgraoOpis.Size = new System.Drawing.Size(492, 195);
-            this.rtbIgraoOpis.TabIndex = 6;
-            this.rtbIgraoOpis.Text = "";
-            // 
-            // lbIgrao
-            // 
-            this.lbIgrao.FormattingEnabled = true;
-            this.lbIgrao.ItemHeight = 16;
-            this.lbIgrao.Location = new System.Drawing.Point(26, 112);
-            this.lbIgrao.Name = "lbIgrao";
-            this.lbIgrao.Size = new System.Drawing.Size(434, 468);
-            this.lbIgrao.TabIndex = 5;
-            // 
-            // tpProfil
-            // 
-            this.tpProfil.Location = new System.Drawing.Point(4, 25);
-            this.tpProfil.Name = "tpProfil";
-            this.tpProfil.Size = new System.Drawing.Size(998, 692);
-            this.tpProfil.TabIndex = 4;
-            this.tpProfil.Text = "PROFIL";
-            this.tpProfil.UseVisualStyleBackColor = true;
-            // 
-            // btnUkloniBacklog
-            // 
-            this.btnUkloniBacklog.Location = new System.Drawing.Point(481, 313);
-            this.btnUkloniBacklog.Name = "btnUkloniBacklog";
-            this.btnUkloniBacklog.Size = new System.Drawing.Size(157, 57);
-            this.btnUkloniBacklog.TabIndex = 5;
-            this.btnUkloniBacklog.Text = "UKLONI IZ LISTE";
-            this.btnUkloniBacklog.UseVisualStyleBackColor = true;
-            this.btnUkloniBacklog.Click += new System.EventHandler(this.btnUkloniBacklog_Click);
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(644, 313);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(157, 57);
-            this.button2.TabIndex = 6;
-            this.button2.Text = "PRENESI U IGRAM";
-            this.button2.UseVisualStyleBackColor = true;
             // 
             // button1
             // 
@@ -277,6 +222,37 @@
             this.btnUkloniIgram.UseVisualStyleBackColor = true;
             this.btnUkloniIgram.Click += new System.EventHandler(this.btnUkloniIgram_Click);
             // 
+            // rtbIgramOpis
+            // 
+            this.rtbIgramOpis.Location = new System.Drawing.Point(481, 112);
+            this.rtbIgramOpis.Name = "rtbIgramOpis";
+            this.rtbIgramOpis.Size = new System.Drawing.Size(492, 195);
+            this.rtbIgramOpis.TabIndex = 6;
+            this.rtbIgramOpis.Text = "";
+            // 
+            // lbIgram
+            // 
+            this.lbIgram.FormattingEnabled = true;
+            this.lbIgram.ItemHeight = 16;
+            this.lbIgram.Location = new System.Drawing.Point(26, 112);
+            this.lbIgram.Name = "lbIgram";
+            this.lbIgram.Size = new System.Drawing.Size(434, 468);
+            this.lbIgram.TabIndex = 5;
+            this.lbIgram.SelectedIndexChanged += new System.EventHandler(this.lbIgram_SelectedIndexChanged);
+            // 
+            // tpIgrao
+            // 
+            this.tpIgrao.Controls.Add(this.button4);
+            this.tpIgrao.Controls.Add(this.btnUkloniIgrao);
+            this.tpIgrao.Controls.Add(this.rtbIgraoOpis);
+            this.tpIgrao.Controls.Add(this.lbIgrao);
+            this.tpIgrao.Location = new System.Drawing.Point(4, 25);
+            this.tpIgrao.Name = "tpIgrao";
+            this.tpIgrao.Size = new System.Drawing.Size(998, 692);
+            this.tpIgrao.TabIndex = 3;
+            this.tpIgrao.Text = "IGRAO";
+            this.tpIgrao.UseVisualStyleBackColor = true;
+            // 
             // button4
             // 
             this.button4.Location = new System.Drawing.Point(644, 313);
@@ -295,6 +271,33 @@
             this.btnUkloniIgrao.Text = "UKLONI IZ LISTE";
             this.btnUkloniIgrao.UseVisualStyleBackColor = true;
             this.btnUkloniIgrao.Click += new System.EventHandler(this.btnUkloniIgrao_Click);
+            // 
+            // rtbIgraoOpis
+            // 
+            this.rtbIgraoOpis.Location = new System.Drawing.Point(481, 112);
+            this.rtbIgraoOpis.Name = "rtbIgraoOpis";
+            this.rtbIgraoOpis.Size = new System.Drawing.Size(492, 195);
+            this.rtbIgraoOpis.TabIndex = 6;
+            this.rtbIgraoOpis.Text = "";
+            // 
+            // lbIgrao
+            // 
+            this.lbIgrao.FormattingEnabled = true;
+            this.lbIgrao.ItemHeight = 16;
+            this.lbIgrao.Location = new System.Drawing.Point(26, 112);
+            this.lbIgrao.Name = "lbIgrao";
+            this.lbIgrao.Size = new System.Drawing.Size(434, 468);
+            this.lbIgrao.TabIndex = 5;
+            this.lbIgrao.SelectedIndexChanged += new System.EventHandler(this.lbIgrao_SelectedIndexChanged);
+            // 
+            // tpProfil
+            // 
+            this.tpProfil.Location = new System.Drawing.Point(4, 25);
+            this.tpProfil.Name = "tpProfil";
+            this.tpProfil.Size = new System.Drawing.Size(998, 692);
+            this.tpProfil.TabIndex = 4;
+            this.tpProfil.Text = "PROFIL";
+            this.tpProfil.UseVisualStyleBackColor = true;
             // 
             // MainUser
             // 

@@ -28,11 +28,18 @@ namespace Backlog
         public MainUser(string uname, string pass, int ID) ////OVERLOAD KONTRUKTOS
         {
             InitializeComponent();
+
             List<ListBox> liste = new List<ListBox>();
             liste.Add(lbBacklog);
             liste.Add(lbIgram);
             liste.Add(lbIgrao);
-            this.korisnik = new Korisnik(uname, pass, ID, liste);
+
+            List<RichTextBox> opisi = new List<RichTextBox>();
+            opisi.Add(rtbBacklogOpis);
+            opisi.Add(rtbIgramOpis);
+            opisi.Add(rtbIgraoOpis);
+
+            this.korisnik = new Korisnik(uname, pass, ID, liste, opisi);
         }
 
         Pretraga pretraga = new Pretraga();
@@ -156,6 +163,24 @@ namespace Backlog
                 string nazivIgre = lbIgrao.SelectedItem.ToString();
                 korisnik.UkloniIgrao(nazivIgre);
             }    
+        }
+
+        private void lbBacklog_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string nazivIgre = lbBacklog.SelectedItem.ToString();
+            korisnik.dohvatiOpis(nazivIgre, "BACKLOG");
+        }
+
+        private void lbIgram_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string nazivIgre = lbIgram.SelectedItem.ToString();
+            korisnik.dohvatiOpis(nazivIgre, "IGRAM");
+        }
+
+        private void lbIgrao_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string nazivIgre = lbIgrao.SelectedItem.ToString();
+            korisnik.dohvatiOpis(nazivIgre, "IGRAO");
         }
     }
 }
