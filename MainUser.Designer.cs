@@ -36,17 +36,17 @@
             this.lbIgre = new System.Windows.Forms.ListBox();
             this.txtPretraga = new System.Windows.Forms.TextBox();
             this.tpBacklog = new System.Windows.Forms.TabPage();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnBacklogIgram = new System.Windows.Forms.Button();
             this.btnUkloniBacklog = new System.Windows.Forms.Button();
             this.rtbBacklogOpis = new System.Windows.Forms.RichTextBox();
             this.lbBacklog = new System.Windows.Forms.ListBox();
             this.tpIgram = new System.Windows.Forms.TabPage();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnIgramIgrao = new System.Windows.Forms.Button();
             this.btnUkloniIgram = new System.Windows.Forms.Button();
             this.rtbIgramOpis = new System.Windows.Forms.RichTextBox();
             this.lbIgram = new System.Windows.Forms.ListBox();
             this.tpIgrao = new System.Windows.Forms.TabPage();
-            this.button4 = new System.Windows.Forms.Button();
+            this.btnIgraoIgram = new System.Windows.Forms.Button();
             this.btnUkloniIgrao = new System.Windows.Forms.Button();
             this.rtbIgraoOpis = new System.Windows.Forms.RichTextBox();
             this.lbIgrao = new System.Windows.Forms.ListBox();
@@ -140,7 +140,7 @@
             // 
             // tpBacklog
             // 
-            this.tpBacklog.Controls.Add(this.button2);
+            this.tpBacklog.Controls.Add(this.btnBacklogIgram);
             this.tpBacklog.Controls.Add(this.btnUkloniBacklog);
             this.tpBacklog.Controls.Add(this.rtbBacklogOpis);
             this.tpBacklog.Controls.Add(this.lbBacklog);
@@ -152,14 +152,15 @@
             this.tpBacklog.Text = "BACKLOG";
             this.tpBacklog.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // btnBacklogIgram
             // 
-            this.button2.Location = new System.Drawing.Point(644, 313);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(157, 57);
-            this.button2.TabIndex = 6;
-            this.button2.Text = "PRENESI U IGRAM";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnBacklogIgram.Location = new System.Drawing.Point(644, 313);
+            this.btnBacklogIgram.Name = "btnBacklogIgram";
+            this.btnBacklogIgram.Size = new System.Drawing.Size(157, 57);
+            this.btnBacklogIgram.TabIndex = 6;
+            this.btnBacklogIgram.Text = "PRENESI U IGRAM";
+            this.btnBacklogIgram.UseVisualStyleBackColor = true;
+            this.btnBacklogIgram.Click += new System.EventHandler(this.btnBacklogIgram_Click);
             // 
             // btnUkloniBacklog
             // 
@@ -191,7 +192,7 @@
             // 
             // tpIgram
             // 
-            this.tpIgram.Controls.Add(this.button1);
+            this.tpIgram.Controls.Add(this.btnIgramIgrao);
             this.tpIgram.Controls.Add(this.btnUkloniIgram);
             this.tpIgram.Controls.Add(this.rtbIgramOpis);
             this.tpIgram.Controls.Add(this.lbIgram);
@@ -203,14 +204,15 @@
             this.tpIgram.Text = "IGRAM";
             this.tpIgram.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // btnIgramIgrao
             // 
-            this.button1.Location = new System.Drawing.Point(644, 313);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(157, 57);
-            this.button1.TabIndex = 8;
-            this.button1.Text = "PRENESI U IGRAO";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnIgramIgrao.Location = new System.Drawing.Point(644, 313);
+            this.btnIgramIgrao.Name = "btnIgramIgrao";
+            this.btnIgramIgrao.Size = new System.Drawing.Size(157, 57);
+            this.btnIgramIgrao.TabIndex = 8;
+            this.btnIgramIgrao.Text = "PRENESI U IGRAO";
+            this.btnIgramIgrao.UseVisualStyleBackColor = true;
+            this.btnIgramIgrao.Click += new System.EventHandler(this.btnIgramIgrao_Click);
             // 
             // btnUkloniIgram
             // 
@@ -242,7 +244,7 @@
             // 
             // tpIgrao
             // 
-            this.tpIgrao.Controls.Add(this.button4);
+            this.tpIgrao.Controls.Add(this.btnIgraoIgram);
             this.tpIgrao.Controls.Add(this.btnUkloniIgrao);
             this.tpIgrao.Controls.Add(this.rtbIgraoOpis);
             this.tpIgrao.Controls.Add(this.lbIgrao);
@@ -253,14 +255,15 @@
             this.tpIgrao.Text = "IGRAO";
             this.tpIgrao.UseVisualStyleBackColor = true;
             // 
-            // button4
+            // btnIgraoIgram
             // 
-            this.button4.Location = new System.Drawing.Point(644, 313);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(157, 57);
-            this.button4.TabIndex = 8;
-            this.button4.Text = "PRENESI U IGRAM";
-            this.button4.UseVisualStyleBackColor = true;
+            this.btnIgraoIgram.Location = new System.Drawing.Point(644, 313);
+            this.btnIgraoIgram.Name = "btnIgraoIgram";
+            this.btnIgraoIgram.Size = new System.Drawing.Size(157, 57);
+            this.btnIgraoIgram.TabIndex = 8;
+            this.btnIgraoIgram.Text = "PRENESI U IGRAM";
+            this.btnIgraoIgram.UseVisualStyleBackColor = true;
+            this.btnIgraoIgram.Click += new System.EventHandler(this.btnIgraoIgram_Click);
             // 
             // btnUkloniIgrao
             // 
@@ -340,11 +343,11 @@
         private System.Windows.Forms.RichTextBox rtbIgraoOpis;
         private System.Windows.Forms.ListBox lbIgrao;
         private System.Windows.Forms.Button btnDodaj;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnBacklogIgram;
         private System.Windows.Forms.Button btnUkloniBacklog;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnIgramIgrao;
         private System.Windows.Forms.Button btnUkloniIgram;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button btnIgraoIgram;
         private System.Windows.Forms.Button btnUkloniIgrao;
     }
 }

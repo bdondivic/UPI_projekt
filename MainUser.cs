@@ -167,20 +167,72 @@ namespace Backlog
 
         private void lbBacklog_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string nazivIgre = lbBacklog.SelectedItem.ToString();
-            korisnik.dohvatiOpis(nazivIgre, "BACKLOG");
+            if(lbBacklog.SelectedIndex != -1)
+            {
+                string nazivIgre = lbBacklog.SelectedItem.ToString();
+                korisnik.dohvatiOpis(nazivIgre, "BACKLOG");
+            }
+            
         }
 
         private void lbIgram_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string nazivIgre = lbIgram.SelectedItem.ToString();
-            korisnik.dohvatiOpis(nazivIgre, "IGRAM");
+            if(lbIgram.SelectedIndex != -1)
+            {
+                string nazivIgre = lbIgram.SelectedItem.ToString();
+                korisnik.dohvatiOpis(nazivIgre, "IGRAM");
+            }
+            
         }
 
         private void lbIgrao_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (lbIgrao.SelectedIndex != -1)
+            {
+                string nazivIgre = lbIgrao.SelectedItem.ToString();
+                korisnik.dohvatiOpis(nazivIgre, "IGRAO");
+            }
+            
+        }
+
+        private void btnBacklogIgram_Click(object sender, EventArgs e)
+        {
+            if (lbBacklog.SelectedIndex == -1)
+            {
+                MessageBox.Show("Niste odabrali koju igru želite prenijeti");
+                return;
+            }
+
+            string nazivIgre = lbBacklog.SelectedItem.ToString();
+            MoveTo move = new MoveTo("backlogIgram", nazivIgre, ref korisnik);
+            move.ShowDialog();
+        }
+
+        private void btnIgramIgrao_Click(object sender, EventArgs e)
+        {
+            if (lbIgram.SelectedIndex == -1)
+            {
+                MessageBox.Show("Niste odabrali koju igru želite prenijeti");
+                return;
+            }
+
+            string nazivIgre = lbIgram.SelectedItem.ToString();
+            MoveTo move = new MoveTo("igramIgrao", nazivIgre, ref korisnik);
+            move.ShowDialog();
+
+        }
+
+        private void btnIgraoIgram_Click(object sender, EventArgs e)
+        {
+            if (lbIgrao.SelectedIndex == -1)
+            {
+                MessageBox.Show("Niste odabrali koju igru želite prenijeti");
+                return;
+            }
+
             string nazivIgre = lbIgrao.SelectedItem.ToString();
-            korisnik.dohvatiOpis(nazivIgre, "IGRAO");
+            MoveTo move = new MoveTo("igraoIgram", nazivIgre, ref korisnik);
+            move.ShowDialog();
         }
     }
 }

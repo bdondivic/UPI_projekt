@@ -346,5 +346,84 @@ namespace Test
 
             MessageBox.Show("Igra je uspješno uklonjena iz liste!");
         }
+
+        public void backlogIgram(DateTime pocetak, string nazivIgre)
+        {
+            int igraID = dohvatiIdIgre(nazivIgre);
+            MessageBox.Show(igraID.ToString());
+            try
+            {
+                con.Open();
+                OleDbCommand comm = new OleDbCommand($"UPDATE tb_Korisnik_Igra SET Datum_poc='{pocetak.ToString()}', " +
+                    $"Prioritet_ID=NULL, Lista_ID=2 " +
+                    $"WHERE Korisnik_ID={ID} AND Igra_ID={igraID};",con);
+                comm.ExecuteNonQuery();
+                con.Close();
+                backlog.Items.Remove(backlog.SelectedItem);
+                igram.Items.Add(nazivIgre);
+                MessageBox.Show("Igra je uspješno prenesena!");
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                return;
+            }
+        }
+
+        public void igramIgrao(DateTime kraj, int ukupno, string nazivIgre)
+        {
+            int igraID = dohvatiIdIgre(nazivIgre);
+            try
+            {
+                con.Open();
+                OleDbCommand comm = new OleDbCommand($"SELECT Datum_poc FROM tb_Korisnik_Igra " +
+                    $"WHERE Korisnik_ID={ID} AND Igra_ID={igraID}",con);
+                OleDbDataReader reader = comm.ExecuteReader();
+                reader.Read();
+                DateTime pocetak = reader.GetDateTime(0);
+                TimeSpan razlika = kraj - pocetak;
+                if (razlika.TotalHours+24<ukupno)
+                {
+                    MessageBox.Show("Ukupno vrijeme ne može biti veće od razlike kraja i početka igranja!");
+                    con.Close();
+                    return;
+                }
+                OleDbCommand comm1 = new OleDbCommand($"UPDATE tb_Korisnik_Igra SET Datum_kraj='{kraj.ToString()}', " +
+                    $"Vr_igranja={ukupno}, Lista_ID=3 " +
+                    $"WHERE Korisnik_ID={ID} AND Igra_ID={igraID}", con);
+                comm1.ExecuteNonQuery();
+                con.Close();
+                igram.Items.Remove(igram.SelectedItem);
+                igrao.Items.Add(nazivIgre);
+                MessageBox.Show("Igra je uspješno prenesena!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                return;
+            }
+        }
+
+        public void igraoIgram(DateTime pocetak, string nazivIgre)
+        {
+            int igraID = dohvatiIdIgre(nazivIgre);
+            try
+            {
+                con.Open();
+                OleDbCommand comm = new OleDbCommand($"UPDATE tb_Korisnik_Igra SET Datum_poc='{pocetak.ToString()}', " +
+                    $"Vr_igranja=0, Datum_kraj=NULL, Lista_ID=2 " +
+                    $"WHERE Korisnik_ID={ID} AND Igra_ID={igraID}", con);
+                comm.ExecuteNonQuery();
+                con.Close();
+                igrao.Items.Remove(igrao.SelectedItem);
+                igram.Items.Add(nazivIgre);
+                MessageBox.Show("Igra je uspješno prenesena!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                return;
+            }
+        }
     }
 }

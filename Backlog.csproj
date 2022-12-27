@@ -74,6 +74,12 @@
     <Compile Include="MainUser.Designer.cs">
       <DependentUpon>MainUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="MoveTo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MoveTo.Designer.cs">
+      <DependentUpon>MoveTo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Prijava.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -95,6 +101,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MainUser.resx">
       <DependentUpon>MainUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MoveTo.resx">
+      <DependentUpon>MoveTo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
