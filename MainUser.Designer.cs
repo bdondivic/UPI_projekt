@@ -30,21 +30,27 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tpPretraga = new System.Windows.Forms.TabPage();
+            this.btnDodaj = new System.Windows.Forms.Button();
             this.cbZanr = new System.Windows.Forms.ComboBox();
             this.rtbOpis = new System.Windows.Forms.RichTextBox();
             this.lbIgre = new System.Windows.Forms.ListBox();
             this.txtPretraga = new System.Windows.Forms.TextBox();
             this.tpBacklog = new System.Windows.Forms.TabPage();
-            this.tpIgram = new System.Windows.Forms.TabPage();
-            this.tpIgrao = new System.Windows.Forms.TabPage();
-            this.tpProfil = new System.Windows.Forms.TabPage();
             this.rtbBacklogOpis = new System.Windows.Forms.RichTextBox();
             this.lbBacklog = new System.Windows.Forms.ListBox();
+            this.tpIgram = new System.Windows.Forms.TabPage();
             this.rtbIgramOpis = new System.Windows.Forms.RichTextBox();
             this.lbIgram = new System.Windows.Forms.ListBox();
+            this.tpIgrao = new System.Windows.Forms.TabPage();
             this.rtbIgraoOpis = new System.Windows.Forms.RichTextBox();
             this.lbIgrao = new System.Windows.Forms.ListBox();
-            this.btnDodaj = new System.Windows.Forms.Button();
+            this.tpProfil = new System.Windows.Forms.TabPage();
+            this.btnUkloniBacklog = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.btnUkloniIgram = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.btnUkloniIgrao = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tpPretraga.SuspendLayout();
             this.tpBacklog.SuspendLayout();
@@ -81,6 +87,16 @@
             this.tpPretraga.TabIndex = 0;
             this.tpPretraga.Text = "PRETRAGA";
             this.tpPretraga.UseVisualStyleBackColor = true;
+            // 
+            // btnDodaj
+            // 
+            this.btnDodaj.Location = new System.Drawing.Point(488, 295);
+            this.btnDodaj.Name = "btnDodaj";
+            this.btnDodaj.Size = new System.Drawing.Size(157, 57);
+            this.btnDodaj.TabIndex = 4;
+            this.btnDodaj.Text = "DODAJ";
+            this.btnDodaj.UseVisualStyleBackColor = true;
+            this.btnDodaj.Click += new System.EventHandler(this.btnDodaj_Click);
             // 
             // cbZanr
             // 
@@ -124,6 +140,8 @@
             // 
             // tpBacklog
             // 
+            this.tpBacklog.Controls.Add(this.button2);
+            this.tpBacklog.Controls.Add(this.btnUkloniBacklog);
             this.tpBacklog.Controls.Add(this.rtbBacklogOpis);
             this.tpBacklog.Controls.Add(this.lbBacklog);
             this.tpBacklog.Location = new System.Drawing.Point(4, 25);
@@ -133,38 +151,6 @@
             this.tpBacklog.TabIndex = 1;
             this.tpBacklog.Text = "BACKLOG";
             this.tpBacklog.UseVisualStyleBackColor = true;
-            // 
-            // tpIgram
-            // 
-            this.tpIgram.Controls.Add(this.rtbIgramOpis);
-            this.tpIgram.Controls.Add(this.lbIgram);
-            this.tpIgram.Location = new System.Drawing.Point(4, 25);
-            this.tpIgram.Name = "tpIgram";
-            this.tpIgram.Padding = new System.Windows.Forms.Padding(3);
-            this.tpIgram.Size = new System.Drawing.Size(998, 692);
-            this.tpIgram.TabIndex = 2;
-            this.tpIgram.Text = "IGRAM";
-            this.tpIgram.UseVisualStyleBackColor = true;
-            // 
-            // tpIgrao
-            // 
-            this.tpIgrao.Controls.Add(this.rtbIgraoOpis);
-            this.tpIgrao.Controls.Add(this.lbIgrao);
-            this.tpIgrao.Location = new System.Drawing.Point(4, 25);
-            this.tpIgrao.Name = "tpIgrao";
-            this.tpIgrao.Size = new System.Drawing.Size(998, 692);
-            this.tpIgrao.TabIndex = 3;
-            this.tpIgrao.Text = "IGRAO";
-            this.tpIgrao.UseVisualStyleBackColor = true;
-            // 
-            // tpProfil
-            // 
-            this.tpProfil.Location = new System.Drawing.Point(4, 25);
-            this.tpProfil.Name = "tpProfil";
-            this.tpProfil.Size = new System.Drawing.Size(998, 692);
-            this.tpProfil.TabIndex = 4;
-            this.tpProfil.Text = "PROFIL";
-            this.tpProfil.UseVisualStyleBackColor = true;
             // 
             // rtbBacklogOpis
             // 
@@ -183,6 +169,20 @@
             this.lbBacklog.Size = new System.Drawing.Size(434, 468);
             this.lbBacklog.TabIndex = 3;
             // 
+            // tpIgram
+            // 
+            this.tpIgram.Controls.Add(this.button1);
+            this.tpIgram.Controls.Add(this.btnUkloniIgram);
+            this.tpIgram.Controls.Add(this.rtbIgramOpis);
+            this.tpIgram.Controls.Add(this.lbIgram);
+            this.tpIgram.Location = new System.Drawing.Point(4, 25);
+            this.tpIgram.Name = "tpIgram";
+            this.tpIgram.Padding = new System.Windows.Forms.Padding(3);
+            this.tpIgram.Size = new System.Drawing.Size(998, 692);
+            this.tpIgram.TabIndex = 2;
+            this.tpIgram.Text = "IGRAM";
+            this.tpIgram.UseVisualStyleBackColor = true;
+            // 
             // rtbIgramOpis
             // 
             this.rtbIgramOpis.Location = new System.Drawing.Point(481, 112);
@@ -199,6 +199,19 @@
             this.lbIgram.Name = "lbIgram";
             this.lbIgram.Size = new System.Drawing.Size(434, 468);
             this.lbIgram.TabIndex = 5;
+            // 
+            // tpIgrao
+            // 
+            this.tpIgrao.Controls.Add(this.button4);
+            this.tpIgrao.Controls.Add(this.btnUkloniIgrao);
+            this.tpIgrao.Controls.Add(this.rtbIgraoOpis);
+            this.tpIgrao.Controls.Add(this.lbIgrao);
+            this.tpIgrao.Location = new System.Drawing.Point(4, 25);
+            this.tpIgrao.Name = "tpIgrao";
+            this.tpIgrao.Size = new System.Drawing.Size(998, 692);
+            this.tpIgrao.TabIndex = 3;
+            this.tpIgrao.Text = "IGRAO";
+            this.tpIgrao.UseVisualStyleBackColor = true;
             // 
             // rtbIgraoOpis
             // 
@@ -217,15 +230,71 @@
             this.lbIgrao.Size = new System.Drawing.Size(434, 468);
             this.lbIgrao.TabIndex = 5;
             // 
-            // btnDodaj
+            // tpProfil
             // 
-            this.btnDodaj.Location = new System.Drawing.Point(488, 295);
-            this.btnDodaj.Name = "btnDodaj";
-            this.btnDodaj.Size = new System.Drawing.Size(157, 57);
-            this.btnDodaj.TabIndex = 4;
-            this.btnDodaj.Text = "DODAJ";
-            this.btnDodaj.UseVisualStyleBackColor = true;
-            this.btnDodaj.Click += new System.EventHandler(this.btnDodaj_Click);
+            this.tpProfil.Location = new System.Drawing.Point(4, 25);
+            this.tpProfil.Name = "tpProfil";
+            this.tpProfil.Size = new System.Drawing.Size(998, 692);
+            this.tpProfil.TabIndex = 4;
+            this.tpProfil.Text = "PROFIL";
+            this.tpProfil.UseVisualStyleBackColor = true;
+            // 
+            // btnUkloniBacklog
+            // 
+            this.btnUkloniBacklog.Location = new System.Drawing.Point(481, 313);
+            this.btnUkloniBacklog.Name = "btnUkloniBacklog";
+            this.btnUkloniBacklog.Size = new System.Drawing.Size(157, 57);
+            this.btnUkloniBacklog.TabIndex = 5;
+            this.btnUkloniBacklog.Text = "UKLONI IZ LISTE";
+            this.btnUkloniBacklog.UseVisualStyleBackColor = true;
+            this.btnUkloniBacklog.Click += new System.EventHandler(this.btnUkloniBacklog_Click);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(644, 313);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(157, 57);
+            this.button2.TabIndex = 6;
+            this.button2.Text = "PRENESI U IGRAM";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(644, 313);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(157, 57);
+            this.button1.TabIndex = 8;
+            this.button1.Text = "PRENESI U IGRAO";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // btnUkloniIgram
+            // 
+            this.btnUkloniIgram.Location = new System.Drawing.Point(481, 313);
+            this.btnUkloniIgram.Name = "btnUkloniIgram";
+            this.btnUkloniIgram.Size = new System.Drawing.Size(157, 57);
+            this.btnUkloniIgram.TabIndex = 7;
+            this.btnUkloniIgram.Text = "UKLONI IZ LISTE";
+            this.btnUkloniIgram.UseVisualStyleBackColor = true;
+            this.btnUkloniIgram.Click += new System.EventHandler(this.btnUkloniIgram_Click);
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(644, 313);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(157, 57);
+            this.button4.TabIndex = 8;
+            this.button4.Text = "PRENESI U IGRAM";
+            this.button4.UseVisualStyleBackColor = true;
+            // 
+            // btnUkloniIgrao
+            // 
+            this.btnUkloniIgrao.Location = new System.Drawing.Point(481, 313);
+            this.btnUkloniIgrao.Name = "btnUkloniIgrao";
+            this.btnUkloniIgrao.Size = new System.Drawing.Size(157, 57);
+            this.btnUkloniIgrao.TabIndex = 7;
+            this.btnUkloniIgrao.Text = "UKLONI IZ LISTE";
+            this.btnUkloniIgrao.UseVisualStyleBackColor = true;
+            this.btnUkloniIgrao.Click += new System.EventHandler(this.btnUkloniIgrao_Click);
             // 
             // MainUser
             // 
@@ -268,5 +337,11 @@
         private System.Windows.Forms.RichTextBox rtbIgraoOpis;
         private System.Windows.Forms.ListBox lbIgrao;
         private System.Windows.Forms.Button btnDodaj;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnUkloniBacklog;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnUkloniIgram;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button btnUkloniIgrao;
     }
 }

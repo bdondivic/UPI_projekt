@@ -110,5 +110,52 @@ namespace Backlog
             Add add = new Add(nazivIgre, ref korisnik);
             add.ShowDialog();
         }
+
+
+        //UKLANJANJE IGARA IZ LISTI
+        private void btnUkloniBacklog_Click(object sender, EventArgs e)
+        {
+            if (lbBacklog.SelectedIndex == -1)
+            {
+                MessageBox.Show("Niste odabrali koju igru želite ukloniti!");
+                return;
+            }
+            DialogResult dr = MessageBox.Show("Potvrđujete li unklanjanje odabrane igre?", "Potvrda", MessageBoxButtons.YesNo);
+            if (dr == DialogResult.Yes)
+            {
+                string nazivIgre = lbBacklog.SelectedItem.ToString();
+                korisnik.UkloniBacklog(nazivIgre);
+            }      
+        }
+
+        private void btnUkloniIgram_Click(object sender, EventArgs e)
+        {
+            if (lbIgram.SelectedIndex == -1)
+            {
+                MessageBox.Show("Niste odabrali koju igru želite ukloniti!");
+                return;
+            }
+            DialogResult dr = MessageBox.Show("Potvrđujete li unklanjanje odabrane igre?", "Potvrda", MessageBoxButtons.YesNo);
+            if (dr == DialogResult.Yes)
+            {
+                string nazivIgre = lbIgram.SelectedItem.ToString();
+                korisnik.UkloniIgram(nazivIgre);
+            }   
+        }
+
+        private void btnUkloniIgrao_Click(object sender, EventArgs e)
+        {
+            if (lbIgrao.SelectedIndex == -1)
+            {
+                MessageBox.Show("Niste odabrali koju igru želite ukloniti!");
+                return;
+            }
+            DialogResult dr = MessageBox.Show("Potvrđujete li unklanjanje odabrane igre?", "Potvrda", MessageBoxButtons.YesNo);
+            if (dr == DialogResult.Yes)
+            {
+                string nazivIgre = lbIgrao.SelectedItem.ToString();
+                korisnik.UkloniIgrao(nazivIgre);
+            }    
+        }
     }
 }

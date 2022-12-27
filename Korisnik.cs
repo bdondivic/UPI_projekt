@@ -38,6 +38,43 @@ namespace Test
             this.da = new OleDbDataAdapter();
         }
 
+        public int dohvatiIdIgre(string nazivIgre)
+        {
+            try
+            {
+                con.Open();
+                string naredba = $"SELECT * from tb_Igra WHERE Naziv='{nazivIgre.Replace("'", "''")}'";
+                cmd = new OleDbCommand(naredba, con);
+                OleDbDataReader odg = cmd.ExecuteReader();
+                odg.Read();
+                int igraID = odg.GetInt32(0);
+                con.Close();
+                return igraID;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                return -1;
+            }
+        }
+
+        public void obrisiZapis(int igraID)
+        {
+            try
+            {
+                con.Open();
+                OleDbCommand comm = new OleDbCommand($"DELETE FROM tb_Korisnik_Igra WHERE Korisnik_ID={ID} AND Igra_ID={igraID}", con);
+                comm.ExecuteNonQuery();
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                return;
+            }
+
+        }
+
         public void dohvatiBacklog()  //METODE SU SLIČNE LoadIgre u Komunikcaija.cs, ALI SE NE STVARAJU LISTE JER SE 
                                                        //NE VRŠI PRETRAGA/FILTRACIJA, DOVOLJNO JE DA SE DODAJU U LISTBOXOVE
         {
@@ -126,13 +163,7 @@ namespace Test
             try
             {
                 //DOHVAĆANJE ID-a igre NA TEMELJU PROSLIJEĐENOG NAZIVA
-                con.Open();
-                string naredba = $"SELECT * from tb_Igra WHERE Naziv='{nazivIgre.Replace("'", "''")}'";
-                cmd = new OleDbCommand(naredba, con);
-                OleDbDataReader odg = cmd.ExecuteReader();
-                odg.Read();
-                int igraID = odg.GetInt32(0);
-                con.Close();
+                int igraID = dohvatiIdIgre(nazivIgre);
 
                 //UMETANJE ZAPISA U BP
                 con.Open();
@@ -159,13 +190,7 @@ namespace Test
             try
             {
                 //DOHVAĆANJE ID-a igre NA TEMELJU PROSLIJEĐENOG NAZIVA
-                con.Open();
-                string naredba = $"SELECT * from tb_Igra WHERE Naziv='{nazivIgre.Replace("'", "''")}'";
-                cmd = new OleDbCommand(naredba, con);
-                OleDbDataReader odg = cmd.ExecuteReader();
-                odg.Read();
-                int igraID = odg.GetInt32(0);
-                con.Close();
+                int igraID = dohvatiIdIgre(nazivIgre);
 
                 //UMETANJE ZAPISA U BP
                 con.Open();
@@ -192,13 +217,7 @@ namespace Test
             try
             {
                 //DOHVAĆANJE ID-a igre NA TEMELJU PROSLIJEĐENOG NAZIVA
-                con.Open();
-                string naredba = $"SELECT * from tb_Igra WHERE Naziv='{nazivIgre.Replace("'", "''")}'";
-                cmd = new OleDbCommand(naredba, con);
-                OleDbDataReader odg = cmd.ExecuteReader();
-                odg.Read();
-                int igraID = odg.GetInt32(0);
-                con.Close();
+                int igraID = dohvatiIdIgre(nazivIgre);
 
                 //UMETANJE ZAPISA U BP
                 con.Open();
@@ -218,6 +237,50 @@ namespace Test
                 MessageBox.Show(ex.ToString());
                 return;
             }
+        }
+
+        public void UkloniBacklog(string nazivIgre)
+        {
+            //DOHVAĆANJE ID-a igre NA TEMELJU PROSLIJEĐENOG NAZIVA
+            int igraID = dohvatiIdIgre(nazivIgre);
+
+            //BRISANJE ZAPISA IZ BP
+            obrisiZapis(igraID);
+
+            //UKLANJANJE IZ LISTBOXA
+            backlog.Items.Remove(backlog.SelectedItem);
+
+            MessageBox.Show("Igra je uspješno uklonjena iz liste!");
+
+
+        }
+
+        public void UkloniIgram(string nazivIgre)
+        {
+            //DOHVAĆANJE ID-a igre NA TEMELJU PROSLIJEĐENOG NAZIVA
+            int igraID = dohvatiIdIgre(nazivIgre);
+
+            //BRISANJE ZAPISA IZ BP
+            obrisiZapis(igraID);
+
+            //UKLANJANJE IZ LISTBOXA
+            igram.Items.Remove(igram.SelectedItem);
+
+            MessageBox.Show("Igra je uspješno uklonjena iz liste!");
+        }
+
+        public void UkloniIgrao(string nazivIgre)
+        {
+            //DOHVAĆANJE ID-a igre NA TEMELJU PROSLIJEĐENOG NAZIVA
+            int igraID = dohvatiIdIgre(nazivIgre);
+
+            //BRISANJE ZAPISA IZ BP
+            obrisiZapis(igraID);
+
+            //UKLANJANJE IZ LISTBOXA
+            igrao.Items.Remove(igrao.SelectedItem);
+
+            MessageBox.Show("Igra je uspješno uklonjena iz liste!");
         }
     }
 }
