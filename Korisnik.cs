@@ -19,6 +19,9 @@ namespace Test
         public int ID { get; private set; }
         public string uName { get; private set; }
         public string pass { get; private set; }
+        public string ime { get; private set; }
+        public string prezime { get; private set; }
+
 
         public ListBox backlog;
         public ListBox igram;
@@ -28,8 +31,14 @@ namespace Test
         public RichTextBox opisIgram;
         public RichTextBox opisIgrao;
 
+        public Label backlogBr;
+        public Label igramBr;
+        public Label igraoBr;
+        public Label postotakPr;
+        public Label ukupnoVr;
 
-        public Korisnik(string uname, string pass, int ID, List<ListBox> liste, List<RichTextBox> opisi)
+
+        public Korisnik(string uname, string pass, int ID, List<ListBox> liste, List<RichTextBox> opisi, List<Label> labele)
         {
             this.ID = ID;
             this.uName = uname;
@@ -43,9 +52,137 @@ namespace Test
             this.opisIgram = opisi[1];
             this.opisIgrao = opisi[2];
 
+            this.backlogBr = labele[0];
+            this.igramBr = labele[1];
+            this.igraoBr = labele[2];
+            this.postotakPr = labele[3];
+            this.ukupnoVr = labele[4];
+
             this.con = new OleDbConnection("Provider=Microsoft.Jet.OlEDB.4.0;Data Source=db_Backlog.mdb");
             this.cmd = new OleDbCommand();
             this.da = new OleDbDataAdapter();
+        }
+
+        public void podaciKor(Label ime, Label prezime, Label korIme)
+        {
+            try
+            {
+                con.Open();
+                string naredba = $"SELECT Ime, Prezime from tb_Korisnik WHERE ID_Korisnik={ID}";
+                cmd = new OleDbCommand(naredba, con);
+                OleDbDataReader odg = cmd.ExecuteReader();
+                odg.Read();
+                ime.Text = "Ime: " + odg.GetString(0);
+                prezime.Text = "Prezime: " + odg.GetString(1);
+                korIme.Text = "Korisničko ime: " + uName;
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.ToString());
+                con.Close();
+                return;
+            }
+        }
+
+        public void korStatistika()
+        {
+            int brBacklog = 0;
+            int brIgram = 0;
+            int brIgrao = 0;
+            int ukupno = 0;
+            try
+            {
+                
+                con.Open();
+                string naredba = $"SELECT * from tb_Korisnik_Igra WHERE Korisnik_ID={ID}";
+                cmd = new OleDbCommand(naredba, con);
+                OleDbDataReader odg = cmd.ExecuteReader();
+                while (odg.Read())
+                {
+                    int listaID = odg.GetInt32(6);
+                    if (listaID == 1)
+                    {
+                        brBacklog++;
+                    }
+                    else if (listaID == 2)
+                    {
+                        brIgram++;
+                    }
+                    else if (listaID == 3)
+                    {
+                        brIgrao++;
+                        ukupno += odg.GetInt32(2);
+                    }
+                }
+                decimal postotak;
+                try
+                {
+                    postotak = (decimal)brIgrao / ((decimal)brBacklog + (decimal)brIgram + (decimal)brIgrao);
+
+                }
+                catch
+                {
+                    postotak = 0;
+                }
+                con.Close();
+                backlogBr.Text = "Backlog: " + brBacklog.ToString();
+                igramBr.Text = "Igram: " + brIgram.ToString();
+                igraoBr.Text = "Igrao: " + brIgrao.ToString();
+                postotakPr.Text = "Postotak odigranih: " + ((int)(postotak *100)).ToString()+"%";
+                ukupnoVr.Text = "Ukupno vrijeme igranja: " + ukupno.ToString()+"h";
+                
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                con.Close();
+                return;
+            }
+        }
+
+        public bool promijeniPass(string newPass)
+        {
+            try
+            {
+                con.Open();
+                string naredba = $"UPDATE tb_Korisnik SET Lozinka='{newPass}' WHERE ID_Korisnik={ID}";
+                cmd = new OleDbCommand(naredba, con);
+                cmd.ExecuteNonQuery();
+                con.Close();
+                MessageBox.Show("Loznika je uspješno izmijenjena!");
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                con.Close();
+                return false;
+            }
+        }
+
+        public bool izbrisiRacun()
+        {
+            try
+            {
+                con.Open();
+                string naredba = $"DELETE FROM tb_Korisnik_Igra WHERE Korisnik_ID={ID}";
+                cmd = new OleDbCommand(naredba, con);
+                cmd.ExecuteNonQuery();
+                naredba = $"DELETE FROM tb_Korisnik WHERE ID_Korisnik={ID}";
+                cmd = new OleDbCommand(naredba, con);
+                cmd.ExecuteNonQuery();
+                con.Close();
+                MessageBox.Show("Račun je uspješno izbrisan!");
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                con.Close();
+                return false;
+            }
         }
 
         public int dohvatiIdIgre(string nazivIgre)
@@ -73,8 +210,9 @@ namespace Test
             try
             {
                 con.Open();
-                OleDbCommand comm = new OleDbCommand($"DELETE FROM tb_Korisnik_Igra WHERE Korisnik_ID={ID} AND Igra_ID={igraID}", con);
-                comm.ExecuteNonQuery();
+                string naredba = $"DELETE FROM tb_Korisnik_Igra WHERE Korisnik_ID={ID} AND Igra_ID={igraID}";
+                cmd = new OleDbCommand(naredba, con);
+                cmd.ExecuteNonQuery();
                 con.Close();
             }
             catch (Exception ex)
@@ -92,13 +230,14 @@ namespace Test
             {
                 con.Open();
                 OleDbDataReader reader = null;
-                OleDbCommand comm = new OleDbCommand($"SELECT * FROM tb_Igra " +
+                string naredba = $"SELECT * FROM tb_Igra " +
                     $"WHERE ID_Igra IN " +
                     $"(SELECT Igra_ID from tb_Korisnik_Igra WHERE Korisnik_ID=" +
                     $"(SELECT ID_Korisnik from tb_Korisnik WHERE KorisnIme='{uName}')" +
                     $"AND Lista_ID=" +
-                    $"(SELECT ID_Lista from tb_Lista WHERE Naziv='backlog'));", con);
-                reader = comm.ExecuteReader();
+                    $"(SELECT ID_Lista from tb_Lista WHERE Naziv='backlog'));";
+                cmd = new OleDbCommand(naredba, con);
+                reader = cmd.ExecuteReader();
 
                 while (reader.Read())
                 {
@@ -119,13 +258,14 @@ namespace Test
             {
                 con.Open();
                 OleDbDataReader reader = null;
-                OleDbCommand comm = new OleDbCommand($"SELECT * FROM tb_Igra " +
+                string naredba = $"SELECT * FROM tb_Igra " +
                     $"WHERE ID_Igra IN " +
                     $"(SELECT Igra_ID from tb_Korisnik_Igra WHERE Korisnik_ID=" +
                     $"(SELECT ID_Korisnik from tb_Korisnik WHERE KorisnIme='{uName}')" +
                     $"AND Lista_ID=" +
-                    $"(SELECT ID_Lista from tb_Lista WHERE Naziv='igram'));", con);
-                reader = comm.ExecuteReader();
+                    $"(SELECT ID_Lista from tb_Lista WHERE Naziv='igram'));";
+                cmd = new OleDbCommand(naredba, con);
+                reader = cmd.ExecuteReader();
 
                 while (reader.Read())
                 {
@@ -146,13 +286,14 @@ namespace Test
             {
                 con.Open();
                 OleDbDataReader reader = null;
-                OleDbCommand comm = new OleDbCommand($"SELECT * FROM tb_Igra " +
+                string naredba = $"SELECT * FROM tb_Igra " +
                     $"WHERE ID_Igra IN " +
                     $"(SELECT Igra_ID from tb_Korisnik_Igra WHERE Korisnik_ID=" +
                     $"(SELECT ID_Korisnik from tb_Korisnik WHERE KorisnIme='{uName}')" +
                     $"AND Lista_ID=" +
-                    $"(SELECT ID_Lista from tb_Lista WHERE Naziv='igrao'));", con);
-                reader = comm.ExecuteReader();
+                    $"(SELECT ID_Lista from tb_Lista WHERE Naziv='igrao'));";
+                cmd = new OleDbCommand(naredba, con);
+                reader = cmd.ExecuteReader();
 
                 while (reader.Read())
                 {
@@ -165,6 +306,7 @@ namespace Test
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
+                con.Close();
             }
         }
 
@@ -175,15 +317,17 @@ namespace Test
             {
                 con.Open();
                 OleDbDataReader reader = null;
-                OleDbCommand comm = new OleDbCommand($"SELECT * from tb_Korisnik_Igra WHERE Korisnik_ID={ID} and Igra_ID={igraID};", con);
-                reader = comm.ExecuteReader();
+                string naredba = $"SELECT * from tb_Korisnik_Igra WHERE Korisnik_ID={ID} and Igra_ID={igraID};";
+                cmd = new OleDbCommand(naredba, con);
+                reader = cmd.ExecuteReader();
                 reader.Read();               
 
                 if (lista == "BACKLOG")
                 {
                     int idPrioritet = reader.GetInt32(5);
-                    OleDbCommand comm1 = new OleDbCommand($"SELECT Naziv from tb_Prioritet WHERE ID_Prioritet={idPrioritet};", con);
-                    reader = comm1.ExecuteReader();
+                    string naredba1 = $"SELECT Naziv from tb_Prioritet WHERE ID_Prioritet={idPrioritet};";
+                    OleDbCommand cmd1 = new OleDbCommand(naredba1, con);
+                    reader = cmd1.ExecuteReader();
                     reader.Read();
                     string prioritet = reader.GetString(0);
                     con.Close();
@@ -215,6 +359,7 @@ namespace Test
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
+                con.Close();
                 return;
             }
         }
@@ -228,10 +373,11 @@ namespace Test
 
                 //UMETANJE ZAPISA U BP
                 con.Open();
-                OleDbCommand comm = new OleDbCommand($"INSERT INTO tb_Korisnik_Igra " +
+                string naredba = $"INSERT INTO tb_Korisnik_Igra " +
                     $"(Korisnik_ID, Igra_ID, Prioritet_ID, Lista_ID)" +
-                    $"VALUES ({ID},{igraID},{prioritet},{lista});", con);
-                comm.ExecuteNonQuery();
+                    $"VALUES ({ID},{igraID},{prioritet},{lista});";
+                cmd = new OleDbCommand(naredba, con);
+                cmd.ExecuteNonQuery();
                 con.Close();
 
                 //UMETANJE U LISTBOX
@@ -242,6 +388,7 @@ namespace Test
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
+                con.Close();
                 return;
             }
         }
@@ -255,10 +402,11 @@ namespace Test
 
                 //UMETANJE ZAPISA U BP
                 con.Open();
-                OleDbCommand comm = new OleDbCommand($"INSERT INTO tb_Korisnik_Igra " +
+                string naredba = $"INSERT INTO tb_Korisnik_Igra " +
                     $"(Korisnik_ID, Igra_ID, Datum_poc, Prioritet_ID, Lista_ID)" +
-                    $"VALUES ({ID},{igraID},'{pocetak.ToString()}',NULL,{lista});", con);
-                comm.ExecuteNonQuery();
+                    $"VALUES ({ID},{igraID},'{pocetak.ToString()}',NULL,{lista});";
+                cmd = new OleDbCommand(naredba, con);
+                cmd.ExecuteNonQuery();
                 con.Close();
 
                 //UMETANJE U LISTBOX
@@ -269,6 +417,7 @@ namespace Test
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
+                con.Close();
                 return;
             }
         }
@@ -282,10 +431,11 @@ namespace Test
 
                 //UMETANJE ZAPISA U BP
                 con.Open();
-                OleDbCommand comm = new OleDbCommand($"INSERT INTO tb_Korisnik_Igra " +
+                string naredba = $"INSERT INTO tb_Korisnik_Igra " +
                     $"(Korisnik_ID, Igra_ID, Vr_igranja, Datum_poc, Datum_kraj, Prioritet_ID, Lista_ID)" +
-                    $"VALUES ({ID},{igraID},{ukupno},'{pocetak.ToString()}','{kraj.ToString()}',NULL,{lista});", con);
-                comm.ExecuteNonQuery();
+                    $"VALUES ({ID},{igraID},{ukupno},'{pocetak.ToString()}','{kraj.ToString()}',NULL,{lista});";
+                cmd = new OleDbCommand(naredba, con);
+                cmd.ExecuteNonQuery();
                 con.Close();
 
                 //UMETANJE U LISTBOX
@@ -296,6 +446,7 @@ namespace Test
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
+                con.Close();
                 return;
             }
         }
@@ -354,10 +505,11 @@ namespace Test
             try
             {
                 con.Open();
-                OleDbCommand comm = new OleDbCommand($"UPDATE tb_Korisnik_Igra SET Datum_poc='{pocetak.ToString()}', " +
+                string naredba = $"UPDATE tb_Korisnik_Igra SET Datum_poc='{pocetak.ToString()}', " +
                     $"Prioritet_ID=NULL, Lista_ID=2 " +
-                    $"WHERE Korisnik_ID={ID} AND Igra_ID={igraID};",con);
-                comm.ExecuteNonQuery();
+                    $"WHERE Korisnik_ID={ID} AND Igra_ID={igraID};";
+                cmd = new OleDbCommand(naredba,con);
+                cmd.ExecuteNonQuery();
                 con.Close();
                 backlog.Items.Remove(backlog.SelectedItem);
                 igram.Items.Add(nazivIgre);
@@ -366,6 +518,7 @@ namespace Test
             catch(Exception ex)
             {
                 MessageBox.Show(ex.ToString());
+                con.Close();
                 return;
             }
         }
@@ -376,9 +529,10 @@ namespace Test
             try
             {
                 con.Open();
-                OleDbCommand comm = new OleDbCommand($"SELECT Datum_poc FROM tb_Korisnik_Igra " +
-                    $"WHERE Korisnik_ID={ID} AND Igra_ID={igraID}",con);
-                OleDbDataReader reader = comm.ExecuteReader();
+                string naredba = $"SELECT Datum_poc FROM tb_Korisnik_Igra " +
+                    $"WHERE Korisnik_ID={ID} AND Igra_ID={igraID}";
+                cmd = new OleDbCommand(naredba,con);
+                OleDbDataReader reader = cmd.ExecuteReader();
                 reader.Read();
                 DateTime pocetak = reader.GetDateTime(0);
                 TimeSpan razlika = kraj - pocetak;
@@ -388,10 +542,11 @@ namespace Test
                     con.Close();
                     return;
                 }
-                OleDbCommand comm1 = new OleDbCommand($"UPDATE tb_Korisnik_Igra SET Datum_kraj='{kraj.ToString()}', " +
+                string naredba1 = $"UPDATE tb_Korisnik_Igra SET Datum_kraj='{kraj.ToString()}', " +
                     $"Vr_igranja={ukupno}, Lista_ID=3 " +
-                    $"WHERE Korisnik_ID={ID} AND Igra_ID={igraID}", con);
-                comm1.ExecuteNonQuery();
+                    $"WHERE Korisnik_ID={ID} AND Igra_ID={igraID}";
+                OleDbCommand cmd1 = new OleDbCommand(naredba1, con);
+                cmd1.ExecuteNonQuery();
                 con.Close();
                 igram.Items.Remove(igram.SelectedItem);
                 igrao.Items.Add(nazivIgre);
@@ -400,6 +555,7 @@ namespace Test
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
+                con.Close();
                 return;
             }
         }
@@ -410,10 +566,11 @@ namespace Test
             try
             {
                 con.Open();
-                OleDbCommand comm = new OleDbCommand($"UPDATE tb_Korisnik_Igra SET Datum_poc='{pocetak.ToString()}', " +
+                string naredba = $"UPDATE tb_Korisnik_Igra SET Datum_poc='{pocetak.ToString()}', " +
                     $"Vr_igranja=0, Datum_kraj=NULL, Lista_ID=2 " +
-                    $"WHERE Korisnik_ID={ID} AND Igra_ID={igraID}", con);
-                comm.ExecuteNonQuery();
+                    $"WHERE Korisnik_ID={ID} AND Igra_ID={igraID}";
+                cmd = new OleDbCommand(naredba, con);
+                cmd.ExecuteNonQuery();
                 con.Close();
                 igrao.Items.Remove(igrao.SelectedItem);
                 igram.Items.Add(nazivIgre);
@@ -422,6 +579,7 @@ namespace Test
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
+                con.Close();
                 return;
             }
         }

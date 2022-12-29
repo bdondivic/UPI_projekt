@@ -39,7 +39,15 @@ namespace Backlog
             opisi.Add(rtbIgramOpis);
             opisi.Add(rtbIgraoOpis);
 
-            this.korisnik = new Korisnik(uname, pass, ID, liste, opisi);
+            List<Label> labele = new List<Label>();
+            labele.Add(lblBacklog);
+            labele.Add(lblIgram);
+            labele.Add(lblIgrao);
+            labele.Add(lblPostotak);
+            labele.Add(lblUkupnoVr);
+
+
+            this.korisnik = new Korisnik(uname, pass, ID, liste, opisi, labele);
         }
 
         Pretraga pretraga = new Pretraga();
@@ -64,7 +72,8 @@ namespace Backlog
                 cbZanr.Items.Add(zanr);
             }
             cbZanr.SelectedIndex = 0;
-            CueProvider.SetCue(txtPretraga, "Pretraži listu igara");    
+            CueProvider.SetCue(txtPretraga, "Pretraži listu igara");
+            korisnik.podaciKor(lblIme, lblPrezime, lblKorIme);
         }
 
         private void lbIgre_SelectedIndexChanged(object sender, EventArgs e)
@@ -233,6 +242,117 @@ namespace Backlog
             string nazivIgre = lbIgrao.SelectedItem.ToString();
             MoveTo move = new MoveTo("igraoIgram", nazivIgre, ref korisnik);
             move.ShowDialog();
+        }
+
+        private void tcKartice_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tcKartice.SelectedIndex == 4)
+            {
+                korisnik.korStatistika();
+            }
+        }
+
+        private void btnPromjLoz_Click(object sender, EventArgs e)
+        {
+            lblOldPass.Visible = true;
+            lblNewPass.Visible = true;
+            txtOldPass.Visible = true;
+            txtNewPass.Visible = true;
+            btnPotvrdiPass.Visible = true;
+            btnOdustaniPass.Visible = true;
+            cb_showPass.Visible = true;
+            btnPromjLoz.Visible = false;
+        }
+
+        public void sakrijKontrole()
+        {
+            lblOldPass.Visible = false;
+            lblNewPass.Visible = false;
+            txtOldPass.Visible = false;
+            txtOldPass.Clear();
+            txtNewPass.Clear();
+            txtNewPass.Visible = false;
+            cb_showPass.Checked = false;
+            btnPotvrdiPass.Visible = false;
+            btnOdustaniPass.Visible = false;
+            cb_showPass.Visible = false;
+            btnPromjLoz.Visible = true;
+        }
+
+        private void btnOdustaniPass_Click(object sender, EventArgs e)
+        {
+            sakrijKontrole();
+        }
+
+        private void btnPotvrdiPass_Click(object sender, EventArgs e)
+        {
+            string staraLoz = txtOldPass.Text.Trim();
+            string novaLoz = txtNewPass.Text.Trim();
+            if(staraLoz == "" || novaLoz == "")
+            {
+                MessageBox.Show("Polja za staru i novu lozinku ne mogu biti prazna!");
+                return;
+            }
+            else if (staraLoz != korisnik.pass)
+            {
+                MessageBox.Show("Neispravna stara lozinka!");
+                return;
+            }
+            else if(novaLoz.Length<6 || novaLoz.Length > 20)
+            {
+                MessageBox.Show("Lozinka mora sadržavati između 6 i 20 znakova!");
+                return;
+            }
+            else if (novaLoz == staraLoz)
+            {
+                MessageBox.Show("Nova lozinka ne može biti ista poput stare loznike!");
+                return;
+            }
+            bool uspjeh = korisnik.promijeniPass(novaLoz);
+            if (uspjeh)
+            {
+                sakrijKontrole();
+            }
+        }
+
+        public void prikaziLogin()
+        {
+            this.Hide();
+            var Login = new Login();
+            Login.Closed += (s, args) => this.Close();
+            Login.Show();
+        }
+
+        private void btnOdjava_Click(object sender, EventArgs e)
+        {
+            prikaziLogin();
+        }
+
+        private void btnBrisiRac_Click(object sender, EventArgs e)
+        {
+            DialogResult dr = MessageBox.Show("Potvrđujete li brisanje korisničkog računa?", "Potvrda", MessageBoxButtons.YesNo);
+            if (dr == DialogResult.Yes)
+            {
+                bool uspjeh = korisnik.izbrisiRacun();
+                if (uspjeh)
+                {
+                    prikaziLogin();
+                }
+            }
+        }
+
+        private void cb_showPass_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cb_showPass.Checked)
+            {
+                txtOldPass.PasswordChar = '\0';
+                txtNewPass.PasswordChar = '\0';
+            }
+            else
+            {
+                txtOldPass.PasswordChar = '*';
+                txtNewPass.PasswordChar = '*';
+            }
         }
     }
 }

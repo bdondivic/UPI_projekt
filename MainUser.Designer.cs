@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tcKartice = new System.Windows.Forms.TabControl();
             this.tpPretraga = new System.Windows.Forms.TabPage();
             this.btnDodaj = new System.Windows.Forms.Button();
             this.cbZanr = new System.Windows.Forms.ComboBox();
@@ -51,26 +51,46 @@
             this.rtbIgraoOpis = new System.Windows.Forms.RichTextBox();
             this.lbIgrao = new System.Windows.Forms.ListBox();
             this.tpProfil = new System.Windows.Forms.TabPage();
-            this.tabControl1.SuspendLayout();
+            this.btnOdustaniPass = new System.Windows.Forms.Button();
+            this.btnPotvrdiPass = new System.Windows.Forms.Button();
+            this.txtNewPass = new System.Windows.Forms.TextBox();
+            this.lblNewPass = new System.Windows.Forms.Label();
+            this.txtOldPass = new System.Windows.Forms.TextBox();
+            this.lblOldPass = new System.Windows.Forms.Label();
+            this.btnBrisiRac = new System.Windows.Forms.Button();
+            this.btnOdjava = new System.Windows.Forms.Button();
+            this.btnPromjLoz = new System.Windows.Forms.Button();
+            this.lblUkupnoVr = new System.Windows.Forms.Label();
+            this.lblPostotak = new System.Windows.Forms.Label();
+            this.lblIgrao = new System.Windows.Forms.Label();
+            this.lblIgram = new System.Windows.Forms.Label();
+            this.lblBacklog = new System.Windows.Forms.Label();
+            this.lblPrezime = new System.Windows.Forms.Label();
+            this.lblIme = new System.Windows.Forms.Label();
+            this.lblKorIme = new System.Windows.Forms.Label();
+            this.cb_showPass = new System.Windows.Forms.CheckBox();
+            this.tcKartice.SuspendLayout();
             this.tpPretraga.SuspendLayout();
             this.tpBacklog.SuspendLayout();
             this.tpIgram.SuspendLayout();
             this.tpIgrao.SuspendLayout();
+            this.tpProfil.SuspendLayout();
             this.SuspendLayout();
             // 
-            // tabControl1
+            // tcKartice
             // 
-            this.tabControl1.Controls.Add(this.tpPretraga);
-            this.tabControl1.Controls.Add(this.tpBacklog);
-            this.tabControl1.Controls.Add(this.tpIgram);
-            this.tabControl1.Controls.Add(this.tpIgrao);
-            this.tabControl1.Controls.Add(this.tpProfil);
-            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl1.Location = new System.Drawing.Point(0, 0);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1006, 721);
-            this.tabControl1.TabIndex = 1;
+            this.tcKartice.Controls.Add(this.tpPretraga);
+            this.tcKartice.Controls.Add(this.tpBacklog);
+            this.tcKartice.Controls.Add(this.tpIgram);
+            this.tcKartice.Controls.Add(this.tpIgrao);
+            this.tcKartice.Controls.Add(this.tpProfil);
+            this.tcKartice.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tcKartice.Location = new System.Drawing.Point(0, 0);
+            this.tcKartice.Name = "tcKartice";
+            this.tcKartice.SelectedIndex = 0;
+            this.tcKartice.Size = new System.Drawing.Size(1006, 721);
+            this.tcKartice.TabIndex = 1;
+            this.tcKartice.SelectedIndexChanged += new System.EventHandler(this.tcKartice_SelectedIndexChanged);
             // 
             // tpPretraga
             // 
@@ -295,6 +315,24 @@
             // 
             // tpProfil
             // 
+            this.tpProfil.Controls.Add(this.cb_showPass);
+            this.tpProfil.Controls.Add(this.btnOdustaniPass);
+            this.tpProfil.Controls.Add(this.btnPotvrdiPass);
+            this.tpProfil.Controls.Add(this.txtNewPass);
+            this.tpProfil.Controls.Add(this.lblNewPass);
+            this.tpProfil.Controls.Add(this.txtOldPass);
+            this.tpProfil.Controls.Add(this.lblOldPass);
+            this.tpProfil.Controls.Add(this.btnBrisiRac);
+            this.tpProfil.Controls.Add(this.btnOdjava);
+            this.tpProfil.Controls.Add(this.btnPromjLoz);
+            this.tpProfil.Controls.Add(this.lblUkupnoVr);
+            this.tpProfil.Controls.Add(this.lblPostotak);
+            this.tpProfil.Controls.Add(this.lblIgrao);
+            this.tpProfil.Controls.Add(this.lblIgram);
+            this.tpProfil.Controls.Add(this.lblBacklog);
+            this.tpProfil.Controls.Add(this.lblPrezime);
+            this.tpProfil.Controls.Add(this.lblIme);
+            this.tpProfil.Controls.Add(this.lblKorIme);
             this.tpProfil.Location = new System.Drawing.Point(4, 25);
             this.tpProfil.Name = "tpProfil";
             this.tpProfil.Size = new System.Drawing.Size(998, 692);
@@ -302,31 +340,218 @@
             this.tpProfil.Text = "PROFIL";
             this.tpProfil.UseVisualStyleBackColor = true;
             // 
+            // btnOdustaniPass
+            // 
+            this.btnOdustaniPass.Location = new System.Drawing.Point(141, 629);
+            this.btnOdustaniPass.Name = "btnOdustaniPass";
+            this.btnOdustaniPass.Size = new System.Drawing.Size(107, 35);
+            this.btnOdustaniPass.TabIndex = 23;
+            this.btnOdustaniPass.Text = "ODUSTANI";
+            this.btnOdustaniPass.UseVisualStyleBackColor = true;
+            this.btnOdustaniPass.Visible = false;
+            this.btnOdustaniPass.Click += new System.EventHandler(this.btnOdustaniPass_Click);
+            // 
+            // btnPotvrdiPass
+            // 
+            this.btnPotvrdiPass.Location = new System.Drawing.Point(37, 629);
+            this.btnPotvrdiPass.Name = "btnPotvrdiPass";
+            this.btnPotvrdiPass.Size = new System.Drawing.Size(98, 35);
+            this.btnPotvrdiPass.TabIndex = 22;
+            this.btnPotvrdiPass.Text = "POTVRDI";
+            this.btnPotvrdiPass.UseVisualStyleBackColor = true;
+            this.btnPotvrdiPass.Visible = false;
+            this.btnPotvrdiPass.Click += new System.EventHandler(this.btnPotvrdiPass_Click);
+            // 
+            // txtNewPass
+            // 
+            this.txtNewPass.Location = new System.Drawing.Point(39, 569);
+            this.txtNewPass.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtNewPass.Name = "txtNewPass";
+            this.txtNewPass.PasswordChar = '*';
+            this.txtNewPass.Size = new System.Drawing.Size(209, 22);
+            this.txtNewPass.TabIndex = 21;
+            this.txtNewPass.Visible = false;
+            // 
+            // lblNewPass
+            // 
+            this.lblNewPass.AutoSize = true;
+            this.lblNewPass.Location = new System.Drawing.Point(39, 550);
+            this.lblNewPass.Name = "lblNewPass";
+            this.lblNewPass.Size = new System.Drawing.Size(85, 16);
+            this.lblNewPass.TabIndex = 20;
+            this.lblNewPass.Text = "Nova lozinka";
+            this.lblNewPass.Visible = false;
+            // 
+            // txtOldPass
+            // 
+            this.txtOldPass.Location = new System.Drawing.Point(39, 526);
+            this.txtOldPass.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtOldPass.Name = "txtOldPass";
+            this.txtOldPass.PasswordChar = '*';
+            this.txtOldPass.Size = new System.Drawing.Size(209, 22);
+            this.txtOldPass.TabIndex = 19;
+            this.txtOldPass.Visible = false;
+            // 
+            // lblOldPass
+            // 
+            this.lblOldPass.AutoSize = true;
+            this.lblOldPass.Location = new System.Drawing.Point(39, 507);
+            this.lblOldPass.Name = "lblOldPass";
+            this.lblOldPass.Size = new System.Drawing.Size(84, 16);
+            this.lblOldPass.TabIndex = 18;
+            this.lblOldPass.Text = "Stara lozinka";
+            this.lblOldPass.Visible = false;
+            // 
+            // btnBrisiRac
+            // 
+            this.btnBrisiRac.Location = new System.Drawing.Point(808, 602);
+            this.btnBrisiRac.Name = "btnBrisiRac";
+            this.btnBrisiRac.Size = new System.Drawing.Size(166, 48);
+            this.btnBrisiRac.TabIndex = 10;
+            this.btnBrisiRac.Text = "IZBRIŠI RAČUN";
+            this.btnBrisiRac.UseVisualStyleBackColor = true;
+            this.btnBrisiRac.Click += new System.EventHandler(this.btnBrisiRac_Click);
+            // 
+            // btnOdjava
+            // 
+            this.btnOdjava.Location = new System.Drawing.Point(808, 37);
+            this.btnOdjava.Name = "btnOdjava";
+            this.btnOdjava.Size = new System.Drawing.Size(166, 48);
+            this.btnOdjava.TabIndex = 9;
+            this.btnOdjava.Text = "ODJAVA";
+            this.btnOdjava.UseVisualStyleBackColor = true;
+            this.btnOdjava.Click += new System.EventHandler(this.btnOdjava_Click);
+            // 
+            // btnPromjLoz
+            // 
+            this.btnPromjLoz.Location = new System.Drawing.Point(39, 435);
+            this.btnPromjLoz.Name = "btnPromjLoz";
+            this.btnPromjLoz.Size = new System.Drawing.Size(166, 48);
+            this.btnPromjLoz.TabIndex = 8;
+            this.btnPromjLoz.Text = "PROMIJENI LOZINKU";
+            this.btnPromjLoz.UseVisualStyleBackColor = true;
+            this.btnPromjLoz.Click += new System.EventHandler(this.btnPromjLoz_Click);
+            // 
+            // lblUkupnoVr
+            // 
+            this.lblUkupnoVr.AutoSize = true;
+            this.lblUkupnoVr.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUkupnoVr.Location = new System.Drawing.Point(237, 353);
+            this.lblUkupnoVr.Name = "lblUkupnoVr";
+            this.lblUkupnoVr.Size = new System.Drawing.Size(163, 39);
+            this.lblUkupnoVr.TabIndex = 7;
+            this.lblUkupnoVr.Text = "ukupnoVr";
+            // 
+            // lblPostotak
+            // 
+            this.lblPostotak.AutoSize = true;
+            this.lblPostotak.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPostotak.Location = new System.Drawing.Point(237, 277);
+            this.lblPostotak.Name = "lblPostotak";
+            this.lblPostotak.Size = new System.Drawing.Size(149, 39);
+            this.lblPostotak.TabIndex = 6;
+            this.lblPostotak.Text = "Postotak";
+            // 
+            // lblIgrao
+            // 
+            this.lblIgrao.AutoSize = true;
+            this.lblIgrao.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblIgrao.Location = new System.Drawing.Point(694, 211);
+            this.lblIgrao.Name = "lblIgrao";
+            this.lblIgrao.Size = new System.Drawing.Size(95, 39);
+            this.lblIgrao.TabIndex = 5;
+            this.lblIgrao.Text = "Igrao";
+            // 
+            // lblIgram
+            // 
+            this.lblIgram.AutoSize = true;
+            this.lblIgram.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblIgram.Location = new System.Drawing.Point(478, 211);
+            this.lblIgram.Name = "lblIgram";
+            this.lblIgram.Size = new System.Drawing.Size(104, 39);
+            this.lblIgram.TabIndex = 4;
+            this.lblIgram.Text = "Igram";
+            // 
+            // lblBacklog
+            // 
+            this.lblBacklog.AutoSize = true;
+            this.lblBacklog.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBacklog.Location = new System.Drawing.Point(237, 211);
+            this.lblBacklog.Name = "lblBacklog";
+            this.lblBacklog.Size = new System.Drawing.Size(139, 39);
+            this.lblBacklog.TabIndex = 3;
+            this.lblBacklog.Text = "Backlog";
+            // 
+            // lblPrezime
+            // 
+            this.lblPrezime.AutoSize = true;
+            this.lblPrezime.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPrezime.Location = new System.Drawing.Point(30, 91);
+            this.lblPrezime.Name = "lblPrezime";
+            this.lblPrezime.Size = new System.Drawing.Size(142, 39);
+            this.lblPrezime.TabIndex = 2;
+            this.lblPrezime.Text = "Prezime";
+            // 
+            // lblIme
+            // 
+            this.lblIme.AutoSize = true;
+            this.lblIme.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblIme.Location = new System.Drawing.Point(32, 35);
+            this.lblIme.Name = "lblIme";
+            this.lblIme.Size = new System.Drawing.Size(74, 39);
+            this.lblIme.TabIndex = 1;
+            this.lblIme.Text = "Ime";
+            // 
+            // lblKorIme
+            // 
+            this.lblKorIme.AutoSize = true;
+            this.lblKorIme.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblKorIme.Location = new System.Drawing.Point(30, 148);
+            this.lblKorIme.Name = "lblKorIme";
+            this.lblKorIme.Size = new System.Drawing.Size(121, 39);
+            this.lblKorIme.TabIndex = 0;
+            this.lblKorIme.Text = "korIme";
+            // 
+            // cb_showPass
+            // 
+            this.cb_showPass.AutoSize = true;
+            this.cb_showPass.Location = new System.Drawing.Point(37, 595);
+            this.cb_showPass.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cb_showPass.Name = "cb_showPass";
+            this.cb_showPass.Size = new System.Drawing.Size(113, 20);
+            this.cb_showPass.TabIndex = 24;
+            this.cb_showPass.Text = "Prikaži lozinku";
+            this.cb_showPass.UseVisualStyleBackColor = true;
+            this.cb_showPass.Visible = false;
+            this.cb_showPass.CheckedChanged += new System.EventHandler(this.cb_showPass_CheckedChanged);
+            // 
             // MainUser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1006, 721);
-            this.Controls.Add(this.tabControl1);
+            this.Controls.Add(this.tcKartice);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "MainUser";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MainUser";
             this.Load += new System.EventHandler(this.MainUser_Load);
-            this.tabControl1.ResumeLayout(false);
+            this.tcKartice.ResumeLayout(false);
             this.tpPretraga.ResumeLayout(false);
             this.tpPretraga.PerformLayout();
             this.tpBacklog.ResumeLayout(false);
             this.tpIgram.ResumeLayout(false);
             this.tpIgrao.ResumeLayout(false);
+            this.tpProfil.ResumeLayout(false);
+            this.tpProfil.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabControl tcKartice;
         private System.Windows.Forms.TabPage tpPretraga;
         private System.Windows.Forms.TabPage tpBacklog;
         private System.Windows.Forms.TabPage tpIgram;
@@ -349,5 +574,23 @@
         private System.Windows.Forms.Button btnUkloniIgram;
         private System.Windows.Forms.Button btnIgraoIgram;
         private System.Windows.Forms.Button btnUkloniIgrao;
+        private System.Windows.Forms.Label lblPrezime;
+        private System.Windows.Forms.Label lblIme;
+        private System.Windows.Forms.Label lblKorIme;
+        private System.Windows.Forms.Label lblPostotak;
+        private System.Windows.Forms.Label lblIgrao;
+        private System.Windows.Forms.Label lblIgram;
+        private System.Windows.Forms.Label lblBacklog;
+        private System.Windows.Forms.Label lblUkupnoVr;
+        private System.Windows.Forms.Button btnBrisiRac;
+        private System.Windows.Forms.Button btnOdjava;
+        private System.Windows.Forms.Button btnPromjLoz;
+        private System.Windows.Forms.TextBox txtNewPass;
+        private System.Windows.Forms.Label lblNewPass;
+        private System.Windows.Forms.TextBox txtOldPass;
+        private System.Windows.Forms.Label lblOldPass;
+        private System.Windows.Forms.Button btnOdustaniPass;
+        private System.Windows.Forms.Button btnPotvrdiPass;
+        private System.Windows.Forms.CheckBox cb_showPass;
     }
 }

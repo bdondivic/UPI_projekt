@@ -128,9 +128,9 @@
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(12, 27);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(52, 16);
+            this.label5.Size = new System.Drawing.Size(35, 16);
             this.label5.TabIndex = 9;
-            this.label5.Text = "Prioritet";
+            this.label5.Text = "Lista";
             // 
             // btnPotvrdi
             // 
