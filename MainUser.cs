@@ -20,6 +20,10 @@ namespace Backlog
         OleDbDataAdapter da = new OleDbDataAdapter();
 
         Korisnik korisnik;
+
+        List<ListBox> liste;
+        List<Label> labele;
+
         public MainUser()
         {
             InitializeComponent();
@@ -29,17 +33,12 @@ namespace Backlog
         {
             InitializeComponent();
 
-            List<ListBox> liste = new List<ListBox>();
+            liste = new List<ListBox>();
             liste.Add(lbBacklog);
             liste.Add(lbIgram);
             liste.Add(lbIgrao);
 
-            List<RichTextBox> opisi = new List<RichTextBox>();
-            opisi.Add(rtbBacklogOpis);
-            opisi.Add(rtbIgramOpis);
-            opisi.Add(rtbIgraoOpis);
-
-            List<Label> labele = new List<Label>();
+            labele = new List<Label>();
             labele.Add(lblBacklog);
             labele.Add(lblIgram);
             labele.Add(lblIgrao);
@@ -47,7 +46,7 @@ namespace Backlog
             labele.Add(lblUkupnoVr);
 
 
-            this.korisnik = new Korisnik(uname, pass, ID, liste, opisi, labele);
+            this.korisnik = new Korisnik(uname, pass, ID);
         }
 
         Pretraga pretraga = new Pretraga();
@@ -63,9 +62,9 @@ namespace Backlog
         {
             listIgre = pretraga.LoadIgre(lbIgre);
             ///INICIJALNO UČITAVANJE U LISTBOXOVE (BACKLOG, IGRAM, IGRAO) IZ BP
-            korisnik.dohvatiBacklog();   
-            korisnik.dohvatiIgram();
-            korisnik.dohvatiIgrao();
+            korisnik.dohvatiBacklog(lbBacklog);   
+            korisnik.dohvatiIgram(lbIgram);
+            korisnik.dohvatiIgrao(lbIgrao);
             List<string> zanrovi = pretraga.UcitajZanrove();
             foreach (string zanr in zanrovi)
             {
@@ -123,7 +122,7 @@ namespace Backlog
             con.Close();
 
             //OTVARANJE FORME ZA DODAVANJE
-            Add add = new Add(nazivIgre, ref korisnik);
+            Add add = new Add(nazivIgre, ref korisnik, liste);
             add.ShowDialog();
         }
 
@@ -140,7 +139,7 @@ namespace Backlog
             if (dr == DialogResult.Yes)
             {
                 string nazivIgre = lbBacklog.SelectedItem.ToString();
-                korisnik.UkloniBacklog(nazivIgre);
+                korisnik.UkloniBacklog(nazivIgre, lbBacklog, rtbBacklogOpis);
             }      
         }
 
@@ -155,7 +154,7 @@ namespace Backlog
             if (dr == DialogResult.Yes)
             {
                 string nazivIgre = lbIgram.SelectedItem.ToString();
-                korisnik.UkloniIgram(nazivIgre);
+                korisnik.UkloniIgram(nazivIgre, lbIgram, rtbIgramOpis);
             }   
         }
 
@@ -170,7 +169,7 @@ namespace Backlog
             if (dr == DialogResult.Yes)
             {
                 string nazivIgre = lbIgrao.SelectedItem.ToString();
-                korisnik.UkloniIgrao(nazivIgre);
+                korisnik.UkloniIgrao(nazivIgre, lbIgrao, rtbIgraoOpis);
             }    
         }
 
@@ -179,7 +178,7 @@ namespace Backlog
             if(lbBacklog.SelectedIndex != -1)
             {
                 string nazivIgre = lbBacklog.SelectedItem.ToString();
-                korisnik.dohvatiOpis(nazivIgre, "BACKLOG");
+                korisnik.dohvatiOpis(nazivIgre, "BACKLOG", rtbBacklogOpis);
             }
             
         }
@@ -189,7 +188,7 @@ namespace Backlog
             if(lbIgram.SelectedIndex != -1)
             {
                 string nazivIgre = lbIgram.SelectedItem.ToString();
-                korisnik.dohvatiOpis(nazivIgre, "IGRAM");
+                korisnik.dohvatiOpis(nazivIgre, "IGRAM", rtbIgramOpis);
             }
             
         }
@@ -199,7 +198,7 @@ namespace Backlog
             if (lbIgrao.SelectedIndex != -1)
             {
                 string nazivIgre = lbIgrao.SelectedItem.ToString();
-                korisnik.dohvatiOpis(nazivIgre, "IGRAO");
+                korisnik.dohvatiOpis(nazivIgre, "IGRAO", rtbIgraoOpis);
             }
             
         }
@@ -213,7 +212,7 @@ namespace Backlog
             }
 
             string nazivIgre = lbBacklog.SelectedItem.ToString();
-            MoveTo move = new MoveTo("backlogIgram", nazivIgre, ref korisnik);
+            MoveTo move = new MoveTo("backlogIgram", nazivIgre, ref korisnik, liste);
             move.ShowDialog();
         }
 
@@ -226,7 +225,7 @@ namespace Backlog
             }
 
             string nazivIgre = lbIgram.SelectedItem.ToString();
-            MoveTo move = new MoveTo("igramIgrao", nazivIgre, ref korisnik);
+            MoveTo move = new MoveTo("igramIgrao", nazivIgre, ref korisnik, liste);
             move.ShowDialog();
 
         }
@@ -240,7 +239,7 @@ namespace Backlog
             }
 
             string nazivIgre = lbIgrao.SelectedItem.ToString();
-            MoveTo move = new MoveTo("igraoIgram", nazivIgre, ref korisnik);
+            MoveTo move = new MoveTo("igraoIgram", nazivIgre, ref korisnik, liste);
             move.ShowDialog();
         }
 
@@ -248,7 +247,7 @@ namespace Backlog
         {
             if (tcKartice.SelectedIndex == 4)
             {
-                korisnik.korStatistika();
+                korisnik.korStatistika(labele);
             }
         }
 

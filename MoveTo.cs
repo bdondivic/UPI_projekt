@@ -15,16 +15,18 @@ namespace Test
         public string fromTo;
         public string nazivIgre;
         public Korisnik korisnik;
+        public List<ListBox> sveListe;
         public MoveTo()
         {
             InitializeComponent();
         }
-        public MoveTo(string fromTo, string nazivIgre, ref Korisnik kor)
+        public MoveTo(string fromTo, string nazivIgre, ref Korisnik kor, List<ListBox> liste)
         {
             InitializeComponent();
             this.fromTo = fromTo;
             this.nazivIgre = nazivIgre;
             this.korisnik = kor;
+            this.sveListe = liste;
         }
 
         private void Move_Load(object sender, EventArgs e)
@@ -61,7 +63,7 @@ namespace Test
             if (fromTo == "backlogIgram")
             {
                 DateTime pocetak = dtPocetak.Value;
-                korisnik.backlogIgram(pocetak, nazivIgre);
+                korisnik.backlogIgram(pocetak, nazivIgre, sveListe[0], sveListe[1]);
                 this.Close();
             }
             else if (fromTo == "igramIgrao")
@@ -82,13 +84,13 @@ namespace Test
                     return;
                 }
                 DateTime kraj = dtKraj.Value;
-                korisnik.igramIgrao(kraj, ukupno, nazivIgre);
+                korisnik.igramIgrao(kraj, ukupno, nazivIgre, sveListe[1], sveListe[2]);
                 this.Close();
             }
             else if (fromTo == "igraoIgram")
             {
                 DateTime pocetak = dtPocetak.Value;
-                korisnik.igraoIgram(pocetak, nazivIgre);
+                korisnik.igraoIgram(pocetak, nazivIgre, sveListe[2], sveListe[1]);
                 this.Close();
             }
         }

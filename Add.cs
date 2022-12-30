@@ -21,11 +21,12 @@ namespace Test
             InitializeComponent();
         }
 
-        public Add(string nazivIgre, ref Korisnik kor)
+        public Add(string nazivIgre, ref Korisnik kor, List<ListBox> liste)
         {
             InitializeComponent();
             this.nazivIgre = nazivIgre;
             this.kor = kor;
+            this.sveListe = liste;
         }
 
         private void Add_Load(object sender, EventArgs e)
@@ -89,13 +90,13 @@ namespace Test
                     MessageBox.Show("Niste odabrali prioritet!");
                     return;
                 }
-                kor.DodajBacklog(l, p, nazivIgre);
+                kor.DodajBacklog(l, p, nazivIgre, sveListe[0]);
                 this.Close();
             }
             else if(lista == "IGRAM")
             {
                 DateTime pocetak = dtPocetak.Value;
-                kor.DodajIgram(l, pocetak, nazivIgre);
+                kor.DodajIgram(l, pocetak, nazivIgre, sveListe[1]);
                 this.Close();
             }
             else if(lista == "IGRAO")
@@ -123,7 +124,7 @@ namespace Test
                     MessageBox.Show("Ukupno vrijeme ne može biti veće od razlike kraja i početka igranja!");
                     return;
                 }
-                kor.DodajIgrao(l, pocetak, kraj, ukupno, nazivIgre);
+                kor.DodajIgrao(l, pocetak, kraj, ukupno, nazivIgre, sveListe[2]);
                 this.Close();
             }
         }

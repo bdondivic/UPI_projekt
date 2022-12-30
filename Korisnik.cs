@@ -31,32 +31,11 @@ namespace Test
         public RichTextBox opisIgram;
         public RichTextBox opisIgrao;
 
-        public Label backlogBr;
-        public Label igramBr;
-        public Label igraoBr;
-        public Label postotakPr;
-        public Label ukupnoVr;
-
-
-        public Korisnik(string uname, string pass, int ID, List<ListBox> liste, List<RichTextBox> opisi, List<Label> labele)
+        public Korisnik(string uname, string pass, int ID)
         {
             this.ID = ID;
             this.uName = uname;
             this.pass = pass;
-
-            this.backlog = liste[0];
-            this.igram = liste[1];
-            this.igrao = liste[2];
-
-            this.opisBacklog = opisi[0];
-            this.opisIgram = opisi[1];
-            this.opisIgrao = opisi[2];
-
-            this.backlogBr = labele[0];
-            this.igramBr = labele[1];
-            this.igraoBr = labele[2];
-            this.postotakPr = labele[3];
-            this.ukupnoVr = labele[4];
 
             this.con = new OleDbConnection("Provider=Microsoft.Jet.OlEDB.4.0;Data Source=db_Backlog.mdb");
             this.cmd = new OleDbCommand();
@@ -86,7 +65,7 @@ namespace Test
             }
         }
 
-        public void korStatistika()
+        public void korStatistika(List<Label> labele)
         {
             int brBacklog = 0;
             int brIgram = 0;
@@ -127,11 +106,11 @@ namespace Test
                     postotak = 0;
                 }
                 con.Close();
-                backlogBr.Text = "Backlog: " + brBacklog.ToString();
-                igramBr.Text = "Igram: " + brIgram.ToString();
-                igraoBr.Text = "Igrao: " + brIgrao.ToString();
-                postotakPr.Text = "Postotak odigranih: " + ((int)(postotak *100)).ToString()+"%";
-                ukupnoVr.Text = "Ukupno vrijeme igranja: " + ukupno.ToString()+"h";
+                labele[0].Text = "Backlog: " + brBacklog.ToString();
+                labele[1].Text = "Igram: " + brIgram.ToString();
+                labele[2].Text = "Igrao: " + brIgrao.ToString();
+                labele[3].Text = "Postotak odigranih: " + ((int)(postotak *100)).ToString()+"%";
+                labele[4].Text = "Ukupno vrijeme igranja: " + ukupno.ToString()+"h";
                 
             }
             catch (Exception ex)
@@ -223,7 +202,7 @@ namespace Test
 
         }
 
-        public void dohvatiBacklog()  //METODE SU SLIČNE LoadIgre u Komunikcaija.cs, ALI SE NE STVARAJU LISTE JER SE 
+        public void dohvatiBacklog(ListBox backlog)  //METODE SU SLIČNE LoadIgre u Komunikcaija.cs, ALI SE NE STVARAJU LISTE JER SE 
                                                        //NE VRŠI PRETRAGA/FILTRACIJA, DOVOLJNO JE DA SE DODAJU U LISTBOXOVE
         {
             try
@@ -252,7 +231,7 @@ namespace Test
             }
         }
 
-        public void dohvatiIgram()
+        public void dohvatiIgram(ListBox igram)
         {
             try
             {
@@ -280,7 +259,7 @@ namespace Test
             }
         }
 
-        public void dohvatiIgrao()
+        public void dohvatiIgrao(ListBox igrao)
         {
             try
             {
@@ -310,7 +289,7 @@ namespace Test
             }
         }
 
-        public void dohvatiOpis(string nazivIgre,string lista)
+        public void dohvatiOpis(string nazivIgre,string lista, RichTextBox opis)
         {
             int igraID = dohvatiIdIgre(nazivIgre);
             try
@@ -332,14 +311,14 @@ namespace Test
                     string prioritet = reader.GetString(0);
                     con.Close();
 
-                    opisBacklog.Clear();
-                    opisBacklog.Text = $"Prioritet: {prioritet}";
+                    opis.Clear();
+                    opis.Text = $"Prioritet: {prioritet}";
                 }
                 else if (lista == "IGRAM")
                 {
                     string pocetak = reader.GetDateTime(3).ToString();
-                    opisIgram.Clear();
-                    opisIgram.Text = $"Datum početka igranja: {pocetak}";
+                    opis.Clear();
+                    opis.Text = $"Datum početka igranja: {pocetak.Substring(0,pocetak.Length-9)}";
                     con.Close();
                 }
                 else if (lista == "IGRAO")
@@ -349,10 +328,10 @@ namespace Test
                     int ukupno = reader.GetInt32(2);
                     con.Close();
 
-                    opisIgrao.Clear();
-                    opisIgrao.Text = $"Ukupno vrijeme igranja: {ukupno}\n" +
-                        $"Datum početka igranja: {pocetak}\n" +
-                        $"Datum prelaska: {kraj}";
+                    opis.Clear();
+                    opis.Text = $"Ukupno vrijeme igranja: {ukupno}\n" +
+                        $"Datum početka igranja: {pocetak.Substring(0,pocetak.Length-9)}\n" +
+                        $"Datum prelaska: {kraj.Substring(0,kraj.Length-9)}";
                 }
             }
             
@@ -364,7 +343,7 @@ namespace Test
             }
         }
 
-        public void DodajBacklog(int lista, int prioritet, string nazivIgre)
+        public void DodajBacklog(int lista, int prioritet, string nazivIgre, ListBox backlog)
         {
             try
             {
@@ -393,7 +372,7 @@ namespace Test
             }
         }
 
-        public void DodajIgram(int lista, DateTime pocetak, string nazivIgre)
+        public void DodajIgram(int lista, DateTime pocetak, string nazivIgre, ListBox igram)
         {
             try
             {
@@ -422,7 +401,7 @@ namespace Test
             }
         }
 
-        public void DodajIgrao(int lista, DateTime pocetak, DateTime kraj, int ukupno, string nazivIgre)
+        public void DodajIgrao(int lista, DateTime pocetak, DateTime kraj, int ukupno, string nazivIgre, ListBox igrao)
         {
             try
             {
@@ -451,7 +430,7 @@ namespace Test
             }
         }
 
-        public void UkloniBacklog(string nazivIgre)
+        public void UkloniBacklog(string nazivIgre, ListBox backlog, RichTextBox opisBacklog)
         {
             //DOHVAĆANJE ID-a igre NA TEMELJU PROSLIJEĐENOG NAZIVA
             int igraID = dohvatiIdIgre(nazivIgre);
@@ -468,7 +447,7 @@ namespace Test
 
         }
 
-        public void UkloniIgram(string nazivIgre)
+        public void UkloniIgram(string nazivIgre, ListBox igram, RichTextBox opisIgram)
         {
             //DOHVAĆANJE ID-a igre NA TEMELJU PROSLIJEĐENOG NAZIVA
             int igraID = dohvatiIdIgre(nazivIgre);
@@ -483,7 +462,7 @@ namespace Test
             MessageBox.Show("Igra je uspješno uklonjena iz liste!");
         }
 
-        public void UkloniIgrao(string nazivIgre)
+        public void UkloniIgrao(string nazivIgre, ListBox igrao, RichTextBox opisIgrao)
         {
             //DOHVAĆANJE ID-a igre NA TEMELJU PROSLIJEĐENOG NAZIVA
             int igraID = dohvatiIdIgre(nazivIgre);
@@ -498,7 +477,7 @@ namespace Test
             MessageBox.Show("Igra je uspješno uklonjena iz liste!");
         }
 
-        public void backlogIgram(DateTime pocetak, string nazivIgre)
+        public void backlogIgram(DateTime pocetak, string nazivIgre, ListBox backlog, ListBox igram)
         {
             int igraID = dohvatiIdIgre(nazivIgre);
             MessageBox.Show(igraID.ToString());
@@ -523,7 +502,7 @@ namespace Test
             }
         }
 
-        public void igramIgrao(DateTime kraj, int ukupno, string nazivIgre)
+        public void igramIgrao(DateTime kraj, int ukupno, string nazivIgre, ListBox igram, ListBox igrao)
         {
             int igraID = dohvatiIdIgre(nazivIgre);
             try
@@ -560,7 +539,7 @@ namespace Test
             }
         }
 
-        public void igraoIgram(DateTime pocetak, string nazivIgre)
+        public void igraoIgram(DateTime pocetak, string nazivIgre, ListBox igrao, ListBox igram)
         {
             int igraID = dohvatiIdIgre(nazivIgre);
             try
