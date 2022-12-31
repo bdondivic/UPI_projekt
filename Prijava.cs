@@ -70,6 +70,8 @@ namespace Test
                 OleDbDataReader odg = cmd.ExecuteReader();
                 odg.Read();
                 ID = odg.GetInt32(0);
+                string name = odg.GetString(1);
+                string sur = odg.GetString(2);
                 bool jeAdmin = bool.Parse(odg[5].ToString());
                 if (jeAdmin)
                 {
@@ -81,7 +83,7 @@ namespace Test
                 else
                 {
                     log.Hide();
-                    var MainUser = new MainUser(uName, pass, ID);  /////////////NOVO
+                    var MainUser = new MainUser(name, sur, uName, pass, ID);  /////////////NOVO
                     MainUser.Closed += (s, args) => log.Close();
                     MainUser.Show();
                 }

@@ -95,14 +95,14 @@ namespace Test
             }
             else if(lista == "IGRAM")
             {
-                DateTime pocetak = dtPocetak.Value;
+                DateTime pocetak = dtPocetak.Value.Date;
                 kor.DodajIgram(l, pocetak, nazivIgre, sveListe[1]);
                 this.Close();
             }
             else if(lista == "IGRAO")
             {
-                DateTime pocetak = dtPocetak.Value;
-                DateTime kraj = dtKraj.Value;
+                DateTime pocetak = dtPocetak.Value.Date;
+                DateTime kraj = dtKraj.Value.Date;
                 int ukupno;
                 try
                 {

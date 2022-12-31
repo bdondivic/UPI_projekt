@@ -15,10 +15,7 @@ namespace Backlog
 
     public partial class MainUser : Form
     {
-        OleDbConnection con = new OleDbConnection("Provider=Microsoft.Jet.OlEDB.4.0;Data Source=db_Backlog.mdb");
-        OleDbCommand cmd = new OleDbCommand();
-        OleDbDataAdapter da = new OleDbDataAdapter();
-
+        PretragaIgara pretragaIgara;
         Korisnik korisnik;
 
         List<ListBox> liste;
@@ -29,7 +26,7 @@ namespace Backlog
             InitializeComponent();
         }
 
-        public MainUser(string uname, string pass, int ID) ////OVERLOAD KONTRUKTOS
+        public MainUser(string name, string sur, string uname, string pass, int ID) ////OVERLOAD KONSTRUKTOR
         {
             InitializeComponent();
 
@@ -46,26 +43,25 @@ namespace Backlog
             labele.Add(lblUkupnoVr);
 
 
-            this.korisnik = new Korisnik(uname, pass, ID);
+            this.korisnik = new Korisnik(name, sur, uname, pass, ID);
+            this.pretragaIgara = new PretragaIgara();
         }
-
-        Pretraga pretraga = new Pretraga();
 
         private void txtPretraga_TextChanged(object sender, EventArgs e)
         {
             lbIgre.Items.Clear();
-            pretraga.Trazi(lbIgre, listIgre, cbZanr, txtPretraga);
+            pretragaIgara.Trazi(lbIgre, listIgre, cbZanr, txtPretraga);
         }
 
         List<Igra> listIgre=new List<Igra>(); 
         private void MainUser_Load(object sender, EventArgs e)
         {
-            listIgre = pretraga.LoadIgre(lbIgre);
+            listIgre = pretragaIgara.LoadIgre(lbIgre);
             ///INICIJALNO UČITAVANJE U LISTBOXOVE (BACKLOG, IGRAM, IGRAO) IZ BP
             korisnik.dohvatiBacklog(lbBacklog);   
             korisnik.dohvatiIgram(lbIgram);
             korisnik.dohvatiIgrao(lbIgrao);
-            List<string> zanrovi = pretraga.UcitajZanrove();
+            List<string> zanrovi = pretragaIgara.UcitajZanrove();
             foreach (string zanr in zanrovi)
             {
                 cbZanr.Items.Add(zanr);
@@ -78,7 +74,7 @@ namespace Backlog
         private void lbIgre_SelectedIndexChanged(object sender, EventArgs e)
         {
             string gameName = lbIgre.SelectedItem.ToString();
-            pretraga.UcitajOpis(rtbOpis, cbZanr, gameName);
+            pretragaIgara.UcitajOpis(rtbOpis, cbZanr, gameName);
 
         }
 
@@ -94,7 +90,7 @@ namespace Backlog
 
         private void cbZanr_SelectedIndexChanged(object sender, EventArgs e)
         {
-            pretraga.Trazi(lbIgre, listIgre, cbZanr, txtPretraga);
+            pretragaIgara.Trazi(lbIgre, listIgre, cbZanr, txtPretraga);
         }
 
         private void btnDodaj_Click(object sender, EventArgs e)
@@ -106,24 +102,16 @@ namespace Backlog
                 
             }
             //PROVJERAVA POSTOJI LI IGRA VEĆ U JEDNOJ OD LISTA
-            string nazivIgre = lbIgre.SelectedItem.ToString(); 
-            con.Open();
-            string naredba = $"SELECT * FROM Tb_Korisnik_Igra WHERE Korisnik_ID=" +
-                $"(SELECT ID_Korisnik from tb_Korisnik WHERE KorisnIme='{korisnik.uName}')" +
-                $"AND Igra_ID=(SELECT ID_igra from tb_Igra WHERE Naziv='{nazivIgre}')";
-            cmd = new OleDbCommand(naredba, con);
-            OleDbDataReader odg = cmd.ExecuteReader();
-            if (odg.Read() == true)
-            {
-                con.Close();
-                MessageBox.Show("Zapis sa obabranom igrom već postoji!");
-                return;
-            }
-            con.Close();
+            string nazivIgre = lbIgre.SelectedItem.ToString();
+            bool postoji = korisnik.postojiZapis(nazivIgre);
 
             //OTVARANJE FORME ZA DODAVANJE
-            Add add = new Add(nazivIgre, ref korisnik, liste);
-            add.ShowDialog();
+            if (!postoji)
+            {
+                Add add = new Add(nazivIgre, ref korisnik, liste);
+                add.ShowDialog();
+            }
+            
         }
 
 

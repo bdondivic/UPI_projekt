@@ -36,12 +36,20 @@ namespace Test
         }
         public string Provjera()
         {
+            if (ime.Contains(";") || ime.Contains("'") || ime.Contains(","))
+                return "Ime ne smije sadržavati znakove , ; '";
             if (ime.Length < 3 || ime.Length > 12)
                 return "Ime mora sadržavati između 3 i 12 znakova!";
+            if (prezime.Contains(";") || prezime.Contains("'") || prezime.Contains(","))
+                return "Prezime ne smije sadržavati znakove , ; '";
             if (prezime.Length < 3 || prezime.Length > 12)
                 return "Prezime mora sadržavati između 3 i 12 znakova!";
+            if (uName.Contains(";") || uName.Contains("'") || uName.Contains(","))
+                return "Korisničko ime ne smije sadržavati znakove , ; '";
             if (uName.Length < 5 || uName.Length > 12)
                 return "Korisničko ime mora sadržavati između 5 i 12 znakova!";
+            if (pass.Contains(";") || pass.Contains("'") || pass.Contains(","))
+                return "Lozinka ne smije sadržavati znakove , ; '";
             if (pass.Length < 6 || pass.Length > 20)
                 return "Lozinka mora sadržavati između 6 i 20 znakova!";
             if (pass != passConf)

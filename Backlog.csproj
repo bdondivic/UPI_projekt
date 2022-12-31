@@ -53,6 +53,7 @@
     <Compile Include="Add.Designer.cs">
       <DependentUpon>Add.cs</DependentUpon>
     </Compile>
+    <Compile Include="Admin.cs" />
     <Compile Include="CueProvider.cs" />
     <Compile Include="Komunikacija.cs" />
     <Compile Include="Korisnik.cs" />

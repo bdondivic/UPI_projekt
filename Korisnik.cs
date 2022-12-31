@@ -31,8 +31,10 @@ namespace Test
         public RichTextBox opisIgram;
         public RichTextBox opisIgrao;
 
-        public Korisnik(string uname, string pass, int ID)
+        public Korisnik(string name, string sur, string uname, string pass, int ID)
         {
+            this.ime = name;
+            this.prezime = sur;
             this.ID = ID;
             this.uName = uname;
             this.pass = pass;
@@ -287,6 +289,33 @@ namespace Test
                 MessageBox.Show(ex.ToString());
                 con.Close();
             }
+        }
+
+        public bool postojiZapis(string nazivIgre)
+        {
+            try
+            {
+                con.Open();
+                string naredba = $"SELECT * FROM Tb_Korisnik_Igra WHERE Korisnik_ID=" +
+                    $"(SELECT ID_Korisnik from tb_Korisnik WHERE KorisnIme='{uName}')" +
+                    $"AND Igra_ID=(SELECT ID_igra from tb_Igra WHERE Naziv='{nazivIgre}')";
+                cmd = new OleDbCommand(naredba, con);
+                OleDbDataReader odg = cmd.ExecuteReader();
+                if (odg.Read() == true)
+                {
+                    con.Close();
+                    MessageBox.Show("Zapis sa obabranom igrom već postoji!");
+                    return true;
+                }
+                con.Close();
+                return false;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                return true;
+            }
+            
         }
 
         public void dohvatiOpis(string nazivIgre,string lista, RichTextBox opis)
