@@ -68,7 +68,7 @@
             // 
             this.btnPreuzPodKor.Location = new System.Drawing.Point(485, 357);
             this.btnPreuzPodKor.Name = "btnPreuzPodKor";
-            this.btnPreuzPodKor.Size = new System.Drawing.Size(152, 46);
+            this.btnPreuzPodKor.Size = new System.Drawing.Size(152, 59);
             this.btnPreuzPodKor.TabIndex = 6;
             this.btnPreuzPodKor.Text = "PREUZMI LISTE";
             this.btnPreuzPodKor.UseVisualStyleBackColor = true;
@@ -78,7 +78,7 @@
             // 
             this.btnBrisiRacun.Location = new System.Drawing.Point(643, 357);
             this.btnBrisiRacun.Name = "btnBrisiRacun";
-            this.btnBrisiRacun.Size = new System.Drawing.Size(152, 46);
+            this.btnBrisiRacun.Size = new System.Drawing.Size(152, 59);
             this.btnBrisiRacun.TabIndex = 7;
             this.btnBrisiRacun.Text = "IZBRIŠI KORISNIČKI RAČUN";
             this.btnBrisiRacun.UseVisualStyleBackColor = true;
@@ -86,9 +86,9 @@
             // 
             // btnPreuzKorSvi
             // 
-            this.btnPreuzKorSvi.Location = new System.Drawing.Point(485, 409);
+            this.btnPreuzKorSvi.Location = new System.Drawing.Point(485, 422);
             this.btnPreuzKorSvi.Name = "btnPreuzKorSvi";
-            this.btnPreuzKorSvi.Size = new System.Drawing.Size(310, 46);
+            this.btnPreuzKorSvi.Size = new System.Drawing.Size(310, 59);
             this.btnPreuzKorSvi.TabIndex = 8;
             this.btnPreuzKorSvi.Text = "PREUZMI KORISNIČKE PODATKE SVIH KORISNIKA";
             this.btnPreuzKorSvi.UseVisualStyleBackColor = true;

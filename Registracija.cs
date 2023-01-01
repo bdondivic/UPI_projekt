@@ -85,7 +85,8 @@ namespace Test
             try
             {
                 con.Open();
-                string naredba = $"INSERT INTO tb_Korisnik (Ime, Prezime, KorisnIme, Lozinka, JeAdmin) VALUES ('{ime}', '{prezime}', '{uName}', '{pass}', {0})";
+                string naredba = $"INSERT INTO tb_Korisnik (Ime, Prezime, KorisnIme, Lozinka, JeAdmin, DatumReg, PosljPrij) " +
+                    $"VALUES ('{ime}', '{prezime}', '{uName}', '{pass}', {0}, '{DateTime.Now.ToShortDateString()}', '{DateTime.MinValue.ToShortDateString()}')";
                 cmd = new OleDbCommand(naredba, con);
                 cmd.ExecuteNonQuery();
                 con.Close();

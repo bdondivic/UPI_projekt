@@ -22,7 +22,7 @@ namespace Test
             this.da = new OleDbDataAdapter();
         }
 
-        public void izbrisiRacun(ListBox korisnici, RichTextBox opis, string uName)
+        public void izbrisiRacun(ListBox korisnici, RichTextBox opis, List<Korisnik> lista, string uName)
         {
             try
             {
@@ -38,6 +38,7 @@ namespace Test
                 con.Close();
                 korisnici.Items.Remove(korisnici.SelectedItem);
                 opis.Clear();
+                lista.RemoveAll(k => k.uName == uName);
                 MessageBox.Show("Račun je uspješno izbrisan!");
             }
             catch (Exception ex)
@@ -86,17 +87,14 @@ namespace Test
                         }
                         else if(lista == "igram")
                         {
-                            string datumPoc = reader.GetDateTime(3).ToString();
-                            datumPoc = datumPoc.Substring(0, datumPoc.Length - 9);
+                            string datumPoc = reader.GetDateTime(3).ToShortDateString();
                             igram.Add((naziv, datumPoc));
                         }
                         else
                         {
                             string ukupno = reader.GetInt32(2).ToString();
-                            string datumPoc = reader.GetDateTime(3).ToString();
-                            datumPoc = datumPoc.Substring(0, datumPoc.Length - 9);
-                            string datumKraj = reader.GetDateTime(4).ToString();
-                            datumKraj = datumKraj.Substring(0, datumKraj.Length - 9);
+                            string datumPoc = reader.GetDateTime(3).ToShortDateString();
+                            string datumKraj = reader.GetDateTime(4).ToShortDateString();
                             igrao.Add((naziv, ukupno, datumPoc, datumKraj));
                         }
                     }
@@ -156,7 +154,7 @@ namespace Test
                     using (StreamWriter sw = File.CreateText(path))
                     {
                         sw.Write(Encoding.UTF8.GetString(Encoding.UTF8.GetPreamble()));
-                        sw.WriteLine("Ime,Prezime,KorisnIme,Lozinka");
+                        sw.WriteLine("Ime,Prezime,KorisnIme,Lozinka,DatumReg,PosljPrij");
                         con.Open();
                         string naredba = "SELECT * FROM tb_Korisnik WHERE JeAdmin=0";
                         cmd = new OleDbCommand(naredba, con);
@@ -167,7 +165,9 @@ namespace Test
                             string prezime = reader.GetString(2);
                             string uName = reader.GetString(3);
                             string pass = reader.GetString(4);
-                            sw.WriteLine(ime + "," + prezime + "," + uName + "," + pass);
+                            string datumReg = reader.GetDateTime(6).ToShortDateString();
+                            string posljPrij = reader.GetDateTime(7).ToShortDateString();
+                            sw.WriteLine(ime + "," + prezime + "," + uName + "," + pass + "," + datumReg + "," + posljPrij);
                         }
                         con.Close();
                         MessageBox.Show($"Podaci korisnika uspješno su preuzeti na putanji:\n" + fbd.SelectedPath);

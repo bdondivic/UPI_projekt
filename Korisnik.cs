@@ -345,22 +345,22 @@ namespace Test
                 }
                 else if (lista == "IGRAM")
                 {
-                    string pocetak = reader.GetDateTime(3).ToString();
+                    string pocetak = reader.GetDateTime(3).ToShortDateString();
                     opis.Clear();
-                    opis.Text = $"Datum početka igranja: {pocetak.Substring(0,pocetak.Length-9)}";
+                    opis.Text = $"Datum početka igranja: {pocetak}";
                     con.Close();
                 }
                 else if (lista == "IGRAO")
                 {
-                    string pocetak = reader.GetDateTime(3).ToString();
-                    string kraj = reader.GetDateTime(4).ToString();
+                    string pocetak = reader.GetDateTime(3).ToShortDateString();
+                    string kraj = reader.GetDateTime(4).ToShortDateString();
                     int ukupno = reader.GetInt32(2);
                     con.Close();
 
                     opis.Clear();
                     opis.Text = $"Ukupno vrijeme igranja: {ukupno}\n" +
-                        $"Datum početka igranja: {pocetak.Substring(0,pocetak.Length-9)}\n" +
-                        $"Datum prelaska: {kraj.Substring(0,kraj.Length-9)}";
+                        $"Datum početka igranja: {pocetak}\n" +
+                        $"Datum prelaska: {kraj}";
                 }
             }
             
@@ -412,7 +412,7 @@ namespace Test
                 con.Open();
                 string naredba = $"INSERT INTO tb_Korisnik_Igra " +
                     $"(Korisnik_ID, Igra_ID, Datum_poc, Prioritet_ID, Lista_ID)" +
-                    $"VALUES ({ID},{igraID},'{pocetak.ToString()}',NULL,{lista});";
+                    $"VALUES ({ID},{igraID},'{pocetak.ToShortDateString()}',NULL,{lista});";
                 cmd = new OleDbCommand(naredba, con);
                 cmd.ExecuteNonQuery();
                 con.Close();
@@ -441,7 +441,7 @@ namespace Test
                 con.Open();
                 string naredba = $"INSERT INTO tb_Korisnik_Igra " +
                     $"(Korisnik_ID, Igra_ID, Vr_igranja, Datum_poc, Datum_kraj, Prioritet_ID, Lista_ID)" +
-                    $"VALUES ({ID},{igraID},{ukupno},'{pocetak.ToString()}','{kraj.ToString()}',NULL,{lista});";
+                    $"VALUES ({ID},{igraID},{ukupno},'{pocetak.ToShortDateString()}','{kraj.ToShortDateString()}',NULL,{lista});";
                 cmd = new OleDbCommand(naredba, con);
                 cmd.ExecuteNonQuery();
                 con.Close();

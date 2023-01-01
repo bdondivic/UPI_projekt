@@ -58,7 +58,7 @@ namespace Backlog
             if (dr == DialogResult.Yes)
             {
                 string uName = lbKorisnici.SelectedItem.ToString();
-                admin.izbrisiRacun(lbKorisnici, rtbInf, uName);
+                admin.izbrisiRacun(lbKorisnici, rtbInf, korisnici, uName);
             }    
         }
 
