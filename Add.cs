@@ -12,10 +12,10 @@ namespace Test
 {
     public partial class Add : Form
     {
-        string lista;
-        string nazivIgre;
-        Korisnik kor;
-        List<ListBox> sveListe;
+        public string lista { get; private set; }
+        public string nazivIgre { get; private set; }
+        public Korisnik kor { get; private set; }
+        public List<ListBox> sveListe { get; private set; }
         public Add()
         {
             InitializeComponent();

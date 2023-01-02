@@ -69,7 +69,8 @@ namespace Backlog
         {
             if (e.KeyCode == Keys.Enter)
             {
-                Prijava();
+                e.SuppressKeyPress = true;
+                Prijava(); 
             }
         }
     }

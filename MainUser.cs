@@ -15,11 +15,11 @@ namespace Backlog
 
     public partial class MainUser : Form
     {
-        PretragaIgara pretragaIgara;
-        Korisnik korisnik;
+        public PretragaIgara pretragaIgara;
+        public Korisnik korisnik;
 
-        List<ListBox> liste;
-        List<Label> labele;
+        public List<ListBox> liste { get; private set; }
+        public List<Label> labele { get; private set; }
 
         public MainUser()
         {
@@ -44,6 +44,7 @@ namespace Backlog
 
 
             this.korisnik = new Korisnik(name, sur, uname, pass, ID);
+            this.korisnik.posljPrijava();
             this.pretragaIgara = new PretragaIgara();
         }
 

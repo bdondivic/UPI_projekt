@@ -40,9 +40,9 @@ namespace Backlog
     }
     public class PretragaIgara
     {   
-        OleDbConnection con;
-        OleDbCommand cmd;
-        OleDbDataAdapter da;
+        public OleDbConnection con { get; private set; }
+        public OleDbCommand cmd { get; private set; }
+        public OleDbDataAdapter da { get; private set; }
 
         public PretragaIgara()
         {
@@ -178,9 +178,9 @@ namespace Backlog
 
     public class PretragaKorisnika
     {
-        OleDbConnection con;
-        OleDbCommand cmd;
-        OleDbDataAdapter da;
+        public OleDbConnection con { get; private set; }
+        public OleDbCommand cmd { get; private set; }
+        public OleDbDataAdapter da { get; private set; }
 
         public PretragaKorisnika()
         {
@@ -249,6 +249,8 @@ namespace Backlog
                 rtbInf.AppendText("Prezime: " + odg.GetString(2) + "\n");
                 rtbInf.AppendText("Korisničko ime: " + odg.GetString(3) + "\n");
                 rtbInf.AppendText("Lozinka: " + odg.GetString(4) +  "\n");
+                rtbInf.AppendText("Datum registracije: " + odg.GetDateTime(6).ToShortDateString() + "\n");
+                rtbInf.AppendText("Posljednja prijava: " + odg.GetDateTime(7).ToShortDateString() + "\n");
                 string naredba1 = $"SELECT Lista_ID from tb_Korisnik_Igra WHERE Korisnik_ID=" +
                     $"(SELECT ID_Korisnik from tb_Korisnik WHERE KorisnIme='{uName}')";
                 cmd = new OleDbCommand(naredba1, con);

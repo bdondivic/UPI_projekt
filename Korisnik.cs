@@ -12,9 +12,9 @@ namespace Test
 {
     public class Korisnik
     {
-        OleDbConnection con;
-        OleDbCommand cmd;
-        OleDbDataAdapter da;
+        public OleDbConnection con { get; private set; }
+        public OleDbCommand cmd { get; private set; }
+        public OleDbDataAdapter da { get; private set; }
 
         public int ID { get; private set; }
         public string uName { get; private set; }
@@ -23,13 +23,13 @@ namespace Test
         public string prezime { get; private set; }
 
 
-        public ListBox backlog;
-        public ListBox igram;
-        public ListBox igrao;
+        //public ListBox backlog;
+        //public ListBox igram;
+        //public ListBox igrao;
 
-        public RichTextBox opisBacklog;
-        public RichTextBox opisIgram;
-        public RichTextBox opisIgrao;
+        //public RichTextBox opisBacklog;
+        //public RichTextBox opisIgram;
+        //public RichTextBox opisIgrao;
 
         public Korisnik(string name, string sur, string uname, string pass, int ID)
         {
@@ -42,6 +42,25 @@ namespace Test
             this.con = new OleDbConnection("Provider=Microsoft.Jet.OlEDB.4.0;Data Source=db_Backlog.mdb");
             this.cmd = new OleDbCommand();
             this.da = new OleDbDataAdapter();
+        }
+
+        public void posljPrijava()
+        {
+            try
+            {
+                con.Open();
+                string naredba = $"UPDATE tb_Korisnik SET PosljPrij='{DateTime.Now.ToShortDateString()}' " +
+                    $"WHERE KorisnIme='{uName}'";
+                cmd = new OleDbCommand(naredba, con);
+                cmd.ExecuteNonQuery();
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                con.Close();
+                return;
+            }
         }
 
         public void podaciKor(Label ime, Label prezime, Label korIme)
@@ -513,7 +532,7 @@ namespace Test
             try
             {
                 con.Open();
-                string naredba = $"UPDATE tb_Korisnik_Igra SET Datum_poc='{pocetak.ToString()}', " +
+                string naredba = $"UPDATE tb_Korisnik_Igra SET Datum_poc='{pocetak.ToShortDateString()}', " +
                     $"Prioritet_ID=NULL, Lista_ID=2 " +
                     $"WHERE Korisnik_ID={ID} AND Igra_ID={igraID};";
                 cmd = new OleDbCommand(naredba,con);
@@ -550,7 +569,7 @@ namespace Test
                     con.Close();
                     return;
                 }
-                string naredba1 = $"UPDATE tb_Korisnik_Igra SET Datum_kraj='{kraj.ToString()}', " +
+                string naredba1 = $"UPDATE tb_Korisnik_Igra SET Datum_kraj='{kraj.ToShortDateString()}', " +
                     $"Vr_igranja={ukupno}, Lista_ID=3 " +
                     $"WHERE Korisnik_ID={ID} AND Igra_ID={igraID}";
                 OleDbCommand cmd1 = new OleDbCommand(naredba1, con);
@@ -574,7 +593,7 @@ namespace Test
             try
             {
                 con.Open();
-                string naredba = $"UPDATE tb_Korisnik_Igra SET Datum_poc='{pocetak.ToString()}', " +
+                string naredba = $"UPDATE tb_Korisnik_Igra SET Datum_poc='{pocetak.ToShortDateString()}', " +
                     $"Vr_igranja=0, Datum_kraj=NULL, Lista_ID=2 " +
                     $"WHERE Korisnik_ID={ID} AND Igra_ID={igraID}";
                 cmd = new OleDbCommand(naredba, con);

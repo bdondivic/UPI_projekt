@@ -13,9 +13,9 @@ namespace Test
 {
     public class Registracija
     {
-        OleDbConnection con;
-        OleDbCommand cmd;
-        OleDbDataAdapter da;
+        public OleDbConnection con { get; private set; }
+        public OleDbCommand cmd { get; private set; }
+        public OleDbDataAdapter da { get; private set; }
 
         public string ime { get; private set; }
         public string prezime { get; private set; }

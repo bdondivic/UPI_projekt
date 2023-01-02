@@ -12,10 +12,10 @@ namespace Test
 {
     public partial class MoveTo : Form
     {
-        public string fromTo;
-        public string nazivIgre;
-        public Korisnik korisnik;
-        public List<ListBox> sveListe;
+        public string fromTo { get; private set; }
+        public string nazivIgre { get; private set; }
+        public Korisnik korisnik { get; private set; }
+        public List<ListBox> sveListe { get; private set; }
         public MoveTo()
         {
             InitializeComponent();

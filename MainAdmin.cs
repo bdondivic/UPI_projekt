@@ -11,9 +11,9 @@ namespace Backlog
 {
     public partial class MainAdmin : Form
     {
-        PretragaKorisnika pretragaKorisnika;
-        List<Korisnik> korisnici;
-        Admin admin;
+        public PretragaKorisnika pretragaKorisnika { get; private set; }
+        public List<Korisnik> korisnici { get; private set; }
+        public Admin admin { get; private set; }
         public MainAdmin()
         {
             InitializeComponent();

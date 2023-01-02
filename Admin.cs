@@ -11,9 +11,9 @@ namespace Test
 {
     public class Admin
     {
-        OleDbConnection con;
-        OleDbCommand cmd;
-        OleDbDataAdapter da;
+        public OleDbConnection con { get; private set; }
+        public OleDbCommand cmd { get; private set; }
+        public OleDbDataAdapter da { get; private set; }
 
         public Admin()
         {
