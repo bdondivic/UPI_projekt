@@ -15,7 +15,6 @@ namespace Test
     {
         public OleDbConnection con { get; private set; }
         public OleDbCommand cmd { get; private set; }
-        public OleDbDataAdapter da { get; private set; }
 
         public string ime { get; private set; }
         public string prezime { get; private set; }
@@ -26,7 +25,6 @@ namespace Test
         {
             this.con = new OleDbConnection("Provider=Microsoft.Jet.OlEDB.4.0;Data Source=db_Backlog.mdb");
             this.cmd = new OleDbCommand();
-            this.da = new OleDbDataAdapter();
 
             this.ime = ime;
             this.prezime = prezime;
@@ -34,6 +32,8 @@ namespace Test
             this.pass = pass;
             this.passConf = passConf;
         }
+
+        //PROVJERA ISPRAVNOSTI POTREBNIH POLJA
         public string Provjera()
         {
             if (ime.Contains(";") || ime.Contains("'") || ime.Contains(","))
@@ -57,6 +57,7 @@ namespace Test
             return "Registracija je bila uspješna!";
         }
 
+        //PROVJERA ZAUZETOSTI KORISNIČKOG IMENA
         public string uNameZauzet()
         {
             try
@@ -80,6 +81,7 @@ namespace Test
             return "Username OK!";
         }
 
+        //DODAVANJE NOVOG KORISNIKA U BP
         public bool noviKorisnik()
         {
             try

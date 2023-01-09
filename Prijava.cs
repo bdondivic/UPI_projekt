@@ -13,7 +13,6 @@ namespace Test
     {
         public OleDbConnection con { get; private set; }
         public OleDbCommand cmd { get; private set; }
-        public OleDbDataAdapter da { get; private set; }
 
         public string uName { get; private set; }
         public string pass { get; private set; }
@@ -27,9 +26,9 @@ namespace Test
 
             this.con = new OleDbConnection("Provider=Microsoft.Jet.OlEDB.4.0;Data Source=db_Backlog.mdb");
             this.cmd = new OleDbCommand();
-            this.da = new OleDbDataAdapter();
         }
 
+        //PROVJERA POSTOJANJA KORISNIKA I ISPRAVNOSTI LOZINKE
         public string Provjera()
         {
             try
@@ -60,6 +59,7 @@ namespace Test
             return "Prijava OK!";
         }
 
+        //OTVARANJE GLAVNE FORME (KORISNIK/ADMIN?)
         public void otvoriAplikaciju(Login log)
         {
             try

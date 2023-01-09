@@ -14,22 +14,12 @@ namespace Test
     {
         public OleDbConnection con { get; private set; }
         public OleDbCommand cmd { get; private set; }
-        public OleDbDataAdapter da { get; private set; }
 
         public int ID { get; private set; }
         public string uName { get; private set; }
         public string pass { get; private set; }
         public string ime { get; private set; }
         public string prezime { get; private set; }
-
-
-        //public ListBox backlog;
-        //public ListBox igram;
-        //public ListBox igrao;
-
-        //public RichTextBox opisBacklog;
-        //public RichTextBox opisIgram;
-        //public RichTextBox opisIgrao;
 
         public Korisnik(string name, string sur, string uname, string pass, int ID)
         {
@@ -41,9 +31,9 @@ namespace Test
 
             this.con = new OleDbConnection("Provider=Microsoft.Jet.OlEDB.4.0;Data Source=db_Backlog.mdb");
             this.cmd = new OleDbCommand();
-            this.da = new OleDbDataAdapter();
         }
 
+        //PRAĆENJE DATUMA POSLJEDNJE PRIJAVE KORISNIKA
         public void posljPrijava()
         {
             try
@@ -63,29 +53,24 @@ namespace Test
             }
         }
 
+        //PRIKAZ OSNOVNIH KORISNIČKIH PODATAKA
         public void podaciKor(Label ime, Label prezime, Label korIme)
         {
             try
             {
-                con.Open();
-                string naredba = $"SELECT Ime, Prezime from tb_Korisnik WHERE ID_Korisnik={ID}";
-                cmd = new OleDbCommand(naredba, con);
-                OleDbDataReader odg = cmd.ExecuteReader();
-                odg.Read();
-                ime.Text = "Ime: " + odg.GetString(0);
-                prezime.Text = "Prezime: " + odg.GetString(1);
+                ime.Text = "Ime: " + this.ime;
+                prezime.Text = "Prezime: " + this.prezime;
                 korIme.Text = "Korisničko ime: " + uName;
-                con.Close();
             }
             catch (Exception ex)
             {
 
                 MessageBox.Show(ex.ToString());
-                con.Close();
                 return;
             }
         }
 
+        //PRIKAZ STATISTIČKIH KORISNIČKIH PODATAKA
         public void korStatistika(List<Label> labele)
         {
             int brBacklog = 0;
@@ -142,6 +127,7 @@ namespace Test
             }
         }
 
+        //PROMJENA KORISNIČKE LOZINKE
         public bool promijeniPass(string newPass)
         {
             try
@@ -162,6 +148,7 @@ namespace Test
             }
         }
 
+        //BRISANJE PROFILA IZ BP
         public bool izbrisiRacun()
         {
             try
@@ -185,12 +172,13 @@ namespace Test
             }
         }
 
+        //DOHVAĆANJE ID-A IGRRE U BP
         public int dohvatiIdIgre(string nazivIgre)
         {
             try
             {
                 con.Open();
-                string naredba = $"SELECT * from tb_Igra WHERE Naziv='{nazivIgre.Replace("'", "''")}'";
+                string naredba = $"SELECT ID_Igra from tb_Igra WHERE Naziv='{nazivIgre.Replace("'", "''")}'";
                 cmd = new OleDbCommand(naredba, con);
                 OleDbDataReader odg = cmd.ExecuteReader();
                 odg.Read();
@@ -205,6 +193,7 @@ namespace Test
             }
         }
 
+        //BRISANJE ZAPISA O IGRI IZ KORISNIKOVE LISTE U BP
         public void obrisiZapis(int igraID)
         {
             try
@@ -223,6 +212,7 @@ namespace Test
 
         }
 
+        //INICIJALNO DOHVAĆANJE ZAPISA U LISTAMA KORISNIKA IZ BP
         public void dohvatiBacklog(ListBox backlog)  //METODE SU SLIČNE LoadIgre u Komunikcaija.cs, ALI SE NE STVARAJU LISTE JER SE 
                                                        //NE VRŠI PRETRAGA/FILTRACIJA, DOVOLJNO JE DA SE DODAJU U LISTBOXOVE
         {
@@ -310,6 +300,7 @@ namespace Test
             }
         }
 
+        //PROVJERA POSTOJI LI VEĆ MEĐU KORISNIKOVIM LISTAMA ZAPIS S IGROM U BP
         public bool postojiZapis(string nazivIgre)
         {
             try
@@ -337,6 +328,7 @@ namespace Test
             
         }
 
+        //DOHVAĆANJE OPISA IGRE IZ KORISNIKOVE LISTE U BP
         public void dohvatiOpis(string nazivIgre,string lista, RichTextBox opis)
         {
             int igraID = dohvatiIdIgre(nazivIgre);
@@ -391,14 +383,12 @@ namespace Test
             }
         }
 
+        //DODAVANJE ZAPISA/ IGARA U LISTE KORISNIKA U BP
         public void DodajBacklog(int lista, int prioritet, string nazivIgre, ListBox backlog)
         {
             try
             {
-                //DOHVAĆANJE ID-a igre NA TEMELJU PROSLIJEĐENOG NAZIVA
                 int igraID = dohvatiIdIgre(nazivIgre);
-
-                //UMETANJE ZAPISA U BP
                 con.Open();
                 string naredba = $"INSERT INTO tb_Korisnik_Igra " +
                     $"(Korisnik_ID, Igra_ID, Prioritet_ID, Lista_ID)" +
@@ -406,10 +396,7 @@ namespace Test
                 cmd = new OleDbCommand(naredba, con);
                 cmd.ExecuteNonQuery();
                 con.Close();
-
-                //UMETANJE U LISTBOX
                 backlog.Items.Add(nazivIgre);
-
                 MessageBox.Show("Igra je uspješno dodana!");
             }
             catch (Exception ex)
@@ -424,10 +411,7 @@ namespace Test
         {
             try
             {
-                //DOHVAĆANJE ID-a igre NA TEMELJU PROSLIJEĐENOG NAZIVA
                 int igraID = dohvatiIdIgre(nazivIgre);
-
-                //UMETANJE ZAPISA U BP
                 con.Open();
                 string naredba = $"INSERT INTO tb_Korisnik_Igra " +
                     $"(Korisnik_ID, Igra_ID, Datum_poc, Prioritet_ID, Lista_ID)" +
@@ -435,10 +419,7 @@ namespace Test
                 cmd = new OleDbCommand(naredba, con);
                 cmd.ExecuteNonQuery();
                 con.Close();
-
-                //UMETANJE U LISTBOX
                 igram.Items.Add(nazivIgre);
-
                 MessageBox.Show("Igra je uspješno dodana!");
             }
             catch (Exception ex)
@@ -453,10 +434,7 @@ namespace Test
         {
             try
             {
-                //DOHVAĆANJE ID-a igre NA TEMELJU PROSLIJEĐENOG NAZIVA
                 int igraID = dohvatiIdIgre(nazivIgre);
-
-                //UMETANJE ZAPISA U BP
                 con.Open();
                 string naredba = $"INSERT INTO tb_Korisnik_Igra " +
                     $"(Korisnik_ID, Igra_ID, Vr_igranja, Datum_poc, Datum_kraj, Prioritet_ID, Lista_ID)" +
@@ -464,10 +442,7 @@ namespace Test
                 cmd = new OleDbCommand(naredba, con);
                 cmd.ExecuteNonQuery();
                 con.Close();
-
-                //UMETANJE U LISTBOX
                 igrao.Items.Add(nazivIgre);
-
                 MessageBox.Show("Igra je uspješno dodana!");
             }
             catch (Exception ex)
@@ -478,53 +453,35 @@ namespace Test
             }
         }
 
+        //UKLANJANJE ZAPISA IZ TRENUTNOG PRIKAZA I BP
         public void UkloniBacklog(string nazivIgre, ListBox backlog, RichTextBox opisBacklog)
         {
-            //DOHVAĆANJE ID-a igre NA TEMELJU PROSLIJEĐENOG NAZIVA
             int igraID = dohvatiIdIgre(nazivIgre);
-
-            //BRISANJE ZAPISA IZ BP
             obrisiZapis(igraID);
-
-            //UKLANJANJE IZ LISTBOXA
             backlog.Items.Remove(backlog.SelectedItem);
             opisBacklog.Clear();
-
             MessageBox.Show("Igra je uspješno uklonjena iz liste!");
-
-
         }
 
         public void UkloniIgram(string nazivIgre, ListBox igram, RichTextBox opisIgram)
         {
-            //DOHVAĆANJE ID-a igre NA TEMELJU PROSLIJEĐENOG NAZIVA
             int igraID = dohvatiIdIgre(nazivIgre);
-
-            //BRISANJE ZAPISA IZ BP
             obrisiZapis(igraID);
-
-            //UKLANJANJE IZ LISTBOXA
             igram.Items.Remove(igram.SelectedItem);
             opisIgram.Clear();
-
             MessageBox.Show("Igra je uspješno uklonjena iz liste!");
         }
 
         public void UkloniIgrao(string nazivIgre, ListBox igrao, RichTextBox opisIgrao)
         {
-            //DOHVAĆANJE ID-a igre NA TEMELJU PROSLIJEĐENOG NAZIVA
             int igraID = dohvatiIdIgre(nazivIgre);
-
-            //BRISANJE ZAPISA IZ BP
             obrisiZapis(igraID);
-
-            //UKLANJANJE IZ LISTBOXA
             igrao.Items.Remove(igrao.SelectedItem);
             opisIgrao.Clear();
-
             MessageBox.Show("Igra je uspješno uklonjena iz liste!");
         }
 
+        //PRIJENOS ZAPISA IZ JEDNE LISTE U DRUGU 
         public void backlogIgram(DateTime pocetak, string nazivIgre, ListBox backlog, ListBox igram)
         {
             int igraID = dohvatiIdIgre(nazivIgre);

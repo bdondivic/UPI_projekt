@@ -21,6 +21,8 @@ namespace Backlog
         public List<ListBox> liste { get; private set; }
         public List<Label> labele { get; private set; }
 
+        public List<Igra> listIgre { get; private set; }
+
         public MainUser()
         {
             InitializeComponent();
@@ -44,6 +46,7 @@ namespace Backlog
 
 
             this.korisnik = new Korisnik(name, sur, uname, pass, ID);
+            this.listIgre = new List<Igra>();
             this.korisnik.posljPrijava();
             this.pretragaIgara = new PretragaIgara();
         }
@@ -54,7 +57,7 @@ namespace Backlog
             pretragaIgara.Trazi(lbIgre, listIgre, cbZanr, txtPretraga);
         }
 
-        List<Igra> listIgre=new List<Igra>(); 
+        
         private void MainUser_Load(object sender, EventArgs e)
         {
             listIgre = pretragaIgara.LoadIgre(lbIgre);

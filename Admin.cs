@@ -13,15 +13,14 @@ namespace Test
     {
         public OleDbConnection con { get; private set; }
         public OleDbCommand cmd { get; private set; }
-        public OleDbDataAdapter da { get; private set; }
 
         public Admin()
         {
             this.con = new OleDbConnection("Provider=Microsoft.Jet.OlEDB.4.0;Data Source=db_Backlog.mdb");
             this.cmd = new OleDbCommand();
-            this.da = new OleDbDataAdapter();
         }
 
+        //BRISANJE KORISNIČKOG PROFILA IZ BP
         public void izbrisiRacun(ListBox korisnici, RichTextBox opis, List<Korisnik> lista, string uName)
         {
             try
@@ -49,6 +48,7 @@ namespace Test
             }
         }
 
+        //PPREUZIMANJE PODATAKA O KORISNIKOVIM LISTAMA U CSV DATOTEKE
         public void preuzmiPodKor(string uName)
         {
             FolderBrowserDialog fbd = new FolderBrowserDialog();
@@ -143,6 +143,7 @@ namespace Test
             }            
         }
 
+        //PREUZIMANJE OSNOVNIH KORISNIČKIH PODATAKA ZA SVE KORISNIKE U CSV DATOTEKU
         public void preuzmiPodSvi()
         {
             FolderBrowserDialog fbd = new FolderBrowserDialog();

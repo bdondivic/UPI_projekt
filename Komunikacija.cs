@@ -42,15 +42,14 @@ namespace Backlog
     {   
         public OleDbConnection con { get; private set; }
         public OleDbCommand cmd { get; private set; }
-        public OleDbDataAdapter da { get; private set; }
 
         public PretragaIgara()
         {
             this.con = new OleDbConnection("Provider=Microsoft.Jet.OlEDB.4.0;Data Source=db_Backlog.mdb");
             this.cmd = new OleDbCommand();
-            this.da = new OleDbDataAdapter();
         }
 
+        //PRETRAGA IGARA PREMA LISTI TEMELJEM UNOSA I ODABRANOG ŽANRA
         public void Trazi(ListBox lbIgre, List<Igra> listIgre, ComboBox cbZanr, TextBox txtPretraga)
         {
             lbIgre.Items.Clear();
@@ -73,6 +72,7 @@ namespace Backlog
             }
         }
 
+        //INICIJALNO UČITAVANJE ŽANROVA
         public List<string> UcitajZanrove()
         {
             try
@@ -98,6 +98,7 @@ namespace Backlog
             
         }
 
+        //UČITAVANJE OPISA ZA ODABRANU IGRU IZ BP
         public void UcitajOpis(RichTextBox rtbOpis, ComboBox cbZanr, string gameName)
         {
             try
@@ -131,6 +132,7 @@ namespace Backlog
             
         }
 
+        //INICIJALNO UČITAVANJE IGARA IZ BP U LISTU
         public List<Igra> LoadIgre(ListBox lb)
         {
             try
@@ -180,15 +182,14 @@ namespace Backlog
     {
         public OleDbConnection con { get; private set; }
         public OleDbCommand cmd { get; private set; }
-        public OleDbDataAdapter da { get; private set; }
 
         public PretragaKorisnika()
         {
             this.con = new OleDbConnection("Provider=Microsoft.Jet.OlEDB.4.0;Data Source=db_Backlog.mdb");
             this.cmd = new OleDbCommand();
-            this.da = new OleDbDataAdapter();
         }
 
+        //PRETRAGA KORISNIKA PO LISTI TEMELJEM UNOSA
         public void Trazi(ListBox lbkorisnici, List<Korisnik> korisnici, TextBox txtPretraga)
         {
             lbkorisnici.Items.Clear();
@@ -201,6 +202,7 @@ namespace Backlog
             }
         }
 
+        //INICIJALNO UČITAVANJE KORISNIKA U LISTU IZ BP
         public List<Korisnik> ucitajKorisnike(ListBox korisnici)
         {
             try
@@ -232,6 +234,7 @@ namespace Backlog
             }
         }
 
+        //UČITAVANJE INFORMACIJA O KORISNIKU IZ BP
         public void ucitajInf(RichTextBox rtbInf, string uName)
         {
             try
