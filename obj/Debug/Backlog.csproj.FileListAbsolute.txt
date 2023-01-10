@@ -83,3 +83,5 @@ C:\Users\Marin\Desktop\UPI\UPI_projekt\obj\Debug\Test.pdb
 C:\Users\Marin\Desktop\UPI\UPI_projekt\obj\Debug\Test.Add.resources
 C:\Users\Marin\Desktop\UPI_projekt\obj\Debug\Test.Add.resources
 C:\Users\Marin\Desktop\UPI_projekt\obj\Debug\Test.MoveTo.resources
+C:\Users\Drk\Desktop\UPI_projekt\obj\Debug\Test.Add.resources
+C:\Users\Drk\Desktop\UPI_projekt\obj\Debug\Test.MoveTo.resources

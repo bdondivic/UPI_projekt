@@ -24,6 +24,8 @@ namespace Backlog
 
         private void MainAdmin_Load(object sender, EventArgs e)
         {
+            ActiveControl = lbKorisnici;
+            CueProvider.SetCue(txtPretraga, "Pretraži korisnike");
             korisnici = pretragaKorisnika.ucitajKorisnike(lbKorisnici);
         }
 
