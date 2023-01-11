@@ -47,8 +47,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Add.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Add.Designer.cs">
+      <DependentUpon>Add.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Admin.cs" />
     <Compile Include="CueProvider.cs" />
     <Compile Include="Komunikacija.cs" />
+    <Compile Include="Korisnik.cs" />
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -67,6 +75,12 @@
     <Compile Include="MainUser.Designer.cs">
       <DependentUpon>MainUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="MoveTo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MoveTo.Designer.cs">
+      <DependentUpon>MoveTo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Prijava.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -77,6 +91,9 @@
       <DependentUpon>Register.cs</DependentUpon>
     </Compile>
     <Compile Include="Registracija.cs" />
+    <EmbeddedResource Include="Add.resx">
+      <DependentUpon>Add.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
@@ -85,6 +102,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MainUser.resx">
       <DependentUpon>MainUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MoveTo.resx">
+      <DependentUpon>MoveTo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

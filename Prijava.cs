@@ -11,12 +11,13 @@ namespace Test
 {
     public class Prijava
     {
-        OleDbConnection con;
-        OleDbCommand cmd;
-        OleDbDataAdapter da;
+        public OleDbConnection con { get; private set; }
+        public OleDbCommand cmd { get; private set; }
 
         public string uName { get; private set; }
         public string pass { get; private set; }
+
+        public int ID { get; private set; }
 
         public Prijava(string uName, string pass)
         {
@@ -25,9 +26,9 @@ namespace Test
 
             this.con = new OleDbConnection("Provider=Microsoft.Jet.OlEDB.4.0;Data Source=db_Backlog.mdb");
             this.cmd = new OleDbCommand();
-            this.da = new OleDbDataAdapter();
         }
 
+        //PROVJERA POSTOJANJA KORISNIKA I ISPRAVNOSTI LOZINKE
         public string Provjera()
         {
             try
@@ -58,6 +59,7 @@ namespace Test
             return "Prijava OK!";
         }
 
+        //OTVARANJE GLAVNE FORME (KORISNIK/ADMIN?)
         public void otvoriAplikaciju(Login log)
         {
             try
@@ -67,6 +69,9 @@ namespace Test
                 cmd = new OleDbCommand(naredba, con);
                 OleDbDataReader odg = cmd.ExecuteReader();
                 odg.Read();
+                ID = odg.GetInt32(0);
+                string name = odg.GetString(1);
+                string sur = odg.GetString(2);
                 bool jeAdmin = bool.Parse(odg[5].ToString());
                 if (jeAdmin)
                 {
@@ -78,7 +83,7 @@ namespace Test
                 else
                 {
                     log.Hide();
-                    var MainUser = new MainUser();
+                    var MainUser = new MainUser(name, sur, uName, pass, ID);  /////////////NOVO
                     MainUser.Closed += (s, args) => log.Close();
                     MainUser.Show();
                 }
