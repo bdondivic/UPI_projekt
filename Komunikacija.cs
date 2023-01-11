@@ -28,7 +28,7 @@ namespace Backlog
         public OleDbConnection con { get; private set; }
         public OleDbCommand cmd { get; private set; }
 
-        public PretragaIgara()
+        public PretragaIgara() //Microsoft.Jet.OlEDB.4.0
         {
             this.con = new OleDbConnection("Provider=Microsoft.Jet.OlEDB.4.0;Data Source=db_Backlog.mdb");
             this.cmd = new OleDbCommand();

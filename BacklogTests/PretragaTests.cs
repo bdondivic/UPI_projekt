@@ -15,7 +15,7 @@ namespace Backlog.Tests
         public void UcitajZanroveTest()
         {
             List<string> zanrovi = new List<string> { "Action", "Adventure", "Fighting", "Misc", "Platform", "Puzzle", "Racing", "Role-Playing", "Shooter", "Simulation", "Sports", "Strategy" };
-            Pretraga p = new Pretraga();
+            PretragaIgara p = new PretragaIgara();
             List<string> zanroviTest = p.UcitajZanrove();
 
             CollectionAssert.AreEqual(zanrovi, zanroviTest);
