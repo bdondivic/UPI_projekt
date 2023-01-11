@@ -51,6 +51,7 @@
             this.rtbIgraoOpis = new System.Windows.Forms.RichTextBox();
             this.lbIgrao = new System.Windows.Forms.ListBox();
             this.tpProfil = new System.Windows.Forms.TabPage();
+            this.cb_showPass = new System.Windows.Forms.CheckBox();
             this.btnOdustaniPass = new System.Windows.Forms.Button();
             this.btnPotvrdiPass = new System.Windows.Forms.Button();
             this.txtNewPass = new System.Windows.Forms.TextBox();
@@ -68,7 +69,6 @@
             this.lblPrezime = new System.Windows.Forms.Label();
             this.lblIme = new System.Windows.Forms.Label();
             this.lblKorIme = new System.Windows.Forms.Label();
-            this.cb_showPass = new System.Windows.Forms.CheckBox();
             this.tcKartice.SuspendLayout();
             this.tpPretraga.SuspendLayout();
             this.tpBacklog.SuspendLayout();
@@ -340,6 +340,19 @@
             this.tpProfil.Text = "PROFIL";
             this.tpProfil.UseVisualStyleBackColor = true;
             // 
+            // cb_showPass
+            // 
+            this.cb_showPass.AutoSize = true;
+            this.cb_showPass.Location = new System.Drawing.Point(37, 595);
+            this.cb_showPass.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cb_showPass.Name = "cb_showPass";
+            this.cb_showPass.Size = new System.Drawing.Size(113, 20);
+            this.cb_showPass.TabIndex = 24;
+            this.cb_showPass.Text = "Prikaži lozinku";
+            this.cb_showPass.UseVisualStyleBackColor = true;
+            this.cb_showPass.Visible = false;
+            this.cb_showPass.CheckedChanged += new System.EventHandler(this.cb_showPass_CheckedChanged);
+            // 
             // btnOdustaniPass
             // 
             this.btnOdustaniPass.Location = new System.Drawing.Point(141, 629);
@@ -512,19 +525,6 @@
             this.lblKorIme.TabIndex = 0;
             this.lblKorIme.Text = "korIme";
             // 
-            // cb_showPass
-            // 
-            this.cb_showPass.AutoSize = true;
-            this.cb_showPass.Location = new System.Drawing.Point(37, 595);
-            this.cb_showPass.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.cb_showPass.Name = "cb_showPass";
-            this.cb_showPass.Size = new System.Drawing.Size(113, 20);
-            this.cb_showPass.TabIndex = 24;
-            this.cb_showPass.Text = "Prikaži lozinku";
-            this.cb_showPass.UseVisualStyleBackColor = true;
-            this.cb_showPass.Visible = false;
-            this.cb_showPass.CheckedChanged += new System.EventHandler(this.cb_showPass_CheckedChanged);
-            // 
             // MainUser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -535,7 +535,6 @@
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "MainUser";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "MainUser";
             this.Load += new System.EventHandler(this.MainUser_Load);
             this.tcKartice.ResumeLayout(false);
             this.tpPretraga.ResumeLayout(false);

@@ -15,7 +15,7 @@ namespace Backlog
 
     public partial class MainUser : Form
     {
-        public PretragaIgara pretragaIgara;
+        public PretragaIgara pretragaIgara { get; private set; }
         public Korisnik korisnik;
 
         public List<ListBox> liste { get; private set; }
@@ -255,7 +255,7 @@ namespace Backlog
             btnPromjLoz.Visible = false;
         }
 
-        public void sakrijKontrole()
+        private void sakrijKontrole()
         {
             lblOldPass.Visible = false;
             lblNewPass.Visible = false;
@@ -306,7 +306,7 @@ namespace Backlog
             }
         }
 
-        public void prikaziLogin()
+        private void prikaziLogin()
         {
             this.Hide();
             var Login = new Login();

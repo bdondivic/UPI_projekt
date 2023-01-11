@@ -14,28 +14,13 @@ namespace Backlog
     {
         public int id { get; private set; }
         public string naziv { get; private set; }
-        public string platforma { get; private set; }
-        public int godina { get; private set; }
         public int id_zanr { get; private set; }
-        public string izdavac { get; private set; }
-        public int NA_sales { get; private set; }
-        public int EU_sales { get; private set; }
-        public int JP_sales { get; private set; }
-        public int other_sales { get; private set; }
-        public int global_sales { get; private set; }
-        public Igra(int id, string naziv, string plat, int god, int id_zanr, string izdavac, int NA, int EU, int JP, int oth_sales, int sales)
+        public Igra(int id, string naziv, int id_zanr)
         {
             this.id = id;
             this.naziv = naziv;
-            this.platforma = plat;
-            this.godina = god;
             this.id_zanr = id_zanr;
-            this.izdavac = izdavac;
-            this.NA_sales = NA;
-            this.EU_sales = EU;
-            this.JP_sales = JP;
-            this.other_sales = oth_sales;
-            this.global_sales = sales;
+
         }
     }
     public class PretragaIgara
@@ -148,17 +133,9 @@ namespace Backlog
 
                     int id = reader.GetInt32(0);
                     string naziv = reader.GetString(1);
-                    string platforma = reader.GetString(2);
-                    int godina = reader.GetInt32(3);
                     int id_zanr = reader.GetInt32(4);
-                    string izdavac = reader.GetString(5);
-                    int NA_sales = reader.GetInt32(6);
-                    int EU_sales = reader.GetInt32(7);
-                    int JP_sales = reader.GetInt32(8);
-                    int other_sales = reader.GetInt32(9);
-                    int global_sales = reader.GetInt32(10);
 
-                    Igra igra = new Igra(id, naziv, platforma, godina, id_zanr, izdavac, NA_sales, EU_sales, JP_sales, other_sales, global_sales);
+                    Igra igra = new Igra(id, naziv,  id_zanr);
 
                     lista.Add(igra);
 

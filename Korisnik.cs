@@ -173,7 +173,7 @@ namespace Test
         }
 
         //DOHVAĆANJE ID-A IGRRE U BP
-        public int dohvatiIdIgre(string nazivIgre)
+        private int dohvatiIdIgre(string nazivIgre)
         {
             try
             {
@@ -485,7 +485,6 @@ namespace Test
         public void backlogIgram(DateTime pocetak, string nazivIgre, ListBox backlog, ListBox igram)
         {
             int igraID = dohvatiIdIgre(nazivIgre);
-            MessageBox.Show(igraID.ToString());
             try
             {
                 con.Open();

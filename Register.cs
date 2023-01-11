@@ -16,6 +16,7 @@ namespace Backlog
 {
     public partial class Register : Form
     {
+        public Registracija reg { get; private set; }
         public Register()
         {
      
@@ -35,7 +36,7 @@ namespace Backlog
             string uName = txtUsername.Text.Trim();
             string pass = txtPassword.Text.Trim();
             string passConf = txtConfirmPass.Text.Trim();
-            Registracija reg = new Registracija(ime, prezime, uName, pass, passConf);
+            reg = new Registracija(ime, prezime, uName, pass, passConf);
             
 
             string isprPod = reg.Provjera();

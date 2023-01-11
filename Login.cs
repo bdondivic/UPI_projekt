@@ -14,6 +14,7 @@ namespace Backlog
 {
     public partial class Login : Form
     {
+        public Prijava pr { get; private set; }
         public Login()
         {
             InitializeComponent();
@@ -24,7 +25,7 @@ namespace Backlog
             string uName = txtUsername.Text;
             string pass = txtPassword.Text;
 
-            Prijava pr = new Prijava(uName, pass);
+            pr = new Prijava(uName, pass);
 
             string isprPod = pr.Provjera();
 
