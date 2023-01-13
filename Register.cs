@@ -1,15 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
-using System.Data.OleDb;
-using System.Configuration;
-using System.Data.SqlClient;
-using System.Data.Common;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using Test;
 
 namespace Backlog
@@ -19,10 +9,10 @@ namespace Backlog
         public Registracija reg { get; private set; }
         public Register()
         {
-     
+
             InitializeComponent();
         }
-        
+
         private void Register_Load(object sender, EventArgs e)
         {
 
@@ -37,11 +27,11 @@ namespace Backlog
             string pass = txtPassword.Text.Trim();
             string passConf = txtConfirmPass.Text.Trim();
             reg = new Registracija(ime, prezime, uName, pass, passConf);
-            
+
 
             string isprPod = reg.Provjera();
 
-            if (isprPod == "Registracija je bila uspješna!") 
+            if (isprPod == "Registracija je bila uspješna!")
             {
                 if (reg.uNameZauzet() != "Username OK!")
                 {

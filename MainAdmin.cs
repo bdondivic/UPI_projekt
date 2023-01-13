@@ -1,9 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
 using Test;
 
@@ -31,7 +27,7 @@ namespace Backlog
 
         private void lbKorisnici_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (lbKorisnici.SelectedIndex!=-1)
+            if (lbKorisnici.SelectedIndex != -1)
             {
                 string uName = lbKorisnici.SelectedItem.ToString();
                 pretragaKorisnika.ucitajInf(rtbInf, uName);
@@ -61,7 +57,7 @@ namespace Backlog
             {
                 string uName = lbKorisnici.SelectedItem.ToString();
                 admin.izbrisiRacun(lbKorisnici, rtbInf, korisnici, uName);
-            }    
+            }
         }
 
         private void btnPreuzKorSvi_Click(object sender, EventArgs e)

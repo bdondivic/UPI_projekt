@@ -1,11 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Test
@@ -52,7 +46,7 @@ namespace Test
                 dtKraj.Enabled = false;
                 btnPotvrdi.Enabled = true;
             }
-            else if(lista == "IGRAM")
+            else if (lista == "IGRAM")
             {
                 txtUkupno.Enabled = false;
                 cbPrioritet.Enabled = false;
@@ -60,7 +54,7 @@ namespace Test
                 dtKraj.Enabled = false;
                 btnPotvrdi.Enabled = true;
             }
-            else if(lista == "IGRAO")
+            else if (lista == "IGRAO")
             {
                 txtUkupno.Enabled = true;
                 cbPrioritet.Enabled = false;
@@ -93,13 +87,13 @@ namespace Test
                 kor.DodajBacklog(l, p, nazivIgre, sveListe[0]);
                 this.Close();
             }
-            else if(lista == "IGRAM")
+            else if (lista == "IGRAM")
             {
                 DateTime pocetak = dtPocetak.Value.Date;
                 kor.DodajIgram(l, pocetak, nazivIgre, sveListe[1]);
                 this.Close();
             }
-            else if(lista == "IGRAO")
+            else if (lista == "IGRAO")
             {
                 DateTime pocetak = dtPocetak.Value.Date;
                 DateTime kraj = dtKraj.Value.Date;
@@ -108,7 +102,7 @@ namespace Test
                 {
                     ukupno = int.Parse(txtUkupno.Text);
                 }
-                catch 
+                catch
                 {
                     MessageBox.Show("Ukupno vrijeme igranja mora biti cijeli broj");
                     return;

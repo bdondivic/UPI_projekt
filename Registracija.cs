@@ -1,13 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.Data.OleDb;
-using System.Drawing;
-using Backlog;
-using System.Xml.Linq;
+using System.Windows.Forms;
 
 namespace Test
 {
@@ -73,7 +66,7 @@ namespace Test
                 }
                 con.Close();
 
-            }   
+            }
             catch (Exception exp)
             {
                 return exp.ToString();

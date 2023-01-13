@@ -110,7 +110,8 @@
             // 
             // btnDodaj
             // 
-            this.btnDodaj.Location = new System.Drawing.Point(488, 295);
+            this.btnDodaj.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDodaj.Location = new System.Drawing.Point(481, 346);
             this.btnDodaj.Name = "btnDodaj";
             this.btnDodaj.Size = new System.Drawing.Size(157, 57);
             this.btnDodaj.TabIndex = 4;
@@ -120,20 +121,22 @@
             // 
             // cbZanr
             // 
-            this.cbZanr.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbZanr.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbZanr.FormattingEnabled = true;
             this.cbZanr.Items.AddRange(new object[] {
             "Svi žanrovi"});
-            this.cbZanr.Location = new System.Drawing.Point(503, 32);
+            this.cbZanr.Location = new System.Drawing.Point(481, 80);
             this.cbZanr.Name = "cbZanr";
-            this.cbZanr.Size = new System.Drawing.Size(196, 26);
+            this.cbZanr.Size = new System.Drawing.Size(196, 24);
             this.cbZanr.TabIndex = 3;
             this.cbZanr.SelectedIndexChanged += new System.EventHandler(this.cbZanr_SelectedIndexChanged);
             // 
             // rtbOpis
             // 
-            this.rtbOpis.Location = new System.Drawing.Point(488, 94);
+            this.rtbOpis.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rtbOpis.Location = new System.Drawing.Point(481, 145);
             this.rtbOpis.Name = "rtbOpis";
+            this.rtbOpis.ReadOnly = true;
             this.rtbOpis.Size = new System.Drawing.Size(492, 195);
             this.rtbOpis.TabIndex = 2;
             this.rtbOpis.Text = "";
@@ -141,9 +144,10 @@
             // 
             // lbIgre
             // 
+            this.lbIgre.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbIgre.FormattingEnabled = true;
             this.lbIgre.ItemHeight = 16;
-            this.lbIgre.Location = new System.Drawing.Point(33, 94);
+            this.lbIgre.Location = new System.Drawing.Point(26, 145);
             this.lbIgre.Name = "lbIgre";
             this.lbIgre.Size = new System.Drawing.Size(434, 468);
             this.lbIgre.TabIndex = 1;
@@ -152,7 +156,7 @@
             // txtPretraga
             // 
             this.txtPretraga.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPretraga.Location = new System.Drawing.Point(33, 34);
+            this.txtPretraga.Location = new System.Drawing.Point(26, 80);
             this.txtPretraga.Name = "txtPretraga";
             this.txtPretraga.Size = new System.Drawing.Size(434, 28);
             this.txtPretraga.TabIndex = 0;
@@ -174,6 +178,7 @@
             // 
             // btnBacklogIgram
             // 
+            this.btnBacklogIgram.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBacklogIgram.Location = new System.Drawing.Point(644, 313);
             this.btnBacklogIgram.Name = "btnBacklogIgram";
             this.btnBacklogIgram.Size = new System.Drawing.Size(157, 57);
@@ -184,6 +189,7 @@
             // 
             // btnUkloniBacklog
             // 
+            this.btnUkloniBacklog.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUkloniBacklog.Location = new System.Drawing.Point(481, 313);
             this.btnUkloniBacklog.Name = "btnUkloniBacklog";
             this.btnUkloniBacklog.Size = new System.Drawing.Size(157, 57);
@@ -194,14 +200,17 @@
             // 
             // rtbBacklogOpis
             // 
+            this.rtbBacklogOpis.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rtbBacklogOpis.Location = new System.Drawing.Point(481, 112);
             this.rtbBacklogOpis.Name = "rtbBacklogOpis";
+            this.rtbBacklogOpis.ReadOnly = true;
             this.rtbBacklogOpis.Size = new System.Drawing.Size(492, 195);
             this.rtbBacklogOpis.TabIndex = 4;
             this.rtbBacklogOpis.Text = "";
             // 
             // lbBacklog
             // 
+            this.lbBacklog.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbBacklog.FormattingEnabled = true;
             this.lbBacklog.ItemHeight = 16;
             this.lbBacklog.Location = new System.Drawing.Point(26, 112);
@@ -226,6 +235,7 @@
             // 
             // btnIgramIgrao
             // 
+            this.btnIgramIgrao.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnIgramIgrao.Location = new System.Drawing.Point(644, 313);
             this.btnIgramIgrao.Name = "btnIgramIgrao";
             this.btnIgramIgrao.Size = new System.Drawing.Size(157, 57);
@@ -236,6 +246,7 @@
             // 
             // btnUkloniIgram
             // 
+            this.btnUkloniIgram.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUkloniIgram.Location = new System.Drawing.Point(481, 313);
             this.btnUkloniIgram.Name = "btnUkloniIgram";
             this.btnUkloniIgram.Size = new System.Drawing.Size(157, 57);
@@ -246,14 +257,17 @@
             // 
             // rtbIgramOpis
             // 
+            this.rtbIgramOpis.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rtbIgramOpis.Location = new System.Drawing.Point(481, 112);
             this.rtbIgramOpis.Name = "rtbIgramOpis";
+            this.rtbIgramOpis.ReadOnly = true;
             this.rtbIgramOpis.Size = new System.Drawing.Size(492, 195);
             this.rtbIgramOpis.TabIndex = 6;
             this.rtbIgramOpis.Text = "";
             // 
             // lbIgram
             // 
+            this.lbIgram.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbIgram.FormattingEnabled = true;
             this.lbIgram.ItemHeight = 16;
             this.lbIgram.Location = new System.Drawing.Point(26, 112);
@@ -277,6 +291,7 @@
             // 
             // btnIgraoIgram
             // 
+            this.btnIgraoIgram.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnIgraoIgram.Location = new System.Drawing.Point(644, 313);
             this.btnIgraoIgram.Name = "btnIgraoIgram";
             this.btnIgraoIgram.Size = new System.Drawing.Size(157, 57);
@@ -287,6 +302,7 @@
             // 
             // btnUkloniIgrao
             // 
+            this.btnUkloniIgrao.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUkloniIgrao.Location = new System.Drawing.Point(481, 313);
             this.btnUkloniIgrao.Name = "btnUkloniIgrao";
             this.btnUkloniIgrao.Size = new System.Drawing.Size(157, 57);
@@ -297,14 +313,17 @@
             // 
             // rtbIgraoOpis
             // 
+            this.rtbIgraoOpis.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rtbIgraoOpis.Location = new System.Drawing.Point(481, 112);
             this.rtbIgraoOpis.Name = "rtbIgraoOpis";
+            this.rtbIgraoOpis.ReadOnly = true;
             this.rtbIgraoOpis.Size = new System.Drawing.Size(492, 195);
             this.rtbIgraoOpis.TabIndex = 6;
             this.rtbIgraoOpis.Text = "";
             // 
             // lbIgrao
             // 
+            this.lbIgrao.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbIgrao.FormattingEnabled = true;
             this.lbIgrao.ItemHeight = 16;
             this.lbIgrao.Location = new System.Drawing.Point(26, 112);
@@ -333,6 +352,7 @@
             this.tpProfil.Controls.Add(this.lblPrezime);
             this.tpProfil.Controls.Add(this.lblIme);
             this.tpProfil.Controls.Add(this.lblKorIme);
+            this.tpProfil.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tpProfil.Location = new System.Drawing.Point(4, 25);
             this.tpProfil.Name = "tpProfil";
             this.tpProfil.Size = new System.Drawing.Size(998, 692);
@@ -343,10 +363,11 @@
             // cb_showPass
             // 
             this.cb_showPass.AutoSize = true;
-            this.cb_showPass.Location = new System.Drawing.Point(37, 595);
+            this.cb_showPass.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cb_showPass.Location = new System.Drawing.Point(34, 592);
             this.cb_showPass.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cb_showPass.Name = "cb_showPass";
-            this.cb_showPass.Size = new System.Drawing.Size(113, 20);
+            this.cb_showPass.Size = new System.Drawing.Size(120, 21);
             this.cb_showPass.TabIndex = 24;
             this.cb_showPass.Text = "Prikaži lozinku";
             this.cb_showPass.UseVisualStyleBackColor = true;
@@ -355,7 +376,8 @@
             // 
             // btnOdustaniPass
             // 
-            this.btnOdustaniPass.Location = new System.Drawing.Point(141, 629);
+            this.btnOdustaniPass.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOdustaniPass.Location = new System.Drawing.Point(138, 626);
             this.btnOdustaniPass.Name = "btnOdustaniPass";
             this.btnOdustaniPass.Size = new System.Drawing.Size(107, 35);
             this.btnOdustaniPass.TabIndex = 23;
@@ -366,7 +388,8 @@
             // 
             // btnPotvrdiPass
             // 
-            this.btnPotvrdiPass.Location = new System.Drawing.Point(37, 629);
+            this.btnPotvrdiPass.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPotvrdiPass.Location = new System.Drawing.Point(34, 626);
             this.btnPotvrdiPass.Name = "btnPotvrdiPass";
             this.btnPotvrdiPass.Size = new System.Drawing.Size(98, 35);
             this.btnPotvrdiPass.TabIndex = 22;
@@ -377,47 +400,52 @@
             // 
             // txtNewPass
             // 
-            this.txtNewPass.Location = new System.Drawing.Point(39, 569);
+            this.txtNewPass.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNewPass.Location = new System.Drawing.Point(36, 559);
             this.txtNewPass.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtNewPass.Name = "txtNewPass";
             this.txtNewPass.PasswordChar = '*';
-            this.txtNewPass.Size = new System.Drawing.Size(209, 22);
+            this.txtNewPass.Size = new System.Drawing.Size(209, 23);
             this.txtNewPass.TabIndex = 21;
             this.txtNewPass.Visible = false;
             // 
             // lblNewPass
             // 
             this.lblNewPass.AutoSize = true;
-            this.lblNewPass.Location = new System.Drawing.Point(39, 550);
+            this.lblNewPass.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNewPass.Location = new System.Drawing.Point(36, 532);
             this.lblNewPass.Name = "lblNewPass";
-            this.lblNewPass.Size = new System.Drawing.Size(85, 16);
+            this.lblNewPass.Size = new System.Drawing.Size(89, 17);
             this.lblNewPass.TabIndex = 20;
             this.lblNewPass.Text = "Nova lozinka";
             this.lblNewPass.Visible = false;
             // 
             // txtOldPass
             // 
-            this.txtOldPass.Location = new System.Drawing.Point(39, 526);
+            this.txtOldPass.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtOldPass.Location = new System.Drawing.Point(36, 499);
             this.txtOldPass.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtOldPass.Name = "txtOldPass";
             this.txtOldPass.PasswordChar = '*';
-            this.txtOldPass.Size = new System.Drawing.Size(209, 22);
+            this.txtOldPass.Size = new System.Drawing.Size(209, 23);
             this.txtOldPass.TabIndex = 19;
             this.txtOldPass.Visible = false;
             // 
             // lblOldPass
             // 
             this.lblOldPass.AutoSize = true;
-            this.lblOldPass.Location = new System.Drawing.Point(39, 507);
+            this.lblOldPass.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblOldPass.Location = new System.Drawing.Point(36, 472);
             this.lblOldPass.Name = "lblOldPass";
-            this.lblOldPass.Size = new System.Drawing.Size(84, 16);
+            this.lblOldPass.Size = new System.Drawing.Size(90, 17);
             this.lblOldPass.TabIndex = 18;
             this.lblOldPass.Text = "Stara lozinka";
             this.lblOldPass.Visible = false;
             // 
             // btnBrisiRac
             // 
-            this.btnBrisiRac.Location = new System.Drawing.Point(808, 602);
+            this.btnBrisiRac.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBrisiRac.Location = new System.Drawing.Point(805, 599);
             this.btnBrisiRac.Name = "btnBrisiRac";
             this.btnBrisiRac.Size = new System.Drawing.Size(166, 48);
             this.btnBrisiRac.TabIndex = 10;
@@ -427,7 +455,8 @@
             // 
             // btnOdjava
             // 
-            this.btnOdjava.Location = new System.Drawing.Point(808, 37);
+            this.btnOdjava.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOdjava.Location = new System.Drawing.Point(805, 34);
             this.btnOdjava.Name = "btnOdjava";
             this.btnOdjava.Size = new System.Drawing.Size(166, 48);
             this.btnOdjava.TabIndex = 9;
@@ -437,7 +466,8 @@
             // 
             // btnPromjLoz
             // 
-            this.btnPromjLoz.Location = new System.Drawing.Point(39, 435);
+            this.btnPromjLoz.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPromjLoz.Location = new System.Drawing.Point(34, 409);
             this.btnPromjLoz.Name = "btnPromjLoz";
             this.btnPromjLoz.Size = new System.Drawing.Size(166, 48);
             this.btnPromjLoz.TabIndex = 8;
@@ -449,7 +479,7 @@
             // 
             this.lblUkupnoVr.AutoSize = true;
             this.lblUkupnoVr.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUkupnoVr.Location = new System.Drawing.Point(237, 353);
+            this.lblUkupnoVr.Location = new System.Drawing.Point(234, 350);
             this.lblUkupnoVr.Name = "lblUkupnoVr";
             this.lblUkupnoVr.Size = new System.Drawing.Size(163, 39);
             this.lblUkupnoVr.TabIndex = 7;
@@ -459,7 +489,7 @@
             // 
             this.lblPostotak.AutoSize = true;
             this.lblPostotak.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPostotak.Location = new System.Drawing.Point(237, 277);
+            this.lblPostotak.Location = new System.Drawing.Point(234, 274);
             this.lblPostotak.Name = "lblPostotak";
             this.lblPostotak.Size = new System.Drawing.Size(149, 39);
             this.lblPostotak.TabIndex = 6;
@@ -469,7 +499,7 @@
             // 
             this.lblIgrao.AutoSize = true;
             this.lblIgrao.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblIgrao.Location = new System.Drawing.Point(694, 211);
+            this.lblIgrao.Location = new System.Drawing.Point(691, 208);
             this.lblIgrao.Name = "lblIgrao";
             this.lblIgrao.Size = new System.Drawing.Size(95, 39);
             this.lblIgrao.TabIndex = 5;
@@ -479,7 +509,7 @@
             // 
             this.lblIgram.AutoSize = true;
             this.lblIgram.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblIgram.Location = new System.Drawing.Point(478, 211);
+            this.lblIgram.Location = new System.Drawing.Point(475, 208);
             this.lblIgram.Name = "lblIgram";
             this.lblIgram.Size = new System.Drawing.Size(104, 39);
             this.lblIgram.TabIndex = 4;
@@ -489,7 +519,7 @@
             // 
             this.lblBacklog.AutoSize = true;
             this.lblBacklog.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBacklog.Location = new System.Drawing.Point(237, 211);
+            this.lblBacklog.Location = new System.Drawing.Point(234, 208);
             this.lblBacklog.Name = "lblBacklog";
             this.lblBacklog.Size = new System.Drawing.Size(139, 39);
             this.lblBacklog.TabIndex = 3;
@@ -499,7 +529,7 @@
             // 
             this.lblPrezime.AutoSize = true;
             this.lblPrezime.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPrezime.Location = new System.Drawing.Point(30, 91);
+            this.lblPrezime.Location = new System.Drawing.Point(27, 88);
             this.lblPrezime.Name = "lblPrezime";
             this.lblPrezime.Size = new System.Drawing.Size(142, 39);
             this.lblPrezime.TabIndex = 2;
@@ -509,7 +539,7 @@
             // 
             this.lblIme.AutoSize = true;
             this.lblIme.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblIme.Location = new System.Drawing.Point(32, 35);
+            this.lblIme.Location = new System.Drawing.Point(29, 32);
             this.lblIme.Name = "lblIme";
             this.lblIme.Size = new System.Drawing.Size(74, 39);
             this.lblIme.TabIndex = 1;
@@ -519,7 +549,7 @@
             // 
             this.lblKorIme.AutoSize = true;
             this.lblKorIme.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblKorIme.Location = new System.Drawing.Point(30, 148);
+            this.lblKorIme.Location = new System.Drawing.Point(27, 144);
             this.lblKorIme.Name = "lblKorIme";
             this.lblKorIme.Size = new System.Drawing.Size(121, 39);
             this.lblKorIme.TabIndex = 0;
@@ -532,7 +562,9 @@
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1006, 721);
             this.Controls.Add(this.tcKartice);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.MaximizeBox = false;
             this.Name = "MainUser";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.MainUser_Load);

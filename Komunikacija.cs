@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data.OleDb;
 using System.Windows.Forms;
-using Backlog;
 using Test;
 
 namespace Backlog
@@ -24,7 +20,7 @@ namespace Backlog
         }
     }
     public class PretragaIgara
-    {   
+    {
         public OleDbConnection con { get; private set; }
         public OleDbCommand cmd { get; private set; }
 
@@ -80,7 +76,7 @@ namespace Backlog
                 con.Close();
                 return null;
             }
-            
+
         }
 
         //UČITAVANJE OPISA ZA ODABRANU IGRU IZ BP
@@ -114,7 +110,7 @@ namespace Backlog
                 con.Close();
                 return;
             }
-            
+
         }
 
         //INICIJALNO UČITAVANJE IGARA IZ BP U LISTU
@@ -135,7 +131,7 @@ namespace Backlog
                     string naziv = reader.GetString(1);
                     int id_zanr = reader.GetInt32(4);
 
-                    Igra igra = new Igra(id, naziv,  id_zanr);
+                    Igra igra = new Igra(id, naziv, id_zanr);
 
                     lista.Add(igra);
 
@@ -151,7 +147,7 @@ namespace Backlog
                 con.Close();
                 return null;
             }
-            
+
         }
     }
 
@@ -228,7 +224,7 @@ namespace Backlog
                 rtbInf.AppendText("Ime: " + odg.GetString(1) + "\n");
                 rtbInf.AppendText("Prezime: " + odg.GetString(2) + "\n");
                 rtbInf.AppendText("Korisničko ime: " + odg.GetString(3) + "\n");
-                rtbInf.AppendText("Lozinka: " + odg.GetString(4) +  "\n");
+                rtbInf.AppendText("Lozinka: " + odg.GetString(4) + "\n");
                 rtbInf.AppendText("Datum registracije: " + odg.GetDateTime(6).ToShortDateString() + "\n");
                 rtbInf.AppendText("Posljednja prijava: " + odg.GetDateTime(7).ToShortDateString() + "\n");
                 string naredba1 = $"SELECT Lista_ID from tb_Korisnik_Igra WHERE Korisnik_ID=" +
@@ -238,7 +234,7 @@ namespace Backlog
                 while (odg.Read())
                 {
                     int listaID = odg.GetInt32(0);
-                    if (listaID==1)
+                    if (listaID == 1)
                     {
                         brBacklog++;
                     }
@@ -264,5 +260,5 @@ namespace Backlog
             }
         }
     }
-    
+
 }

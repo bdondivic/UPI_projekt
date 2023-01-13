@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Backlog;
+using System;
 using System.Data.OleDb;
 using System.Windows.Forms;
-using Backlog;
 
 namespace Test
 {
@@ -88,14 +84,14 @@ namespace Test
                     MainUser.Show();
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
             }
 
-            
+
         }
     }
 
-    
+
 }

@@ -39,17 +39,20 @@
             // 
             // rtbInf
             // 
-            this.rtbInf.Location = new System.Drawing.Point(485, 156);
+            this.rtbInf.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rtbInf.Location = new System.Drawing.Point(476, 187);
             this.rtbInf.Name = "rtbInf";
+            this.rtbInf.ReadOnly = true;
             this.rtbInf.Size = new System.Drawing.Size(492, 195);
             this.rtbInf.TabIndex = 5;
             this.rtbInf.Text = "";
             // 
             // lbKorisnici
             // 
+            this.lbKorisnici.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbKorisnici.FormattingEnabled = true;
             this.lbKorisnici.ItemHeight = 16;
-            this.lbKorisnici.Location = new System.Drawing.Point(30, 156);
+            this.lbKorisnici.Location = new System.Drawing.Point(21, 187);
             this.lbKorisnici.Name = "lbKorisnici";
             this.lbKorisnici.Size = new System.Drawing.Size(434, 468);
             this.lbKorisnici.TabIndex = 4;
@@ -58,7 +61,7 @@
             // txtPretraga
             // 
             this.txtPretraga.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPretraga.Location = new System.Drawing.Point(30, 96);
+            this.txtPretraga.Location = new System.Drawing.Point(21, 127);
             this.txtPretraga.Name = "txtPretraga";
             this.txtPretraga.Size = new System.Drawing.Size(434, 28);
             this.txtPretraga.TabIndex = 3;
@@ -66,7 +69,8 @@
             // 
             // btnPreuzPodKor
             // 
-            this.btnPreuzPodKor.Location = new System.Drawing.Point(485, 357);
+            this.btnPreuzPodKor.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPreuzPodKor.Location = new System.Drawing.Point(476, 388);
             this.btnPreuzPodKor.Name = "btnPreuzPodKor";
             this.btnPreuzPodKor.Size = new System.Drawing.Size(152, 59);
             this.btnPreuzPodKor.TabIndex = 6;
@@ -76,7 +80,8 @@
             // 
             // btnBrisiRacun
             // 
-            this.btnBrisiRacun.Location = new System.Drawing.Point(643, 357);
+            this.btnBrisiRacun.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBrisiRacun.Location = new System.Drawing.Point(634, 388);
             this.btnBrisiRacun.Name = "btnBrisiRacun";
             this.btnBrisiRacun.Size = new System.Drawing.Size(152, 59);
             this.btnBrisiRacun.TabIndex = 7;
@@ -86,7 +91,8 @@
             // 
             // btnPreuzKorSvi
             // 
-            this.btnPreuzKorSvi.Location = new System.Drawing.Point(485, 422);
+            this.btnPreuzKorSvi.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPreuzKorSvi.Location = new System.Drawing.Point(476, 453);
             this.btnPreuzKorSvi.Name = "btnPreuzKorSvi";
             this.btnPreuzKorSvi.Size = new System.Drawing.Size(310, 59);
             this.btnPreuzKorSvi.TabIndex = 8;
@@ -96,7 +102,8 @@
             // 
             // btnOdjava
             // 
-            this.btnOdjava.Location = new System.Drawing.Point(828, 34);
+            this.btnOdjava.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOdjava.Location = new System.Drawing.Point(819, 65);
             this.btnOdjava.Name = "btnOdjava";
             this.btnOdjava.Size = new System.Drawing.Size(166, 48);
             this.btnOdjava.TabIndex = 10;
@@ -108,6 +115,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1006, 721);
             this.Controls.Add(this.btnOdjava);
             this.Controls.Add(this.btnPreuzKorSvi);
@@ -116,8 +124,11 @@
             this.Controls.Add(this.rtbInf);
             this.Controls.Add(this.lbKorisnici);
             this.Controls.Add(this.txtPretraga);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.MaximizeBox = false;
             this.Name = "MainAdmin";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MainAdmin";
             this.Load += new System.EventHandler(this.MainAdmin_Load);
             this.ResumeLayout(false);

@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data.OleDb;
-using System.Windows.Forms;
 using System.IO;
+using System.Text;
+using System.Windows.Forms;
 
 namespace Test
 {
@@ -54,9 +52,9 @@ namespace Test
             FolderBrowserDialog fbd = new FolderBrowserDialog();
             if (fbd.ShowDialog() == DialogResult.OK)
             {
-                string path1 = Path.Combine(fbd.SelectedPath, "backlog_"+uName+".csv");
-                string path2 = Path.Combine(fbd.SelectedPath, "igram_"+uName+".csv");
-                string path3 = Path.Combine(fbd.SelectedPath, "igrao_"+uName+".csv");
+                string path1 = Path.Combine(fbd.SelectedPath, "backlog_" + uName + ".csv");
+                string path2 = Path.Combine(fbd.SelectedPath, "igram_" + uName + ".csv");
+                string path3 = Path.Combine(fbd.SelectedPath, "igrao_" + uName + ".csv");
 
                 try
                 {
@@ -85,7 +83,7 @@ namespace Test
                             string prioritet = odg.GetString(0);
                             backlog.Add((naziv, prioritet));
                         }
-                        else if(lista == "igram")
+                        else if (lista == "igram")
                         {
                             string datumPoc = reader.GetDateTime(3).ToShortDateString();
                             igram.Add((naziv, datumPoc));
@@ -140,7 +138,7 @@ namespace Test
                     con.Close();
                     return;
                 }
-            }            
+            }
         }
 
         //PREUZIMANJE OSNOVNIH KORISNIČKIH PODATAKA ZA SVE KORISNIKE U CSV DATOTEKU

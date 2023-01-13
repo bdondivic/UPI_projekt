@@ -1,13 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
-using System.Data.OleDb;
-using static System.Net.Mime.MediaTypeNames;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using Test;
 
 namespace Backlog
@@ -57,12 +50,12 @@ namespace Backlog
             pretragaIgara.Trazi(lbIgre, listIgre, cbZanr, txtPretraga);
         }
 
-        
+
         private void MainUser_Load(object sender, EventArgs e)
         {
             listIgre = pretragaIgara.LoadIgre(lbIgre);
             ///INICIJALNO UČITAVANJE U LISTBOXOVE (BACKLOG, IGRAM, IGRAO) IZ BP
-            korisnik.dohvatiBacklog(lbBacklog);   
+            korisnik.dohvatiBacklog(lbBacklog);
             korisnik.dohvatiIgram(lbIgram);
             korisnik.dohvatiIgrao(lbIgrao);
             List<string> zanrovi = pretragaIgara.UcitajZanrove();
@@ -103,7 +96,7 @@ namespace Backlog
             {
                 MessageBox.Show("Niste odabrali igru koju želite dodati!");
                 return;
-                
+
             }
             //PROVJERAVA POSTOJI LI IGRA VEĆ U JEDNOJ OD LISTA
             string nazivIgre = lbIgre.SelectedItem.ToString();
@@ -115,7 +108,7 @@ namespace Backlog
                 Add add = new Add(nazivIgre, ref korisnik, liste);
                 add.ShowDialog();
             }
-            
+
         }
 
 
@@ -132,7 +125,7 @@ namespace Backlog
             {
                 string nazivIgre = lbBacklog.SelectedItem.ToString();
                 korisnik.UkloniBacklog(nazivIgre, lbBacklog, rtbBacklogOpis);
-            }      
+            }
         }
 
         private void btnUkloniIgram_Click(object sender, EventArgs e)
@@ -147,7 +140,7 @@ namespace Backlog
             {
                 string nazivIgre = lbIgram.SelectedItem.ToString();
                 korisnik.UkloniIgram(nazivIgre, lbIgram, rtbIgramOpis);
-            }   
+            }
         }
 
         private void btnUkloniIgrao_Click(object sender, EventArgs e)
@@ -162,27 +155,27 @@ namespace Backlog
             {
                 string nazivIgre = lbIgrao.SelectedItem.ToString();
                 korisnik.UkloniIgrao(nazivIgre, lbIgrao, rtbIgraoOpis);
-            }    
+            }
         }
 
         private void lbBacklog_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(lbBacklog.SelectedIndex != -1)
+            if (lbBacklog.SelectedIndex != -1)
             {
                 string nazivIgre = lbBacklog.SelectedItem.ToString();
                 korisnik.dohvatiOpis(nazivIgre, "BACKLOG", rtbBacklogOpis);
             }
-            
+
         }
 
         private void lbIgram_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(lbIgram.SelectedIndex != -1)
+            if (lbIgram.SelectedIndex != -1)
             {
                 string nazivIgre = lbIgram.SelectedItem.ToString();
                 korisnik.dohvatiOpis(nazivIgre, "IGRAM", rtbIgramOpis);
             }
-            
+
         }
 
         private void lbIgrao_SelectedIndexChanged(object sender, EventArgs e)
@@ -192,7 +185,7 @@ namespace Backlog
                 string nazivIgre = lbIgrao.SelectedItem.ToString();
                 korisnik.dohvatiOpis(nazivIgre, "IGRAO", rtbIgraoOpis);
             }
-            
+
         }
 
         private void btnBacklogIgram_Click(object sender, EventArgs e)
@@ -279,7 +272,7 @@ namespace Backlog
         {
             string staraLoz = txtOldPass.Text.Trim();
             string novaLoz = txtNewPass.Text.Trim();
-            if(staraLoz == "" || novaLoz == "")
+            if (staraLoz == "" || novaLoz == "")
             {
                 MessageBox.Show("Polja za staru i novu lozinku ne mogu biti prazna!");
                 return;
@@ -289,7 +282,7 @@ namespace Backlog
                 MessageBox.Show("Neispravna stara lozinka!");
                 return;
             }
-            else if(novaLoz.Length<6 || novaLoz.Length > 20)
+            else if (novaLoz.Length < 6 || novaLoz.Length > 20)
             {
                 MessageBox.Show("Lozinka mora sadržavati između 6 i 20 znakova!");
                 return;

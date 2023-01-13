@@ -1,11 +1,6 @@
-﻿using Backlog;
-using System;
-using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 using System.Data.OleDb;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Test
@@ -79,7 +74,7 @@ namespace Test
             int ukupno = 0;
             try
             {
-                
+
                 con.Open();
                 string naredba = $"SELECT * from tb_Korisnik_Igra WHERE Korisnik_ID={ID}";
                 cmd = new OleDbCommand(naredba, con);
@@ -115,9 +110,9 @@ namespace Test
                 labele[0].Text = "Backlog: " + brBacklog.ToString();
                 labele[1].Text = "Igram: " + brIgram.ToString();
                 labele[2].Text = "Igrao: " + brIgrao.ToString();
-                labele[3].Text = "Postotak odigranih: " + ((int)(postotak *100)).ToString()+"%";
-                labele[4].Text = "Ukupno vrijeme igranja: " + ukupno.ToString()+"h";
-                
+                labele[3].Text = "Postotak odigranih: " + ((int)(postotak * 100)).ToString() + "%";
+                labele[4].Text = "Ukupno vrijeme igranja: " + ukupno.ToString() + "h";
+
             }
             catch (Exception ex)
             {
@@ -214,7 +209,7 @@ namespace Test
 
         //INICIJALNO DOHVAĆANJE ZAPISA U LISTAMA KORISNIKA IZ BP
         public void dohvatiBacklog(ListBox backlog)  //METODE SU SLIČNE LoadIgre u Komunikcaija.cs, ALI SE NE STVARAJU LISTE JER SE 
-                                                       //NE VRŠI PRETRAGA/FILTRACIJA, DOVOLJNO JE DA SE DODAJU U LISTBOXOVE
+                                                     //NE VRŠI PRETRAGA/FILTRACIJA, DOVOLJNO JE DA SE DODAJU U LISTBOXOVE
         {
             try
             {
@@ -325,11 +320,11 @@ namespace Test
                 MessageBox.Show(ex.ToString());
                 return true;
             }
-            
+
         }
 
         //DOHVAĆANJE OPISA IGRE IZ KORISNIKOVE LISTE U BP
-        public void dohvatiOpis(string nazivIgre,string lista, RichTextBox opis)
+        public void dohvatiOpis(string nazivIgre, string lista, RichTextBox opis)
         {
             int igraID = dohvatiIdIgre(nazivIgre);
             try
@@ -339,7 +334,7 @@ namespace Test
                 string naredba = $"SELECT * from tb_Korisnik_Igra WHERE Korisnik_ID={ID} and Igra_ID={igraID};";
                 cmd = new OleDbCommand(naredba, con);
                 reader = cmd.ExecuteReader();
-                reader.Read();               
+                reader.Read();
 
                 if (lista == "BACKLOG")
                 {
@@ -374,7 +369,7 @@ namespace Test
                         $"Datum prelaska: {kraj}";
                 }
             }
-            
+
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
@@ -491,14 +486,14 @@ namespace Test
                 string naredba = $"UPDATE tb_Korisnik_Igra SET Datum_poc='{pocetak.ToShortDateString()}', " +
                     $"Prioritet_ID=NULL, Lista_ID=2 " +
                     $"WHERE Korisnik_ID={ID} AND Igra_ID={igraID};";
-                cmd = new OleDbCommand(naredba,con);
+                cmd = new OleDbCommand(naredba, con);
                 cmd.ExecuteNonQuery();
                 con.Close();
                 backlog.Items.Remove(backlog.SelectedItem);
                 igram.Items.Add(nazivIgre);
                 MessageBox.Show("Igra je uspješno prenesena!");
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
                 con.Close();
@@ -514,12 +509,12 @@ namespace Test
                 con.Open();
                 string naredba = $"SELECT Datum_poc FROM tb_Korisnik_Igra " +
                     $"WHERE Korisnik_ID={ID} AND Igra_ID={igraID}";
-                cmd = new OleDbCommand(naredba,con);
+                cmd = new OleDbCommand(naredba, con);
                 OleDbDataReader reader = cmd.ExecuteReader();
                 reader.Read();
                 DateTime pocetak = reader.GetDateTime(0);
                 TimeSpan razlika = kraj - pocetak;
-                if (razlika.TotalHours+24<ukupno)
+                if (razlika.TotalHours + 24 < ukupno)
                 {
                     MessageBox.Show("Ukupno vrijeme ne može biti veće od razlike kraja i početka igranja!");
                     con.Close();
