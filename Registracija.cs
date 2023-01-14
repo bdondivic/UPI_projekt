@@ -2,7 +2,7 @@
 using System.Data.OleDb;
 using System.Windows.Forms;
 
-namespace Test
+namespace Backlog
 {
     public class Registracija
     {

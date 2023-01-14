@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 
-namespace Test
+namespace Backlog
 {
     public partial class Add : Form
     {

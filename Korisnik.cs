@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Data.OleDb;
 using System.Windows.Forms;
 
-namespace Test
+namespace Backlog
 {
     public class Korisnik
     {

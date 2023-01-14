@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Windows.Forms;
-using Test;
-
 namespace Backlog
 {
     public partial class Login : Form
