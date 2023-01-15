@@ -21,21 +21,42 @@ namespace Backlog
         {
             ActiveControl = lbKorisnici;
             CueProvider.SetCue(txtPretraga, "Pretraži korisnike");
-            korisnici = pretragaKorisnika.ucitajKorisnike(lbKorisnici);
+            List<Korisnik> korisnici = pretragaKorisnika.ucitajKorisnike();
+            foreach (Korisnik k in korisnici)
+                lbKorisnici.Items.Add(k.uName);
         }
 
         private void lbKorisnici_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (lbKorisnici.SelectedIndex != -1)
             {
+                rtbInf.Clear();
                 string uName = lbKorisnici.SelectedItem.ToString();
-                pretragaKorisnika.ucitajInf(rtbInf, uName);
+                List<object> lista = pretragaKorisnika.ucitajInf(uName);
+
+                rtbInf.AppendText("Ime: " + lista[0] + "\n");
+                rtbInf.AppendText("Prezime: " + lista[1] + "\n");
+                rtbInf.AppendText("Korisničko ime: " + lista[2] + "\n");
+                rtbInf.AppendText("Lozinka: " + lista[3] + "\n");
+                rtbInf.AppendText("Datum registracije: " + lista[4] + "\n");
+                rtbInf.AppendText("Posljednja prijava: " + lista[5] + "\n");
+
+                rtbInf.AppendText("Backlog: " + lista[6] + "\n");
+                rtbInf.AppendText("Igram: " + lista[7] + "\n");
+                rtbInf.AppendText("Igrao: " + lista[8] + "\n");
             }
         }
 
         private void txtPretraga_TextChanged(object sender, EventArgs e)
         {
-            pretragaKorisnika.Trazi(lbKorisnici, korisnici, txtPretraga);
+            string text = txtPretraga.Text;
+            lbKorisnici.Items.Clear();
+            List<Korisnik> lista = pretragaKorisnika.Trazi(korisnici, text);
+            foreach (Korisnik k in lista)
+            {
+                lbKorisnici.Items.Add(k.uName);
+            }
+
         }
 
         private void btnPreuzPodKor_Click(object sender, EventArgs e)

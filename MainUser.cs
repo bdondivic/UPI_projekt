@@ -46,13 +46,19 @@ namespace Backlog
         private void txtPretraga_TextChanged(object sender, EventArgs e)
         {
             lbIgre.Items.Clear();
-            pretragaIgara.Trazi(lbIgre, listIgre, cbZanr, txtPretraga);
+            List<Igra> igre = pretragaIgara.Trazi(listIgre, cbZanr.SelectedIndex, txtPretraga.Text);
+            foreach (Igra i in igre)
+                lbIgre.Items.Add(i.naziv);
         }
 
 
         private void MainUser_Load(object sender, EventArgs e)
         {
-            listIgre = pretragaIgara.LoadIgre(lbIgre);
+            listIgre = pretragaIgara.LoadIgre();
+            foreach (Igra i in listIgre)
+            {
+                lbIgre.Items.Add(i.naziv);
+            }
             ///INICIJALNO UČITAVANJE U LISTBOXOVE (BACKLOG, IGRAM, IGRAO) IZ BP
             korisnik.dohvatiBacklog(lbBacklog);
             korisnik.dohvatiIgram(lbIgram);
@@ -70,8 +76,19 @@ namespace Backlog
         private void lbIgre_SelectedIndexChanged(object sender, EventArgs e)
         {
             string gameName = lbIgre.SelectedItem.ToString();
-            pretragaIgara.UcitajOpis(rtbOpis, cbZanr, gameName);
+            rtbOpis.Clear();
+            List<object> lista = pretragaIgara.UcitajOpis(gameName);
 
+            rtbOpis.AppendText($"Naziv: {lista[0]}\n");
+            rtbOpis.AppendText($"Platforma: {lista[1]}\n");
+            rtbOpis.AppendText($"Godina: {lista[2]}\n");
+            rtbOpis.AppendText($"Žanr: {cbZanr.Items[(int)lista[3]]}\n");
+            rtbOpis.AppendText($"Izdavač: {lista[4]}\n");
+            rtbOpis.AppendText($"NA sales: {lista[5]}\n");
+            rtbOpis.AppendText($"EU sales: {lista[6]}\n");
+            rtbOpis.AppendText($"JP sales: {lista[7]}\n");
+            rtbOpis.AppendText($"Other sales: {lista[8]}\n");
+            rtbOpis.AppendText($"Global sales: {lista[9]}\n");
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -86,7 +103,10 @@ namespace Backlog
 
         private void cbZanr_SelectedIndexChanged(object sender, EventArgs e)
         {
-            pretragaIgara.Trazi(lbIgre, listIgre, cbZanr, txtPretraga);
+            lbIgre.Items.Clear();
+            List<Igra> igre =  pretragaIgara.Trazi(listIgre, cbZanr.SelectedIndex, txtPretraga.Text);
+            foreach (Igra i in igre)
+                lbIgre.Items.Add(i.naziv);
         }
 
         private void btnDodaj_Click(object sender, EventArgs e)

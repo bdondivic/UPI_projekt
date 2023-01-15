@@ -30,26 +30,30 @@ namespace Backlog
         }
 
         //PRETRAGA IGARA PREMA LISTI TEMELJEM UNOSA I ODABRANOG ŽANRA
-        public void Trazi(ListBox lbIgre, List<Igra> listIgre, ComboBox cbZanr, TextBox txtPretraga)
+        public List<Igra> Trazi(List<Igra> listIgre, int cbIndex, string text)
         {
-            lbIgre.Items.Clear();
+            List<Igra> lista = new List<Igra>();
+            //lbIgre.Items.Clear();
             foreach (Igra igra in listIgre)
             {
-                if (cbZanr.SelectedIndex == -1 || cbZanr.SelectedIndex == 0)
+                if (cbIndex == -1 || cbIndex == 0)
                 {
-                    if (igra.naziv.ToUpper().StartsWith(txtPretraga.Text.ToUpper()))
+                    if (igra.naziv.ToUpper().StartsWith(text.ToUpper()))
                     {
-                        lbIgre.Items.Add(igra.naziv);
+                        //lbIgre.Items.Add(igra.naziv);
+                        lista.Add(igra);
                     }
                 }
                 else
                 {
-                    if (igra.naziv.ToUpper().StartsWith(txtPretraga.Text.ToUpper()) && (igra.id_zanr == cbZanr.SelectedIndex))
+                    if (igra.naziv.ToUpper().StartsWith(text.ToUpper()) && (igra.id_zanr == cbIndex))
                     {
-                        lbIgre.Items.Add(igra.naziv);
+                        //lbIgre.Items.Add(igra.naziv);
+                        lista.Add(igra);
                     }
                 }
             }
+            return lista;
         }
 
         //INICIJALNO UČITAVANJE ŽANROVA
@@ -79,41 +83,45 @@ namespace Backlog
         }
 
         //UČITAVANJE OPISA ZA ODABRANU IGRU IZ BP
-        public void UcitajOpis(RichTextBox rtbOpis, ComboBox cbZanr, string gameName)
+        public List<object> UcitajOpis(string gameName)
         {
+            List<object> lista = new List<object>();
             try
             {
-                rtbOpis.Clear();
+                //rtbOpis.Clear();
                 con.Open();
+             
                 string naredba = $"SELECT * from tb_Igra WHERE Naziv='{gameName.Replace("'", "''")}'";
                 cmd = new OleDbCommand(naredba, con);
                 OleDbDataReader odg = cmd.ExecuteReader();
                 odg.Read();
 
-                rtbOpis.AppendText($"Naziv: {odg.GetString(1)}\n");
-                rtbOpis.AppendText($"Platforma: {odg.GetString(2)}\n");
-                rtbOpis.AppendText($"Godina: {odg.GetInt32(3)}\n");
-                rtbOpis.AppendText($"Žanr: {cbZanr.Items[odg.GetInt32(4)]}\n");
-                rtbOpis.AppendText($"Izdavač: {odg.GetString(5)}\n");
-                rtbOpis.AppendText($"NA sales: {odg.GetInt32(6) * 1000}\n");
-                rtbOpis.AppendText($"EU sales: {odg.GetInt32(7) * 1000}\n");
-                rtbOpis.AppendText($"JP sales: {odg.GetInt32(8) * 1000}\n");
-                rtbOpis.AppendText($"Other sales: {odg.GetInt32(9) * 1000}\n");
-                rtbOpis.AppendText($"Global sales: {odg.GetInt32(10) * 1000}\n");
+                lista.Add(odg.GetString(1));
+                lista.Add(odg.GetString(2));
+                lista.Add(odg.GetInt32(3));
+                lista.Add(odg.GetInt32(4));
+                lista.Add(odg.GetString(5));
+                lista.Add(odg.GetInt32(6) * 1000);
+                lista.Add(odg.GetInt32(7) * 1000);
+                lista.Add(odg.GetInt32(8) * 1000);
+                lista.Add(odg.GetInt32(9) * 1000);
+                lista.Add(odg.GetInt32(10) * 1000);
 
                 con.Close();
+
+                return lista;
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
                 con.Close();
-                return;
+                return null;
             }
 
         }
 
         //INICIJALNO UČITAVANJE IGARA IZ BP U LISTU
-        public List<Igra> LoadIgre(ListBox lb)
+        public List<Igra> LoadIgre()
         {
             try
             {
@@ -134,7 +142,7 @@ namespace Backlog
 
                     lista.Add(igra);
 
-                    lb.Items.Add(naziv);
+                    //lb.Items.Add(naziv);
                 }
 
                 con.Close();
@@ -162,20 +170,22 @@ namespace Backlog
         }
 
         //PRETRAGA KORISNIKA PO LISTI TEMELJEM UNOSA
-        public void Trazi(ListBox lbkorisnici, List<Korisnik> korisnici, TextBox txtPretraga)
+        public List<Korisnik> Trazi(List<Korisnik> korisnici, string text)
         {
-            lbkorisnici.Items.Clear();
+            List<Korisnik> lista = new List<Korisnik>();
+            //lbkorisnici.Items.Clear();
             foreach (Korisnik k in korisnici)
             {
-                if (k.uName.ToUpper().StartsWith(txtPretraga.Text.ToUpper()))
+                if (k.uName.ToUpper().StartsWith(text.ToUpper()))
                 {
-                    lbkorisnici.Items.Add(k.uName);
+                    lista.Add(k);
                 }
             }
+            return lista;
         }
 
         //INICIJALNO UČITAVANJE KORISNIKA U LISTU IZ BP
-        public List<Korisnik> ucitajKorisnike(ListBox korisnici)
+        public List<Korisnik> ucitajKorisnike()
         {
             try
             {
@@ -193,7 +203,7 @@ namespace Backlog
                     string pass = reader.GetString(4);
                     Korisnik k = new Korisnik(ime, prezime, uName, pass, ID);
                     listaKorisnici.Add(k);
-                    korisnici.Items.Add(uName);
+                    //korisnici.Items.Add(uName);
                 }
                 con.Close();
                 return listaKorisnici;
@@ -207,11 +217,12 @@ namespace Backlog
         }
 
         //UČITAVANJE INFORMACIJA O KORISNIKU IZ BP
-        public void ucitajInf(RichTextBox rtbInf, string uName)
+        public List<object> ucitajInf(string uName)
         {
+            List<object> lista = new List<object>();
             try
             {
-                rtbInf.Clear();
+                //rtbInf.Clear();
                 int brBacklog = 0;
                 int brIgram = 0;
                 int brIgrao = 0;
@@ -220,12 +231,21 @@ namespace Backlog
                 cmd = new OleDbCommand(naredba, con);
                 OleDbDataReader odg = cmd.ExecuteReader();
                 odg.Read();
-                rtbInf.AppendText("Ime: " + odg.GetString(1) + "\n");
-                rtbInf.AppendText("Prezime: " + odg.GetString(2) + "\n");
-                rtbInf.AppendText("Korisničko ime: " + odg.GetString(3) + "\n");
-                rtbInf.AppendText("Lozinka: " + odg.GetString(4) + "\n");
-                rtbInf.AppendText("Datum registracije: " + odg.GetDateTime(6).ToShortDateString() + "\n");
-                rtbInf.AppendText("Posljednja prijava: " + odg.GetDateTime(7).ToShortDateString() + "\n");
+
+                //rtbInf.AppendText("Ime: " + odg.GetString(1) + "\n");
+                //rtbInf.AppendText("Prezime: " + odg.GetString(2) + "\n");
+                //rtbInf.AppendText("Korisničko ime: " + odg.GetString(3) + "\n");
+                //rtbInf.AppendText("Lozinka: " + odg.GetString(4) + "\n");
+                //rtbInf.AppendText("Datum registracije: " + odg.GetDateTime(6).ToShortDateString() + "\n");
+                //rtbInf.AppendText("Posljednja prijava: " + odg.GetDateTime(7).ToShortDateString() + "\n");
+
+                lista.Add(odg.GetString(1));
+                lista.Add(odg.GetString(2));
+                lista.Add(odg.GetString(3));
+                lista.Add(odg.GetString(4));
+                lista.Add(odg.GetDateTime(6).ToShortDateString());
+                lista.Add(odg.GetDateTime(7).ToShortDateString());
+
                 string naredba1 = $"SELECT Lista_ID from tb_Korisnik_Igra WHERE Korisnik_ID=" +
                     $"(SELECT ID_Korisnik from tb_Korisnik WHERE KorisnIme='{uName}')";
                 cmd = new OleDbCommand(naredba1, con);
@@ -246,16 +266,23 @@ namespace Backlog
                         brIgrao++;
                     }
                 }
-                rtbInf.AppendText("Backlog: " + brBacklog.ToString() + "\n");
-                rtbInf.AppendText("Igram: " + brIgram.ToString() + "\n");
-                rtbInf.AppendText("Igrao: " + brIgrao.ToString() + "\n");
+                //rtbInf.AppendText("Backlog: " + brBacklog.ToString() + "\n");
+                //rtbInf.AppendText("Igram: " + brIgram.ToString() + "\n");
+                //rtbInf.AppendText("Igrao: " + brIgrao.ToString() + "\n");
+
+                lista.Add(brBacklog.ToString());
+                lista.Add(brIgram.ToString());
+                lista.Add(brIgrao.ToString());
+
                 con.Close();
+
+                return lista;
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
                 con.Close();
-                return;
+                return null;
             }
         }
     }

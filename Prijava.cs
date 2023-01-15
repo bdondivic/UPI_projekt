@@ -56,7 +56,7 @@ namespace Backlog
         }
 
         //OTVARANJE GLAVNE FORME (KORISNIK/ADMIN?)
-        public void otvoriAplikaciju(Login log)
+        public string otvoriAplikaciju(Login log)
         {
             try
             {
@@ -75,6 +75,7 @@ namespace Backlog
                     var MainAdmin = new MainAdmin();
                     MainAdmin.Closed += (s, args) => log.Close();
                     MainAdmin.Show();
+                    return "admin";
                 }
                 else
                 {
@@ -82,11 +83,13 @@ namespace Backlog
                     var MainUser = new MainUser(name, sur, uName, pass, ID);  /////////////NOVO
                     MainUser.Closed += (s, args) => log.Close();
                     MainUser.Show();
+                    return "user";
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
+                return "Error";
             }
 
 
