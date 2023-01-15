@@ -142,7 +142,7 @@ namespace Backlog
                 con.Close();
                 return "Loznika je uspješno izmijenjena!";
             }
-            catch (Exception ex)
+            catch (Exception ex)    
             {
                 MessageBox.Show(ex.ToString());
                 con.Close();
@@ -151,7 +151,7 @@ namespace Backlog
         }
 
         //BRISANJE PROFILA IZ BP
-        public bool izbrisiRacun()
+        public string izbrisiRacun()
         {
             try
             {
@@ -163,14 +163,13 @@ namespace Backlog
                 cmd = new OleDbCommand(naredba, con);
                 cmd.ExecuteNonQuery();
                 con.Close();
-                MessageBox.Show("Račun je uspješno izbrisan!");
-                return true;
+                return "Račun je uspješno izbrisan!";
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
                 con.Close();
-                return false;
+                return "Došlo je do greške";
             }
         }
 
@@ -196,7 +195,7 @@ namespace Backlog
         }
 
         //BRISANJE ZAPISA O IGRI IZ KORISNIKOVE LISTE U BP
-        public void obrisiZapis(int igraID)
+        public bool obrisiZapis(int igraID)
         {
             try
             {
@@ -205,17 +204,18 @@ namespace Backlog
                 cmd = new OleDbCommand(naredba, con);
                 cmd.ExecuteNonQuery();
                 con.Close();
+                return true;
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
-                return;
+                return false;
             }
 
         }
 
         //INICIJALNO DOHVAĆANJE ZAPISA U LISTAMA KORISNIKA IZ BP
-        public void dohvatiBacklog(ListBox backlog)  //METODE SU SLIČNE LoadIgre u Komunikcaija.cs, ALI SE NE STVARAJU LISTE JER SE 
+        public bool dohvatiBacklog(ListBox backlog)  //METODE SU SLIČNE LoadIgre u Komunikcaija.cs, ALI SE NE STVARAJU LISTE JER SE 
                                                      //NE VRŠI PRETRAGA/FILTRACIJA, DOVOLJNO JE DA SE DODAJU U LISTBOXOVE
         {
             try
@@ -237,10 +237,13 @@ namespace Backlog
                     backlog.Items.Add(naziv);
                 }
                 con.Close();
+
+                return true;
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
+                return false;
             }
         }
 
@@ -303,7 +306,7 @@ namespace Backlog
         }
 
         //PROVJERA POSTOJI LI VEĆ MEĐU KORISNIKOVIM LISTAMA ZAPIS S IGROM U BP
-        public bool postojiZapis(string nazivIgre)
+        public string postojiZapis(string nazivIgre)
         {
             try
             {
@@ -316,16 +319,15 @@ namespace Backlog
                 if (odg.Read() == true)
                 {
                     con.Close();
-                    MessageBox.Show("Zapis sa obabranom igrom već postoji!");
-                    return true;
+                    return "Zapis sa obabranom igrom već postoji!";
                 }
                 con.Close();
-                return false;
+                return null;
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
-                return true;
+                return "Došlo je do greške";
             }
 
         }

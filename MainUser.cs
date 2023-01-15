@@ -119,10 +119,12 @@ namespace Backlog
             }
             //PROVJERAVA POSTOJI LI IGRA VEĆ U JEDNOJ OD LISTA
             string nazivIgre = lbIgre.SelectedItem.ToString();
-            bool postoji = korisnik.postojiZapis(nazivIgre);
+            string message = korisnik.postojiZapis(nazivIgre);
+            if (message != null)
+                MessageBox.Show(message);
 
             //OTVARANJE FORME ZA DODAVANJE
-            if (!postoji)
+            if (message != "Zapis sa obabranom igrom već postoji!")
             {
                 Add add = new Add(nazivIgre, ref korisnik, liste);
                 add.ShowDialog();
