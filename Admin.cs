@@ -47,7 +47,7 @@ namespace Backlog
         }
 
         //PPREUZIMANJE PODATAKA O KORISNIKOVIM LISTAMA U CSV DATOTEKE
-        public void preuzmiPodKor(string uName)
+        public bool preuzmiPodKor(string uName)
         {
             FolderBrowserDialog fbd = new FolderBrowserDialog();
             if (fbd.ShowDialog() == DialogResult.OK)
@@ -131,14 +131,16 @@ namespace Backlog
                         }
                     }
                     MessageBox.Show("Liste korisnika " + uName + " uspješno su preuzete na putanji:\n" + fbd.SelectedPath);
+                    return true;
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.ToString());
                     con.Close();
-                    return;
+                    return false;
                 }
             }
+            return false;
         }
 
         //PREUZIMANJE OSNOVNIH KORISNIČKIH PODATAKA ZA SVE KORISNIKE U CSV DATOTEKU

@@ -251,7 +251,9 @@ namespace Backlog
         {
             if (tcKartice.SelectedIndex == 4)
             {
-                korisnik.korStatistika(labele);
+                List<string> lista = korisnik.korStatistika();
+                for (int i = 0; i < labele.Count; i++) 
+                    labele[i].Text = lista[i];
             }
         }
 
@@ -311,8 +313,9 @@ namespace Backlog
                 MessageBox.Show("Nova lozinka ne može biti ista poput stare loznike!");
                 return;
             }
-            bool uspjeh = korisnik.promijeniPass(novaLoz);
-            if (uspjeh)
+            string message = korisnik.promijeniPass(novaLoz);
+            MessageBox.Show(message);
+            if (message == "Loznika je uspješno izmijenjena!")
             {
                 sakrijKontrole();
             }
@@ -336,10 +339,11 @@ namespace Backlog
             DialogResult dr = MessageBox.Show("Potvrđujete li brisanje korisničkog računa?", "Potvrda", MessageBoxButtons.YesNo);
             if (dr == DialogResult.Yes)
             {
-                bool uspjeh = korisnik.izbrisiRacun();
-                if (uspjeh)
+                string message = korisnik.izbrisiRacun();
+                MessageBox.Show(message);
+                if (message == "Račun je uspješno izbrisan!")
                 {
-                    prikaziLogin();
+                    sakrijKontrole();
                 }
             }
         }
@@ -356,6 +360,11 @@ namespace Backlog
                 txtOldPass.PasswordChar = '*';
                 txtNewPass.PasswordChar = '*';
             }
+        }
+
+        private void tpProfil_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

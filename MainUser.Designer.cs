@@ -359,6 +359,7 @@
             this.tpProfil.TabIndex = 4;
             this.tpProfil.Text = "PROFIL";
             this.tpProfil.UseVisualStyleBackColor = true;
+            this.tpProfil.Click += new System.EventHandler(this.tpProfil_Click);
             // 
             // cb_showPass
             // 

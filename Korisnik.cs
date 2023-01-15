@@ -59,19 +59,19 @@ namespace Backlog
             }
             catch (Exception ex)
             {
-
                 MessageBox.Show(ex.ToString());
                 return;
             }
         }
 
         //PRIKAZ STATISTIČKIH KORISNIČKIH PODATAKA
-        public void korStatistika(List<Label> labele)
+        public List<string> korStatistika()
         {
             int brBacklog = 0;
             int brIgram = 0;
             int brIgrao = 0;
             int ukupno = 0;
+            List<string> lista = new List<string>();
             try
             {
 
@@ -107,23 +107,31 @@ namespace Backlog
                     postotak = 0;
                 }
                 con.Close();
-                labele[0].Text = "Backlog: " + brBacklog.ToString();
-                labele[1].Text = "Igram: " + brIgram.ToString();
-                labele[2].Text = "Igrao: " + brIgrao.ToString();
-                labele[3].Text = "Postotak odigranih: " + ((int)(postotak * 100)).ToString() + "%";
-                labele[4].Text = "Ukupno vrijeme igranja: " + ukupno.ToString() + "h";
+                //labele[0].Text = "Backlog: " + brBacklog.ToString();
+                //labele[1].Text = "Igram: " + brIgram.ToString();
+                //labele[2].Text = "Igrao: " + brIgrao.ToString();
+                //labele[3].Text = "Postotak odigranih: " + ((int)(postotak * 100)).ToString() + "%";
+                //labele[4].Text = "Ukupno vrijeme igranja: " + ukupno.ToString() + "h";
+
+                lista.Add("Backlog: " + brBacklog.ToString());
+                lista.Add("Igram: " + brIgram.ToString());
+                lista.Add("Igrao: " + brIgrao.ToString());
+                lista.Add("Postotak odigranih: " + ((int)(postotak * 100)).ToString() + "%");
+                lista.Add("Ukupno vrijeme igranja: " + ukupno.ToString() + "h");
+
+                return lista;
 
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
                 con.Close();
-                return;
+                return null;
             }
         }
 
         //PROMJENA KORISNIČKE LOZINKE
-        public bool promijeniPass(string newPass)
+        public string promijeniPass(string newPass)
         {
             try
             {
@@ -132,14 +140,13 @@ namespace Backlog
                 cmd = new OleDbCommand(naredba, con);
                 cmd.ExecuteNonQuery();
                 con.Close();
-                MessageBox.Show("Loznika je uspješno izmijenjena!");
-                return true;
+                return "Loznika je uspješno izmijenjena!";
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
                 con.Close();
-                return false;
+                return "Došlo je do greške";
             }
         }
 
