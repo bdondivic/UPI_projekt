@@ -21,7 +21,7 @@ namespace Backlog
         {
             ActiveControl = lbKorisnici;
             CueProvider.SetCue(txtPretraga, "Pretraži korisnike");
-            List<Korisnik> korisnici = pretragaKorisnika.ucitajKorisnike();
+            korisnici = pretragaKorisnika.ucitajKorisnike();
             foreach (Korisnik k in korisnici)
                 lbKorisnici.Items.Add(k.uName);
         }
